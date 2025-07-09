@@ -1,0 +1,1472 @@
+2025-07-08 01:00:10,237 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 01:00:10,238 - main - INFO - Extracting text from file
+2025-07-08 01:00:10,342 - main - INFO - Uploading file to HubSpot
+2025-07-08 01:00:11,090 - main - INFO - Sending to Gemini for parsing
+2025-07-08 01:00:15,591 - main - INFO - Updating skills in HubSpot
+2025-07-08 01:00:15,613 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1018)'))': /crm/v3/properties/contacts/skills
+2025-07-08 01:00:15,632 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1018)'))': /crm/v3/properties/contacts/skills
+2025-07-08 01:00:15,650 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1018)'))': /crm/v3/properties/contacts/skills
+2025-07-08 01:00:15,662 - main - ERROR - HubSpot operation failed: HTTPSConnectionPool(host='api.hubapi.com', port=443): Max retries exceeded with url: /crm/v3/properties/contacts/skills (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1018)')))
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/connection.py", line 790, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+        sock=sock,
+    ...<14 lines>...
+        assert_fingerprint=self.assert_fingerprint,
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/connection.py", line 969, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+        sock=sock,
+    ...<8 lines>...
+        tls_in_tls=tls_in_tls,
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/util/ssl_.py", line 480, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/util/ssl_.py", line 524, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sock=sock,
+        ^^^^^^^^^^
+    ...<5 lines>...
+        session=session
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ssl.py", line 1076, in _create
+    self.do_handshake()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1018)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1018)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 190, in parse_resume
+    prop = hubspot_client.crm.properties.core_api.get_by_name(
+        object_type="contacts", property_name="skills"
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api/core_api.py", line 472, in get_by_name
+    return self.get_by_name_with_http_info(object_type, property_name, **kwargs)  # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api/core_api.py", line 563, in get_by_name_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        "/crm/v3/properties/{objectType}/{propertyName}",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth=local_var_params.get("_request_auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 378, in call_api
+    return self.__call_api(
+           ~~~~~~~~~~~~~~~^
+        resource_path,
+        ^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 185, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params, post_params=post_params, body=body, _preload_content=_preload_content, _request_timeout=_request_timeout
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 422, in request
+    return self.rest_client.GET(url, query_params=query_params, _preload_content=_preload_content, _request_timeout=_request_timeout, headers=headers)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/rest.py", line 195, in GET
+    return self.request("GET", url, headers=headers, _preload_content=_preload_content, _request_timeout=_request_timeout, query_params=query_params)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/rest.py", line 166, in request
+    r = self.pool_manager.request(method, url, fields=query_params, preload_content=_preload_content, timeout=timeout, headers=headers)
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/_request_methods.py", line 135, in request
+    return self.request_encode_url(
+           ~~~~~~~~~~~~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<3 lines>...
+        **urlopen_kw,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/_request_methods.py", line 182, in request_encode_url
+    return self.urlopen(method, url, **extra_kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/poolmanager.py", line 459, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<13 lines>...
+        **response_kw,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<13 lines>...
+        **response_kw,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<13 lines>...
+        **response_kw,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/util/retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.hubapi.com', port=443): Max retries exceeded with url: /crm/v3/properties/contacts/skills (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1018)')))
+2025-07-08 01:00:15,676 - main - ERROR - AI parsing failed: 500: HubSpot operation failed: HTTPSConnectionPool(host='api.hubapi.com', port=443): Max retries exceeded with url: /crm/v3/properties/contacts/skills (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1018)')))
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 464, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 1093, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/connection.py", line 790, in connect
+    sock_and_verified = _ssl_wrap_socket_and_match_hostname(
+        sock=sock,
+    ...<14 lines>...
+        assert_fingerprint=self.assert_fingerprint,
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/connection.py", line 969, in _ssl_wrap_socket_and_match_hostname
+    ssl_sock = ssl_wrap_socket(
+        sock=sock,
+    ...<8 lines>...
+        tls_in_tls=tls_in_tls,
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/util/ssl_.py", line 480, in ssl_wrap_socket
+    ssl_sock = _ssl_wrap_socket_impl(sock, context, tls_in_tls, server_hostname)
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/util/ssl_.py", line 524, in _ssl_wrap_socket_impl
+    return ssl_context.wrap_socket(sock, server_hostname=server_hostname)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ssl.py", line 455, in wrap_socket
+    return self.sslsocket_class._create(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sock=sock,
+        ^^^^^^^^^^
+    ...<5 lines>...
+        session=session
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ssl.py", line 1076, in _create
+    self.do_handshake()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/ssl.py", line 1372, in do_handshake
+    self._sslobj.do_handshake()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1018)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 488, in _make_request
+    raise new_e
+urllib3.exceptions.SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1018)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 190, in parse_resume
+    prop = hubspot_client.crm.properties.core_api.get_by_name(
+        object_type="contacts", property_name="skills"
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api/core_api.py", line 472, in get_by_name
+    return self.get_by_name_with_http_info(object_type, property_name, **kwargs)  # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api/core_api.py", line 563, in get_by_name_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        "/crm/v3/properties/{objectType}/{propertyName}",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth=local_var_params.get("_request_auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 378, in call_api
+    return self.__call_api(
+           ~~~~~~~~~~~~~~~^
+        resource_path,
+        ^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 185, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params, post_params=post_params, body=body, _preload_content=_preload_content, _request_timeout=_request_timeout
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 422, in request
+    return self.rest_client.GET(url, query_params=query_params, _preload_content=_preload_content, _request_timeout=_request_timeout, headers=headers)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/rest.py", line 195, in GET
+    return self.request("GET", url, headers=headers, _preload_content=_preload_content, _request_timeout=_request_timeout, query_params=query_params)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/rest.py", line 166, in request
+    r = self.pool_manager.request(method, url, fields=query_params, preload_content=_preload_content, timeout=timeout, headers=headers)
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/_request_methods.py", line 135, in request
+    return self.request_encode_url(
+           ~~~~~~~~~~~~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<3 lines>...
+        **urlopen_kw,
+        ^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/_request_methods.py", line 182, in request_encode_url
+    return self.urlopen(method, url, **extra_kw)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/poolmanager.py", line 459, in urlopen
+    response = conn.urlopen(method, u.request_uri, **kw)
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<13 lines>...
+        **response_kw,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<13 lines>...
+        **response_kw,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 871, in urlopen
+    return self.urlopen(
+           ~~~~~~~~~~~~^
+        method,
+        ^^^^^^^
+    ...<13 lines>...
+        **response_kw,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/urllib3/util/retry.py", line 519, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='api.hubapi.com', port=443): Max retries exceeded with url: /crm/v3/properties/contacts/skills (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1018)')))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 264, in parse_resume
+    raise HTTPException(status_code=500, detail=f"HubSpot operation failed: {str(e)}")
+fastapi.exceptions.HTTPException: 500: HubSpot operation failed: HTTPSConnectionPool(host='api.hubapi.com', port=443): Max retries exceeded with url: /crm/v3/properties/contacts/skills (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.c:1018)')))
+2025-07-08 01:06:26,964 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 01:06:26,964 - main - INFO - Extracting text from file
+2025-07-08 01:06:27,076 - main - INFO - Uploading file to HubSpot
+2025-07-08 01:06:27,706 - main - INFO - Sending to Gemini for parsing
+2025-07-08 01:06:30,543 - main - INFO - Updating skills in HubSpot
+2025-07-08 01:06:31,577 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-08 01:06:31,958 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-08 01:50:27,381 - main - INFO - Processing resume: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 01:50:28,478 - main - ERROR - HubSpot upload failed: 400 Client Error: Bad Request for url: https://api.hubapi.com/files/v3/files
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 391, in parse_resume
+    file_url = upload_bytes_to_hs(data, file.filename, FOLDER_ID)
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 345, in upload_bytes_to_hs
+    resp.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/requests/models.py", line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 400 Client Error: Bad Request for url: https://api.hubapi.com/files/v3/files
+2025-07-08 01:53:59,196 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 01:53:59,196 - main - INFO - Extracting text from file
+2025-07-08 01:53:59,285 - main - INFO - Uploading file to HubSpot
+2025-07-08 01:54:00,431 - main - INFO - Sending to Gemini for parsing
+2025-07-08 01:54:23,065 - main - INFO - Updating skills in HubSpot
+2025-07-08 01:54:24,011 - main - ERROR - HubSpot operation failed: 'email'
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 281, in parse_resume
+    email = parsed["email"]
+            ~~~~~~^^^^^^^^^
+KeyError: 'email'
+2025-07-08 01:54:24,015 - main - ERROR - AI parsing failed: 500: HubSpot operation failed: 'email'
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 281, in parse_resume
+    email = parsed["email"]
+            ~~~~~~^^^^^^^^^
+KeyError: 'email'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 328, in parse_resume
+    raise HTTPException(status_code=500, detail=f"HubSpot operation failed: {str(e)}")
+fastapi.exceptions.HTTPException: 500: HubSpot operation failed: 'email'
+2025-07-08 01:56:00,060 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 01:56:00,061 - main - INFO - Extracting text from file
+2025-07-08 01:56:00,165 - main - INFO - Uploading file to HubSpot
+2025-07-08 01:56:00,878 - main - INFO - Sending to Gemini for parsing
+2025-07-08 01:56:11,914 - main - INFO - Updating skills in HubSpot
+2025-07-08 01:56:12,900 - main - ERROR - HubSpot operation failed: 'email'
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 281, in parse_resume
+    email = parsed["email"]
+            ~~~~~~^^^^^^^^^
+KeyError: 'email'
+2025-07-08 01:56:12,903 - main - ERROR - AI parsing failed: 500: HubSpot operation failed: 'email'
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 281, in parse_resume
+    email = parsed["email"]
+            ~~~~~~^^^^^^^^^
+KeyError: 'email'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 328, in parse_resume
+    raise HTTPException(status_code=500, detail=f"HubSpot operation failed: {str(e)}")
+fastapi.exceptions.HTTPException: 500: HubSpot operation failed: 'email'
+2025-07-08 01:57:31,448 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 01:57:31,448 - main - INFO - Extracting text from file
+2025-07-08 01:57:31,538 - main - INFO - Uploading file to HubSpot
+2025-07-08 01:57:32,172 - main - INFO - Sending to Gemini for parsing
+2025-07-08 01:57:36,163 - main - INFO - Updating skills in HubSpot
+2025-07-08 01:57:37,656 - main - INFO - Creating new contact: salvador.sanz@email.com
+2025-07-08 01:57:37,657 - main - ERROR - HubSpot operation failed: 'company'
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 264, in parse_resume
+    "company": parsed["company"],
+               ~~~~~~^^^^^^^^^^^
+KeyError: 'company'
+2025-07-08 01:57:37,660 - main - ERROR - AI parsing failed: 500: HubSpot operation failed: 'company'
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 264, in parse_resume
+    "company": parsed["company"],
+               ~~~~~~^^^^^^^^^^^
+KeyError: 'company'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 278, in parse_resume
+    raise HTTPException(status_code=500, detail=f"HubSpot operation failed: {str(e)}")
+fastapi.exceptions.HTTPException: 500: HubSpot operation failed: 'company'
+2025-07-08 01:58:30,811 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 01:58:30,812 - main - INFO - Extracting text from file
+2025-07-08 01:58:30,918 - main - INFO - Uploading file to HubSpot
+2025-07-08 01:58:31,549 - main - INFO - Sending to Gemini for parsing
+2025-07-08 01:58:34,218 - main - INFO - Updating skills in HubSpot
+2025-07-08 01:58:35,151 - main - INFO - Creating new contact: salvador.sanz@email.com
+2025-07-08 01:58:35,647 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-08 02:08:27,553 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 02:08:27,553 - main - INFO - Extracting text from file
+2025-07-08 02:08:27,660 - main - INFO - Uploading file to HubSpot
+2025-07-08 02:08:28,307 - main - INFO - Sending to Gemini for parsing
+2025-07-08 02:08:31,846 - main - INFO - Updating skills in HubSpot
+2025-07-08 02:08:32,926 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-08 02:08:33,246 - main - ERROR - HubSpot operation failed: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Mon, 07 Jul 2025 20:38:33 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '411', 'Connection': 'keep-alive', 'CF-Ray': '95ba25683ae5ff9b-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'ce5db638-0fd6-4065-b114-473952e5882a', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624957', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '186', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=0kojCCZ4OF_cma6fi8bCLyRw_sP7.7jN7eTigpsM3QU-1751920713-1.0.1.1-etGq1.aNPhcnEWGSMspLmqdqPG_m2eIs3QhaMHF8u6QBo7NNUSBjysFNVNnnRdGHps9EIG5onp91ob..HoyE_y.2J5Jf6rzQi8H9NplPrpc; path=/; expires=Mon, 07-Jul-25 21:08:33 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=1NtjnPPQh85o7sQXIf9Ok2OJBBm0z%2FwiI7%2FQwho%2BU1AhjbW%2BsBXixMIVYcH2R%2BKNI%2BufTgiwddPW%2FsbT4%2B9FAax9OkbLbWGlETD9CBDh%2Be7kraMORcFv7kw%2Fq0VGLNsz"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Property values were not valid: [{\"isValid\":false,\"message\":\"10+ years was not a valid number.\",\"error\":\"INVALID_INTEGER\",\"name\":\"total_experience\"}]","correlationId":"ce5db638-0fd6-4065-b114-473952e5882a","errors":[{"message":"10+ years was not a valid number.","code":"INVALID_INTEGER","context":{"propertyName":["total_experience"]}}],"category":"VALIDATION_ERROR"}
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 284, in parse_resume
+    hubspot_client.crm.contacts.basic_api.update(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        contact_id,
+        ^^^^^^^^^^^
+    ...<11 lines>...
+        )
+        ^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api/basic_api.py", line 880, in update
+    return self.update_with_http_info(contact_id, simple_public_object_input, **kwargs)  # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api/basic_api.py", line 972, in update_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        "/crm/v3/objects/contacts/{contactId}",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth=local_var_params.get("_request_auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 378, in call_api
+    return self.__call_api(
+           ~~~~~~~~~~~~~~~^
+        resource_path,
+        ^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 190, in __call_api
+    raise e
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 185, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params, post_params=post_params, body=body, _preload_content=_preload_content, _request_timeout=_request_timeout
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 432, in request
+    return self.rest_client.PATCH(url, query_params=query_params, headers=headers, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/rest.py", line 213, in PATCH
+    return self.request("PATCH", url, headers=headers, query_params=query_params, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/rest.py", line 190, in request
+    raise ApiException(http_resp=r)
+hubspot.crm.contacts.exceptions.ApiException: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Mon, 07 Jul 2025 20:38:33 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '411', 'Connection': 'keep-alive', 'CF-Ray': '95ba25683ae5ff9b-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'ce5db638-0fd6-4065-b114-473952e5882a', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624957', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '186', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=0kojCCZ4OF_cma6fi8bCLyRw_sP7.7jN7eTigpsM3QU-1751920713-1.0.1.1-etGq1.aNPhcnEWGSMspLmqdqPG_m2eIs3QhaMHF8u6QBo7NNUSBjysFNVNnnRdGHps9EIG5onp91ob..HoyE_y.2J5Jf6rzQi8H9NplPrpc; path=/; expires=Mon, 07-Jul-25 21:08:33 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=1NtjnPPQh85o7sQXIf9Ok2OJBBm0z%2FwiI7%2FQwho%2BU1AhjbW%2BsBXixMIVYcH2R%2BKNI%2BufTgiwddPW%2FsbT4%2B9FAax9OkbLbWGlETD9CBDh%2Be7kraMORcFv7kw%2Fq0VGLNsz"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Property values were not valid: [{\"isValid\":false,\"message\":\"10+ years was not a valid number.\",\"error\":\"INVALID_INTEGER\",\"name\":\"total_experience\"}]","correlationId":"ce5db638-0fd6-4065-b114-473952e5882a","errors":[{"message":"10+ years was not a valid number.","code":"INVALID_INTEGER","context":{"propertyName":["total_experience"]}}],"category":"VALIDATION_ERROR"}
+
+2025-07-08 02:08:33,260 - main - ERROR - AI parsing failed: 500: HubSpot operation failed: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Mon, 07 Jul 2025 20:38:33 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '411', 'Connection': 'keep-alive', 'CF-Ray': '95ba25683ae5ff9b-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'ce5db638-0fd6-4065-b114-473952e5882a', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624957', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '186', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=0kojCCZ4OF_cma6fi8bCLyRw_sP7.7jN7eTigpsM3QU-1751920713-1.0.1.1-etGq1.aNPhcnEWGSMspLmqdqPG_m2eIs3QhaMHF8u6QBo7NNUSBjysFNVNnnRdGHps9EIG5onp91ob..HoyE_y.2J5Jf6rzQi8H9NplPrpc; path=/; expires=Mon, 07-Jul-25 21:08:33 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=1NtjnPPQh85o7sQXIf9Ok2OJBBm0z%2FwiI7%2FQwho%2BU1AhjbW%2BsBXixMIVYcH2R%2BKNI%2BufTgiwddPW%2FsbT4%2B9FAax9OkbLbWGlETD9CBDh%2Be7kraMORcFv7kw%2Fq0VGLNsz"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Property values were not valid: [{\"isValid\":false,\"message\":\"10+ years was not a valid number.\",\"error\":\"INVALID_INTEGER\",\"name\":\"total_experience\"}]","correlationId":"ce5db638-0fd6-4065-b114-473952e5882a","errors":[{"message":"10+ years was not a valid number.","code":"INVALID_INTEGER","context":{"propertyName":["total_experience"]}}],"category":"VALIDATION_ERROR"}
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 284, in parse_resume
+    hubspot_client.crm.contacts.basic_api.update(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        contact_id,
+        ^^^^^^^^^^^
+    ...<11 lines>...
+        )
+        ^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api/basic_api.py", line 880, in update
+    return self.update_with_http_info(contact_id, simple_public_object_input, **kwargs)  # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api/basic_api.py", line 972, in update_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        "/crm/v3/objects/contacts/{contactId}",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth=local_var_params.get("_request_auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 378, in call_api
+    return self.__call_api(
+           ~~~~~~~~~~~~~~~^
+        resource_path,
+        ^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 190, in __call_api
+    raise e
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 185, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params, post_params=post_params, body=body, _preload_content=_preload_content, _request_timeout=_request_timeout
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 432, in request
+    return self.rest_client.PATCH(url, query_params=query_params, headers=headers, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/rest.py", line 213, in PATCH
+    return self.request("PATCH", url, headers=headers, query_params=query_params, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/rest.py", line 190, in request
+    raise ApiException(http_resp=r)
+hubspot.crm.contacts.exceptions.ApiException: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Mon, 07 Jul 2025 20:38:33 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '411', 'Connection': 'keep-alive', 'CF-Ray': '95ba25683ae5ff9b-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'ce5db638-0fd6-4065-b114-473952e5882a', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624957', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '186', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=0kojCCZ4OF_cma6fi8bCLyRw_sP7.7jN7eTigpsM3QU-1751920713-1.0.1.1-etGq1.aNPhcnEWGSMspLmqdqPG_m2eIs3QhaMHF8u6QBo7NNUSBjysFNVNnnRdGHps9EIG5onp91ob..HoyE_y.2J5Jf6rzQi8H9NplPrpc; path=/; expires=Mon, 07-Jul-25 21:08:33 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=1NtjnPPQh85o7sQXIf9Ok2OJBBm0z%2FwiI7%2FQwho%2BU1AhjbW%2BsBXixMIVYcH2R%2BKNI%2BufTgiwddPW%2FsbT4%2B9FAax9OkbLbWGlETD9CBDh%2Be7kraMORcFv7kw%2Fq0VGLNsz"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Property values were not valid: [{\"isValid\":false,\"message\":\"10+ years was not a valid number.\",\"error\":\"INVALID_INTEGER\",\"name\":\"total_experience\"}]","correlationId":"ce5db638-0fd6-4065-b114-473952e5882a","errors":[{"message":"10+ years was not a valid number.","code":"INVALID_INTEGER","context":{"propertyName":["total_experience"]}}],"category":"VALIDATION_ERROR"}
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 322, in parse_resume
+    raise HTTPException(status_code=500, detail=f"HubSpot operation failed: {str(e)}")
+fastapi.exceptions.HTTPException: 500: HubSpot operation failed: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Mon, 07 Jul 2025 20:38:33 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '411', 'Connection': 'keep-alive', 'CF-Ray': '95ba25683ae5ff9b-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'ce5db638-0fd6-4065-b114-473952e5882a', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624957', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '186', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=0kojCCZ4OF_cma6fi8bCLyRw_sP7.7jN7eTigpsM3QU-1751920713-1.0.1.1-etGq1.aNPhcnEWGSMspLmqdqPG_m2eIs3QhaMHF8u6QBo7NNUSBjysFNVNnnRdGHps9EIG5onp91ob..HoyE_y.2J5Jf6rzQi8H9NplPrpc; path=/; expires=Mon, 07-Jul-25 21:08:33 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=1NtjnPPQh85o7sQXIf9Ok2OJBBm0z%2FwiI7%2FQwho%2BU1AhjbW%2BsBXixMIVYcH2R%2BKNI%2BufTgiwddPW%2FsbT4%2B9FAax9OkbLbWGlETD9CBDh%2Be7kraMORcFv7kw%2Fq0VGLNsz"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Property values were not valid: [{\"isValid\":false,\"message\":\"10+ years was not a valid number.\",\"error\":\"INVALID_INTEGER\",\"name\":\"total_experience\"}]","correlationId":"ce5db638-0fd6-4065-b114-473952e5882a","errors":[{"message":"10+ years was not a valid number.","code":"INVALID_INTEGER","context":{"propertyName":["total_experience"]}}],"category":"VALIDATION_ERROR"}
+
+2025-07-08 02:10:59,834 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 02:10:59,835 - main - INFO - Extracting text from file
+2025-07-08 02:10:59,925 - main - INFO - Uploading file to HubSpot
+2025-07-08 02:11:00,579 - main - INFO - Sending to Gemini for parsing
+2025-07-08 02:11:05,484 - main - INFO - Updating skills in HubSpot
+2025-07-08 02:11:06,429 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-08 02:11:06,827 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-08 18:00:17,202 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 18:00:17,202 - main - INFO - Extracting text from file
+2025-07-08 18:00:17,305 - main - INFO - Uploading file to HubSpot
+2025-07-08 18:00:18,127 - main - INFO - Sending to Gemini for parsing
+2025-07-08 18:00:21,756 - main - INFO - Updating skills in HubSpot
+2025-07-08 18:00:22,900 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-08 18:00:23,486 - main - ERROR - HubSpot operation failed: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 12:30:23 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '269', 'Connection': 'keep-alive', 'CF-Ray': '95bf97b1bcfb4737-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': '4bff59d9-82b0-42a2-8c5d-42fa59e2367e', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624995', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '186', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=LlgXUr2ts7vPW6r9Ek9CZECT75xqPYlC__9QY_SDmig-1751977823-1.0.1.1-njAG0BtGA1VawDM634Z1qAlmEK7fxp1Ob655jVhztLZVQ1aNc2SyUkT6aNMgxgLc5tw9lcUE1agIFguzh5XNEXlzjQuEa90Au1s1.X8w83w; path=/; expires=Tue, 08-Jul-25 13:00:23 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=uEsIAQcmKaWb4fkT6BWAe%2BQX%2F%2BEzVuYvxLpVLKk54wqEt5WA2A8ds0pf7biSPjfAW5afxMQ%2FCXYgxSEeip4J23I4lcfnsZv7m8bAfSf1IR%2BBx0x2UEzuWpol%2FHeinVG7"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Invalid input JSON on line 1, column 460: Names for properties should be lowercase and have less than 100 characters. Invalid names: [Year_of_experience]","correlationId":"4bff59d9-82b0-42a2-8c5d-42fa59e2367e","category":"VALIDATION_ERROR"}
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 286, in parse_resume
+    hubspot_client.crm.contacts.basic_api.update(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        contact_id,
+        ^^^^^^^^^^^
+    ...<12 lines>...
+        )
+        ^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api/basic_api.py", line 880, in update
+    return self.update_with_http_info(contact_id, simple_public_object_input, **kwargs)  # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api/basic_api.py", line 972, in update_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        "/crm/v3/objects/contacts/{contactId}",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth=local_var_params.get("_request_auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 378, in call_api
+    return self.__call_api(
+           ~~~~~~~~~~~~~~~^
+        resource_path,
+        ^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 190, in __call_api
+    raise e
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 185, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params, post_params=post_params, body=body, _preload_content=_preload_content, _request_timeout=_request_timeout
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 432, in request
+    return self.rest_client.PATCH(url, query_params=query_params, headers=headers, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/rest.py", line 213, in PATCH
+    return self.request("PATCH", url, headers=headers, query_params=query_params, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/rest.py", line 190, in request
+    raise ApiException(http_resp=r)
+hubspot.crm.contacts.exceptions.ApiException: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 12:30:23 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '269', 'Connection': 'keep-alive', 'CF-Ray': '95bf97b1bcfb4737-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': '4bff59d9-82b0-42a2-8c5d-42fa59e2367e', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624995', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '186', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=LlgXUr2ts7vPW6r9Ek9CZECT75xqPYlC__9QY_SDmig-1751977823-1.0.1.1-njAG0BtGA1VawDM634Z1qAlmEK7fxp1Ob655jVhztLZVQ1aNc2SyUkT6aNMgxgLc5tw9lcUE1agIFguzh5XNEXlzjQuEa90Au1s1.X8w83w; path=/; expires=Tue, 08-Jul-25 13:00:23 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=uEsIAQcmKaWb4fkT6BWAe%2BQX%2F%2BEzVuYvxLpVLKk54wqEt5WA2A8ds0pf7biSPjfAW5afxMQ%2FCXYgxSEeip4J23I4lcfnsZv7m8bAfSf1IR%2BBx0x2UEzuWpol%2FHeinVG7"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Invalid input JSON on line 1, column 460: Names for properties should be lowercase and have less than 100 characters. Invalid names: [Year_of_experience]","correlationId":"4bff59d9-82b0-42a2-8c5d-42fa59e2367e","category":"VALIDATION_ERROR"}
+
+2025-07-08 18:00:23,494 - main - ERROR - AI parsing failed: 500: HubSpot operation failed: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 12:30:23 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '269', 'Connection': 'keep-alive', 'CF-Ray': '95bf97b1bcfb4737-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': '4bff59d9-82b0-42a2-8c5d-42fa59e2367e', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624995', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '186', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=LlgXUr2ts7vPW6r9Ek9CZECT75xqPYlC__9QY_SDmig-1751977823-1.0.1.1-njAG0BtGA1VawDM634Z1qAlmEK7fxp1Ob655jVhztLZVQ1aNc2SyUkT6aNMgxgLc5tw9lcUE1agIFguzh5XNEXlzjQuEa90Au1s1.X8w83w; path=/; expires=Tue, 08-Jul-25 13:00:23 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=uEsIAQcmKaWb4fkT6BWAe%2BQX%2F%2BEzVuYvxLpVLKk54wqEt5WA2A8ds0pf7biSPjfAW5afxMQ%2FCXYgxSEeip4J23I4lcfnsZv7m8bAfSf1IR%2BBx0x2UEzuWpol%2FHeinVG7"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Invalid input JSON on line 1, column 460: Names for properties should be lowercase and have less than 100 characters. Invalid names: [Year_of_experience]","correlationId":"4bff59d9-82b0-42a2-8c5d-42fa59e2367e","category":"VALIDATION_ERROR"}
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 286, in parse_resume
+    hubspot_client.crm.contacts.basic_api.update(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        contact_id,
+        ^^^^^^^^^^^
+    ...<12 lines>...
+        )
+        ^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api/basic_api.py", line 880, in update
+    return self.update_with_http_info(contact_id, simple_public_object_input, **kwargs)  # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api/basic_api.py", line 972, in update_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        "/crm/v3/objects/contacts/{contactId}",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth=local_var_params.get("_request_auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 378, in call_api
+    return self.__call_api(
+           ~~~~~~~~~~~~~~~^
+        resource_path,
+        ^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 190, in __call_api
+    raise e
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 185, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params, post_params=post_params, body=body, _preload_content=_preload_content, _request_timeout=_request_timeout
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 432, in request
+    return self.rest_client.PATCH(url, query_params=query_params, headers=headers, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/rest.py", line 213, in PATCH
+    return self.request("PATCH", url, headers=headers, query_params=query_params, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/rest.py", line 190, in request
+    raise ApiException(http_resp=r)
+hubspot.crm.contacts.exceptions.ApiException: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 12:30:23 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '269', 'Connection': 'keep-alive', 'CF-Ray': '95bf97b1bcfb4737-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': '4bff59d9-82b0-42a2-8c5d-42fa59e2367e', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624995', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '186', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=LlgXUr2ts7vPW6r9Ek9CZECT75xqPYlC__9QY_SDmig-1751977823-1.0.1.1-njAG0BtGA1VawDM634Z1qAlmEK7fxp1Ob655jVhztLZVQ1aNc2SyUkT6aNMgxgLc5tw9lcUE1agIFguzh5XNEXlzjQuEa90Au1s1.X8w83w; path=/; expires=Tue, 08-Jul-25 13:00:23 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=uEsIAQcmKaWb4fkT6BWAe%2BQX%2F%2BEzVuYvxLpVLKk54wqEt5WA2A8ds0pf7biSPjfAW5afxMQ%2FCXYgxSEeip4J23I4lcfnsZv7m8bAfSf1IR%2BBx0x2UEzuWpol%2FHeinVG7"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Invalid input JSON on line 1, column 460: Names for properties should be lowercase and have less than 100 characters. Invalid names: [Year_of_experience]","correlationId":"4bff59d9-82b0-42a2-8c5d-42fa59e2367e","category":"VALIDATION_ERROR"}
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 326, in parse_resume
+    raise HTTPException(status_code=500, detail=f"HubSpot operation failed: {str(e)}")
+fastapi.exceptions.HTTPException: 500: HubSpot operation failed: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 12:30:23 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '269', 'Connection': 'keep-alive', 'CF-Ray': '95bf97b1bcfb4737-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': '4bff59d9-82b0-42a2-8c5d-42fa59e2367e', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624995', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '186', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=LlgXUr2ts7vPW6r9Ek9CZECT75xqPYlC__9QY_SDmig-1751977823-1.0.1.1-njAG0BtGA1VawDM634Z1qAlmEK7fxp1Ob655jVhztLZVQ1aNc2SyUkT6aNMgxgLc5tw9lcUE1agIFguzh5XNEXlzjQuEa90Au1s1.X8w83w; path=/; expires=Tue, 08-Jul-25 13:00:23 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=uEsIAQcmKaWb4fkT6BWAe%2BQX%2F%2BEzVuYvxLpVLKk54wqEt5WA2A8ds0pf7biSPjfAW5afxMQ%2FCXYgxSEeip4J23I4lcfnsZv7m8bAfSf1IR%2BBx0x2UEzuWpol%2FHeinVG7"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Invalid input JSON on line 1, column 460: Names for properties should be lowercase and have less than 100 characters. Invalid names: [Year_of_experience]","correlationId":"4bff59d9-82b0-42a2-8c5d-42fa59e2367e","category":"VALIDATION_ERROR"}
+
+2025-07-08 18:03:32,588 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 18:03:32,589 - main - INFO - Extracting text from file
+2025-07-08 18:03:32,686 - main - INFO - Uploading file to HubSpot
+2025-07-08 18:03:33,466 - main - INFO - Sending to Gemini for parsing
+2025-07-08 18:03:42,649 - main - INFO - Updating skills in HubSpot
+2025-07-08 18:03:43,944 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-08 18:03:44,402 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-08 19:48:42,741 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 19:48:42,744 - main - INFO - Extracting text from file
+2025-07-08 19:48:42,838 - main - INFO - Uploading file to HubSpot
+2025-07-08 19:48:43,661 - main - INFO - Sending to Gemini for parsing
+2025-07-08 19:48:51,043 - main - INFO - Updating skills in HubSpot
+2025-07-08 19:48:52,098 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-08 19:48:52,488 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-08 20:11:50,785 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 20:11:50,786 - main - INFO - Extracting text from file
+2025-07-08 20:11:50,890 - main - INFO - Uploading file to HubSpot
+2025-07-08 20:11:51,642 - main - INFO - Sending to Gemini for parsing
+2025-07-08 20:12:03,759 - main - INFO - Updating city_dropdown in HubSpot
+2025-07-08 20:12:04,544 - main - ERROR - AI parsing failed: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 14:42:04 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '303', 'Connection': 'keep-alive', 'CF-Ray': '95c0589908dab13b-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': '06b902d9-3349-42e1-95e5-ca0e2ac49ae4', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624982', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '188', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=IJQdWZpPKie5boT8MXWxb4m0k4z00t_0RbbPuVsTri4-1751985724-1.0.1.1-YLvj7jl.0f_33woNJlyMrRRY8stTySOj9JkrodB27Smezh1wg.LukcwTMJRP311atniTss089DUiw3uQf8odek26sXRANh0TckSrdzxlqAQ; path=/; expires=Tue, 08-Jul-25 15:12:04 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=2STVYEtfgzq%2F6Z%2FYRmZ%2B6KbXA%2FNsOzo7BR0cXDfrs2XA2T7wWM3CtMC2OxreYWqBfT28oI9MAQje7E4BCwol9E12FrwsnTtd8YeayQmc1dbcsq6g%2B2z2jcN0bUrC%2F%2BiF"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Invalid input JSON on line 1, column 202: Enum type must be one of: [calculation_equation, checkbox, phonenumber, number, textarea, booleancheckbox, file, text, date, html, select, radio]","correlationId":"06b902d9-3349-42e1-95e5-ca0e2ac49ae4","category":"VALIDATION_ERROR"}
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 307, in parse_resume
+    city_selected = update_dropdown_property("city_dropdown", "City", [city]) if city else ""
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 191, in update_dropdown_property
+    hubspot_client.crm.properties.core_api.update(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        object_type="contacts",
+        ^^^^^^^^^^^^^^^^^^^^^^^
+        property_name=property_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        property_update=update_prop
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api/core_api.py", line 614, in update
+    return self.update_with_http_info(object_type, property_name, property_update, **kwargs)  # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api/core_api.py", line 709, in update_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        "/crm/v3/properties/{objectType}/{propertyName}",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth=local_var_params.get("_request_auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 378, in call_api
+    return self.__call_api(
+           ~~~~~~~~~~~~~~~^
+        resource_path,
+        ^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 190, in __call_api
+    raise e
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 185, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params, post_params=post_params, body=body, _preload_content=_preload_content, _request_timeout=_request_timeout
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 432, in request
+    return self.rest_client.PATCH(url, query_params=query_params, headers=headers, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/rest.py", line 213, in PATCH
+    return self.request("PATCH", url, headers=headers, query_params=query_params, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/rest.py", line 190, in request
+    raise ApiException(http_resp=r)
+hubspot.crm.properties.exceptions.ApiException: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 14:42:04 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '303', 'Connection': 'keep-alive', 'CF-Ray': '95c0589908dab13b-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': '06b902d9-3349-42e1-95e5-ca0e2ac49ae4', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624982', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '188', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=IJQdWZpPKie5boT8MXWxb4m0k4z00t_0RbbPuVsTri4-1751985724-1.0.1.1-YLvj7jl.0f_33woNJlyMrRRY8stTySOj9JkrodB27Smezh1wg.LukcwTMJRP311atniTss089DUiw3uQf8odek26sXRANh0TckSrdzxlqAQ; path=/; expires=Tue, 08-Jul-25 15:12:04 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=2STVYEtfgzq%2F6Z%2FYRmZ%2B6KbXA%2FNsOzo7BR0cXDfrs2XA2T7wWM3CtMC2OxreYWqBfT28oI9MAQje7E4BCwol9E12FrwsnTtd8YeayQmc1dbcsq6g%2B2z2jcN0bUrC%2F%2BiF"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Invalid input JSON on line 1, column 202: Enum type must be one of: [calculation_equation, checkbox, phonenumber, number, textarea, booleancheckbox, file, text, date, html, select, radio]","correlationId":"06b902d9-3349-42e1-95e5-ca0e2ac49ae4","category":"VALIDATION_ERROR"}
+
+2025-07-08 20:15:03,130 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 20:15:03,130 - main - INFO - Extracting text from file
+2025-07-08 20:15:03,233 - main - INFO - Uploading file to HubSpot
+2025-07-08 20:15:03,940 - main - INFO - Sending to Gemini for parsing
+2025-07-08 20:15:16,945 - main - INFO - Updating city_dropdown in HubSpot
+2025-07-08 20:15:17,843 - main - ERROR - Failed to update property city_dropdown: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 14:45:17 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '389', 'Connection': 'keep-alive', 'CF-Ray': '95c05d501d1f4829-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': '2364d022-7792-40f3-9d2e-ac8d3adecfc9', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624979', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '188', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=yTq1n3A4G9MGphlszCLS0XDi.vD0GmWTvXtPW1SEudk-1751985917-1.0.1.1-olY49OJBm12aZKzqkwGqf8ufg4YfdPeUBYn6v_Ww.uKIY7uycacRfJKx50XAqALL_l8vQeNh5TCwaN7G1Otf6oyNELFUUNWfOE1ISp17gIA; path=/; expires=Tue, 08-Jul-25 15:15:17 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=lpzUcH09XuyKwOUrr3YAgKULw%2B8qm429gvALLm1qPb1ZjQJXOLiZZXlS3blbbbTbBHR7BMRTu4B9ycJpgC0lJvBNRGvGOmOXJC%2BHUzUnJMzimbSpL5%2FlHbYhFGsPd0H9"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Property labels must be unique. Property city_dropdown of object type 0-1 has the same label as property city","correlationId":"2364d022-7792-40f3-9d2e-ac8d3adecfc9","context":{"newProperty":["city_dropdown"],"newObjectTypeId":["0-1"],"existingProperty":["city"]},"category":"VALIDATION_ERROR","subCategory":"PropertyValidationError.NON_UNIQUE_PROPERTY_LABEL"}
+
+2025-07-08 20:15:17,843 - main - ERROR - AI parsing failed: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 14:45:17 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '389', 'Connection': 'keep-alive', 'CF-Ray': '95c05d501d1f4829-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': '2364d022-7792-40f3-9d2e-ac8d3adecfc9', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624979', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '188', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=yTq1n3A4G9MGphlszCLS0XDi.vD0GmWTvXtPW1SEudk-1751985917-1.0.1.1-olY49OJBm12aZKzqkwGqf8ufg4YfdPeUBYn6v_Ww.uKIY7uycacRfJKx50XAqALL_l8vQeNh5TCwaN7G1Otf6oyNELFUUNWfOE1ISp17gIA; path=/; expires=Tue, 08-Jul-25 15:15:17 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=lpzUcH09XuyKwOUrr3YAgKULw%2B8qm429gvALLm1qPb1ZjQJXOLiZZXlS3blbbbTbBHR7BMRTu4B9ycJpgC0lJvBNRGvGOmOXJC%2BHUzUnJMzimbSpL5%2FlHbYhFGsPd0H9"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Property labels must be unique. Property city_dropdown of object type 0-1 has the same label as property city","correlationId":"2364d022-7792-40f3-9d2e-ac8d3adecfc9","context":{"newProperty":["city_dropdown"],"newObjectTypeId":["0-1"],"existingProperty":["city"]},"category":"VALIDATION_ERROR","subCategory":"PropertyValidationError.NON_UNIQUE_PROPERTY_LABEL"}
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 332, in parse_resume
+    city_selected = update_dropdown_property("city_dropdown", "City", [city]) if city else ""
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 197, in update_dropdown_property
+    response = hubspot_client.crm.properties.core_api.update(
+        object_type="contacts",
+        property_name=property_name,
+        property_update=update_prop  # Note: This should be a dict, not PropertyCreate object
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api/core_api.py", line 614, in update
+    return self.update_with_http_info(object_type, property_name, property_update, **kwargs)  # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api/core_api.py", line 709, in update_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        "/crm/v3/properties/{objectType}/{propertyName}",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth=local_var_params.get("_request_auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 378, in call_api
+    return self.__call_api(
+           ~~~~~~~~~~~~~~~^
+        resource_path,
+        ^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 190, in __call_api
+    raise e
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 185, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params, post_params=post_params, body=body, _preload_content=_preload_content, _request_timeout=_request_timeout
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 432, in request
+    return self.rest_client.PATCH(url, query_params=query_params, headers=headers, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/rest.py", line 213, in PATCH
+    return self.request("PATCH", url, headers=headers, query_params=query_params, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/rest.py", line 190, in request
+    raise ApiException(http_resp=r)
+hubspot.crm.properties.exceptions.ApiException: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 14:45:17 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '389', 'Connection': 'keep-alive', 'CF-Ray': '95c05d501d1f4829-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': '2364d022-7792-40f3-9d2e-ac8d3adecfc9', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624979', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '188', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=yTq1n3A4G9MGphlszCLS0XDi.vD0GmWTvXtPW1SEudk-1751985917-1.0.1.1-olY49OJBm12aZKzqkwGqf8ufg4YfdPeUBYn6v_Ww.uKIY7uycacRfJKx50XAqALL_l8vQeNh5TCwaN7G1Otf6oyNELFUUNWfOE1ISp17gIA; path=/; expires=Tue, 08-Jul-25 15:15:17 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=lpzUcH09XuyKwOUrr3YAgKULw%2B8qm429gvALLm1qPb1ZjQJXOLiZZXlS3blbbbTbBHR7BMRTu4B9ycJpgC0lJvBNRGvGOmOXJC%2BHUzUnJMzimbSpL5%2FlHbYhFGsPd0H9"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Property labels must be unique. Property city_dropdown of object type 0-1 has the same label as property city","correlationId":"2364d022-7792-40f3-9d2e-ac8d3adecfc9","context":{"newProperty":["city_dropdown"],"newObjectTypeId":["0-1"],"existingProperty":["city"]},"category":"VALIDATION_ERROR","subCategory":"PropertyValidationError.NON_UNIQUE_PROPERTY_LABEL"}
+
+2025-07-08 20:19:47,231 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 20:19:47,232 - main - INFO - Extracting text from file
+2025-07-08 20:19:47,317 - main - INFO - Uploading file to HubSpot
+2025-07-08 20:19:48,005 - main - INFO - Sending to Gemini for parsing
+2025-07-08 20:19:55,477 - main - INFO - Updating skills in HubSpot
+2025-07-08 20:19:58,223 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-08 20:19:58,605 - main - ERROR - HubSpot operation failed: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 14:49:58 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '1790', 'Connection': 'keep-alive', 'CF-Ray': '95c0642b1c903df1-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'dc687abc-9fe7-4d8d-b762-4d69983a38e6', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624974', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '187', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=aIyIpaXwJMCsoeO6PZfgEnIbiyxO1zhYxBINleZyti4-1751986198-1.0.1.1-w2ZFVrWuxc3bUmr334bYsilKoaUutoIWCvS1oPVum1ZCCL8HeOVWI0662zQaV._fLtSAa__BDMjBWr_eSNzNkgdtEYZ9CGYvOzIatuN3.JI; path=/; expires=Tue, 08-Jul-25 15:19:58 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=UxxhqDHNccwa4ql2gaI%2FSgJWmOUioCB4j3hqo%2FObDKFrEg55wAx0zTCWKsD2AxrHPIZZO8yyeo7H%2FFDE64ZOo1DZOZei%2BA1Y%2FOGZSKoY2p4UDea1a4Ha9uJJEKxRpwuZ"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Property values were not valid: [{\"isValid\":false,\"message\":\"Delaware was not one of the allowed options: [label: \\\"state\\\"\\nvalue: \\\"state\\\"\\ndisplay_order: 0\\ndouble_data: 0.0\\nhidden: false\\ndescription: \\\"\\\"\\nread_only: false\\n]\",\"error\":\"INVALID_OPTION\",\"name\":\"state_dropdown\"},{\"isValid\":false,\"message\":\"Dover was not one of the allowed options: [label: \\\"city\\\"\\nvalue: \\\"city\\\"\\ndisplay_order: 0\\ndouble_data: 0.0\\nhidden: false\\ndescription: \\\"\\\"\\nread_only: false\\n]\",\"error\":\"INVALID_OPTION\",\"name\":\"city_dropdown\"},{\"isValid\":false,\"message\":\"United States was not one of the allowed options: [label: \\\"country\\\"\\nvalue: \\\"country\\\"\\ndisplay_order: 0\\ndouble_data: 0.0\\nhidden: false\\ndescription: \\\"\\\"\\nread_only: false\\n]\",\"error\":\"INVALID_OPTION\",\"name\":\"country_dropdown\"}]","correlationId":"dc687abc-9fe7-4d8d-b762-4d69983a38e6","errors":[{"message":"Delaware was not one of the allowed options: [label: \"state\"\nvalue: \"state\"\ndisplay_order: 0\ndouble_data: 0.0\nhidden: false\ndescription: \"\"\nread_only: false\n]","code":"INVALID_OPTION","context":{"propertyName":["state_dropdown"]}},{"message":"Dover was not one of the allowed options: [label: \"city\"\nvalue: \"city\"\ndisplay_order: 0\ndouble_data: 0.0\nhidden: false\ndescription: \"\"\nread_only: false\n]","code":"INVALID_OPTION","context":{"propertyName":["city_dropdown"]}},{"message":"United States was not one of the allowed options: [label: \"country\"\nvalue: \"country\"\ndisplay_order: 0\ndouble_data: 0.0\nhidden: false\ndescription: \"\"\nread_only: false\n]","code":"INVALID_OPTION","context":{"propertyName":["country_dropdown"]}}],"category":"VALIDATION_ERROR"}
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 319, in parse_resume
+    hubspot_client.crm.contacts.basic_api.update(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        contact_id,
+        ^^^^^^^^^^^
+    ...<16 lines>...
+        )
+        ^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api/basic_api.py", line 880, in update
+    return self.update_with_http_info(contact_id, simple_public_object_input, **kwargs)  # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api/basic_api.py", line 972, in update_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        "/crm/v3/objects/contacts/{contactId}",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth=local_var_params.get("_request_auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 378, in call_api
+    return self.__call_api(
+           ~~~~~~~~~~~~~~~^
+        resource_path,
+        ^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 190, in __call_api
+    raise e
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 185, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params, post_params=post_params, body=body, _preload_content=_preload_content, _request_timeout=_request_timeout
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 432, in request
+    return self.rest_client.PATCH(url, query_params=query_params, headers=headers, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/rest.py", line 213, in PATCH
+    return self.request("PATCH", url, headers=headers, query_params=query_params, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/rest.py", line 190, in request
+    raise ApiException(http_resp=r)
+hubspot.crm.contacts.exceptions.ApiException: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 14:49:58 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '1790', 'Connection': 'keep-alive', 'CF-Ray': '95c0642b1c903df1-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'dc687abc-9fe7-4d8d-b762-4d69983a38e6', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624974', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '187', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=aIyIpaXwJMCsoeO6PZfgEnIbiyxO1zhYxBINleZyti4-1751986198-1.0.1.1-w2ZFVrWuxc3bUmr334bYsilKoaUutoIWCvS1oPVum1ZCCL8HeOVWI0662zQaV._fLtSAa__BDMjBWr_eSNzNkgdtEYZ9CGYvOzIatuN3.JI; path=/; expires=Tue, 08-Jul-25 15:19:58 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=UxxhqDHNccwa4ql2gaI%2FSgJWmOUioCB4j3hqo%2FObDKFrEg55wAx0zTCWKsD2AxrHPIZZO8yyeo7H%2FFDE64ZOo1DZOZei%2BA1Y%2FOGZSKoY2p4UDea1a4Ha9uJJEKxRpwuZ"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Property values were not valid: [{\"isValid\":false,\"message\":\"Delaware was not one of the allowed options: [label: \\\"state\\\"\\nvalue: \\\"state\\\"\\ndisplay_order: 0\\ndouble_data: 0.0\\nhidden: false\\ndescription: \\\"\\\"\\nread_only: false\\n]\",\"error\":\"INVALID_OPTION\",\"name\":\"state_dropdown\"},{\"isValid\":false,\"message\":\"Dover was not one of the allowed options: [label: \\\"city\\\"\\nvalue: \\\"city\\\"\\ndisplay_order: 0\\ndouble_data: 0.0\\nhidden: false\\ndescription: \\\"\\\"\\nread_only: false\\n]\",\"error\":\"INVALID_OPTION\",\"name\":\"city_dropdown\"},{\"isValid\":false,\"message\":\"United States was not one of the allowed options: [label: \\\"country\\\"\\nvalue: \\\"country\\\"\\ndisplay_order: 0\\ndouble_data: 0.0\\nhidden: false\\ndescription: \\\"\\\"\\nread_only: false\\n]\",\"error\":\"INVALID_OPTION\",\"name\":\"country_dropdown\"}]","correlationId":"dc687abc-9fe7-4d8d-b762-4d69983a38e6","errors":[{"message":"Delaware was not one of the allowed options: [label: \"state\"\nvalue: \"state\"\ndisplay_order: 0\ndouble_data: 0.0\nhidden: false\ndescription: \"\"\nread_only: false\n]","code":"INVALID_OPTION","context":{"propertyName":["state_dropdown"]}},{"message":"Dover was not one of the allowed options: [label: \"city\"\nvalue: \"city\"\ndisplay_order: 0\ndouble_data: 0.0\nhidden: false\ndescription: \"\"\nread_only: false\n]","code":"INVALID_OPTION","context":{"propertyName":["city_dropdown"]}},{"message":"United States was not one of the allowed options: [label: \"country\"\nvalue: \"country\"\ndisplay_order: 0\ndouble_data: 0.0\nhidden: false\ndescription: \"\"\nread_only: false\n]","code":"INVALID_OPTION","context":{"propertyName":["country_dropdown"]}}],"category":"VALIDATION_ERROR"}
+
+2025-07-08 20:19:58,620 - main - ERROR - AI parsing failed: 500: HubSpot operation failed: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 14:49:58 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '1790', 'Connection': 'keep-alive', 'CF-Ray': '95c0642b1c903df1-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'dc687abc-9fe7-4d8d-b762-4d69983a38e6', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624974', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '187', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=aIyIpaXwJMCsoeO6PZfgEnIbiyxO1zhYxBINleZyti4-1751986198-1.0.1.1-w2ZFVrWuxc3bUmr334bYsilKoaUutoIWCvS1oPVum1ZCCL8HeOVWI0662zQaV._fLtSAa__BDMjBWr_eSNzNkgdtEYZ9CGYvOzIatuN3.JI; path=/; expires=Tue, 08-Jul-25 15:19:58 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=UxxhqDHNccwa4ql2gaI%2FSgJWmOUioCB4j3hqo%2FObDKFrEg55wAx0zTCWKsD2AxrHPIZZO8yyeo7H%2FFDE64ZOo1DZOZei%2BA1Y%2FOGZSKoY2p4UDea1a4Ha9uJJEKxRpwuZ"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Property values were not valid: [{\"isValid\":false,\"message\":\"Delaware was not one of the allowed options: [label: \\\"state\\\"\\nvalue: \\\"state\\\"\\ndisplay_order: 0\\ndouble_data: 0.0\\nhidden: false\\ndescription: \\\"\\\"\\nread_only: false\\n]\",\"error\":\"INVALID_OPTION\",\"name\":\"state_dropdown\"},{\"isValid\":false,\"message\":\"Dover was not one of the allowed options: [label: \\\"city\\\"\\nvalue: \\\"city\\\"\\ndisplay_order: 0\\ndouble_data: 0.0\\nhidden: false\\ndescription: \\\"\\\"\\nread_only: false\\n]\",\"error\":\"INVALID_OPTION\",\"name\":\"city_dropdown\"},{\"isValid\":false,\"message\":\"United States was not one of the allowed options: [label: \\\"country\\\"\\nvalue: \\\"country\\\"\\ndisplay_order: 0\\ndouble_data: 0.0\\nhidden: false\\ndescription: \\\"\\\"\\nread_only: false\\n]\",\"error\":\"INVALID_OPTION\",\"name\":\"country_dropdown\"}]","correlationId":"dc687abc-9fe7-4d8d-b762-4d69983a38e6","errors":[{"message":"Delaware was not one of the allowed options: [label: \"state\"\nvalue: \"state\"\ndisplay_order: 0\ndouble_data: 0.0\nhidden: false\ndescription: \"\"\nread_only: false\n]","code":"INVALID_OPTION","context":{"propertyName":["state_dropdown"]}},{"message":"Dover was not one of the allowed options: [label: \"city\"\nvalue: \"city\"\ndisplay_order: 0\ndouble_data: 0.0\nhidden: false\ndescription: \"\"\nread_only: false\n]","code":"INVALID_OPTION","context":{"propertyName":["city_dropdown"]}},{"message":"United States was not one of the allowed options: [label: \"country\"\nvalue: \"country\"\ndisplay_order: 0\ndouble_data: 0.0\nhidden: false\ndescription: \"\"\nread_only: false\n]","code":"INVALID_OPTION","context":{"propertyName":["country_dropdown"]}}],"category":"VALIDATION_ERROR"}
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 319, in parse_resume
+    hubspot_client.crm.contacts.basic_api.update(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        contact_id,
+        ^^^^^^^^^^^
+    ...<16 lines>...
+        )
+        ^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api/basic_api.py", line 880, in update
+    return self.update_with_http_info(contact_id, simple_public_object_input, **kwargs)  # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api/basic_api.py", line 972, in update_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        "/crm/v3/objects/contacts/{contactId}",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth=local_var_params.get("_request_auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 378, in call_api
+    return self.__call_api(
+           ~~~~~~~~~~~~~~~^
+        resource_path,
+        ^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 190, in __call_api
+    raise e
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 185, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params, post_params=post_params, body=body, _preload_content=_preload_content, _request_timeout=_request_timeout
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 432, in request
+    return self.rest_client.PATCH(url, query_params=query_params, headers=headers, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/rest.py", line 213, in PATCH
+    return self.request("PATCH", url, headers=headers, query_params=query_params, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/rest.py", line 190, in request
+    raise ApiException(http_resp=r)
+hubspot.crm.contacts.exceptions.ApiException: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 14:49:58 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '1790', 'Connection': 'keep-alive', 'CF-Ray': '95c0642b1c903df1-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'dc687abc-9fe7-4d8d-b762-4d69983a38e6', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624974', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '187', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=aIyIpaXwJMCsoeO6PZfgEnIbiyxO1zhYxBINleZyti4-1751986198-1.0.1.1-w2ZFVrWuxc3bUmr334bYsilKoaUutoIWCvS1oPVum1ZCCL8HeOVWI0662zQaV._fLtSAa__BDMjBWr_eSNzNkgdtEYZ9CGYvOzIatuN3.JI; path=/; expires=Tue, 08-Jul-25 15:19:58 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=UxxhqDHNccwa4ql2gaI%2FSgJWmOUioCB4j3hqo%2FObDKFrEg55wAx0zTCWKsD2AxrHPIZZO8yyeo7H%2FFDE64ZOo1DZOZei%2BA1Y%2FOGZSKoY2p4UDea1a4Ha9uJJEKxRpwuZ"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Property values were not valid: [{\"isValid\":false,\"message\":\"Delaware was not one of the allowed options: [label: \\\"state\\\"\\nvalue: \\\"state\\\"\\ndisplay_order: 0\\ndouble_data: 0.0\\nhidden: false\\ndescription: \\\"\\\"\\nread_only: false\\n]\",\"error\":\"INVALID_OPTION\",\"name\":\"state_dropdown\"},{\"isValid\":false,\"message\":\"Dover was not one of the allowed options: [label: \\\"city\\\"\\nvalue: \\\"city\\\"\\ndisplay_order: 0\\ndouble_data: 0.0\\nhidden: false\\ndescription: \\\"\\\"\\nread_only: false\\n]\",\"error\":\"INVALID_OPTION\",\"name\":\"city_dropdown\"},{\"isValid\":false,\"message\":\"United States was not one of the allowed options: [label: \\\"country\\\"\\nvalue: \\\"country\\\"\\ndisplay_order: 0\\ndouble_data: 0.0\\nhidden: false\\ndescription: \\\"\\\"\\nread_only: false\\n]\",\"error\":\"INVALID_OPTION\",\"name\":\"country_dropdown\"}]","correlationId":"dc687abc-9fe7-4d8d-b762-4d69983a38e6","errors":[{"message":"Delaware was not one of the allowed options: [label: \"state\"\nvalue: \"state\"\ndisplay_order: 0\ndouble_data: 0.0\nhidden: false\ndescription: \"\"\nread_only: false\n]","code":"INVALID_OPTION","context":{"propertyName":["state_dropdown"]}},{"message":"Dover was not one of the allowed options: [label: \"city\"\nvalue: \"city\"\ndisplay_order: 0\ndouble_data: 0.0\nhidden: false\ndescription: \"\"\nread_only: false\n]","code":"INVALID_OPTION","context":{"propertyName":["city_dropdown"]}},{"message":"United States was not one of the allowed options: [label: \"country\"\nvalue: \"country\"\ndisplay_order: 0\ndouble_data: 0.0\nhidden: false\ndescription: \"\"\nread_only: false\n]","code":"INVALID_OPTION","context":{"propertyName":["country_dropdown"]}}],"category":"VALIDATION_ERROR"}
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 366, in parse_resume
+    raise HTTPException(status_code=500, detail=f"HubSpot operation failed: {str(e)}")
+fastapi.exceptions.HTTPException: 500: HubSpot operation failed: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 14:49:58 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '1790', 'Connection': 'keep-alive', 'CF-Ray': '95c0642b1c903df1-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'dc687abc-9fe7-4d8d-b762-4d69983a38e6', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624974', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '187', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=aIyIpaXwJMCsoeO6PZfgEnIbiyxO1zhYxBINleZyti4-1751986198-1.0.1.1-w2ZFVrWuxc3bUmr334bYsilKoaUutoIWCvS1oPVum1ZCCL8HeOVWI0662zQaV._fLtSAa__BDMjBWr_eSNzNkgdtEYZ9CGYvOzIatuN3.JI; path=/; expires=Tue, 08-Jul-25 15:19:58 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=UxxhqDHNccwa4ql2gaI%2FSgJWmOUioCB4j3hqo%2FObDKFrEg55wAx0zTCWKsD2AxrHPIZZO8yyeo7H%2FFDE64ZOo1DZOZei%2BA1Y%2FOGZSKoY2p4UDea1a4Ha9uJJEKxRpwuZ"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Property values were not valid: [{\"isValid\":false,\"message\":\"Delaware was not one of the allowed options: [label: \\\"state\\\"\\nvalue: \\\"state\\\"\\ndisplay_order: 0\\ndouble_data: 0.0\\nhidden: false\\ndescription: \\\"\\\"\\nread_only: false\\n]\",\"error\":\"INVALID_OPTION\",\"name\":\"state_dropdown\"},{\"isValid\":false,\"message\":\"Dover was not one of the allowed options: [label: \\\"city\\\"\\nvalue: \\\"city\\\"\\ndisplay_order: 0\\ndouble_data: 0.0\\nhidden: false\\ndescription: \\\"\\\"\\nread_only: false\\n]\",\"error\":\"INVALID_OPTION\",\"name\":\"city_dropdown\"},{\"isValid\":false,\"message\":\"United States was not one of the allowed options: [label: \\\"country\\\"\\nvalue: \\\"country\\\"\\ndisplay_order: 0\\ndouble_data: 0.0\\nhidden: false\\ndescription: \\\"\\\"\\nread_only: false\\n]\",\"error\":\"INVALID_OPTION\",\"name\":\"country_dropdown\"}]","correlationId":"dc687abc-9fe7-4d8d-b762-4d69983a38e6","errors":[{"message":"Delaware was not one of the allowed options: [label: \"state\"\nvalue: \"state\"\ndisplay_order: 0\ndouble_data: 0.0\nhidden: false\ndescription: \"\"\nread_only: false\n]","code":"INVALID_OPTION","context":{"propertyName":["state_dropdown"]}},{"message":"Dover was not one of the allowed options: [label: \"city\"\nvalue: \"city\"\ndisplay_order: 0\ndouble_data: 0.0\nhidden: false\ndescription: \"\"\nread_only: false\n]","code":"INVALID_OPTION","context":{"propertyName":["city_dropdown"]}},{"message":"United States was not one of the allowed options: [label: \"country\"\nvalue: \"country\"\ndisplay_order: 0\ndouble_data: 0.0\nhidden: false\ndescription: \"\"\nread_only: false\n]","code":"INVALID_OPTION","context":{"propertyName":["country_dropdown"]}}],"category":"VALIDATION_ERROR"}
+
+2025-07-08 20:20:45,301 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 20:20:45,303 - main - INFO - Extracting text from file
+2025-07-08 20:20:45,406 - main - INFO - Uploading file to HubSpot
+2025-07-08 20:20:46,112 - main - INFO - Sending to Gemini for parsing
+2025-07-08 20:20:52,074 - main - INFO - Updating skills in HubSpot
+2025-07-08 20:20:53,141 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-08 20:20:53,571 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-08 20:34:20,618 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 20:34:20,619 - main - INFO - Extracting text from file
+2025-07-08 20:34:20,724 - main - INFO - Uploading file to HubSpot
+2025-07-08 20:34:21,450 - main - INFO - Sending to Gemini for parsing
+2025-07-08 20:34:32,391 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-08 20:34:33,905 - main - ERROR - Failed to update city_dropdown dropdown: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 15:04:33 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '303', 'Connection': 'keep-alive', 'CF-Ray': '95c0798a29783b34-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'dcc2845f-b733-4459-a26e-0aee3ff1715f', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624966', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '188', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=XJRjBGTEVDuGAhi_13efMGFGvRCqqKfR_f6HBgjh0V4-1751987073-1.0.1.1-PUlkrYjUGNPvtC5BSkEGAd4dcmw2gUYVqSIvggVvsFYTddvGAqlTic1D_3oIsg1LcO.Wz9n_h514eT3pFo2got5a2mTVnPG9Bv9SRT6yyEc; path=/; expires=Tue, 08-Jul-25 15:34:33 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=DdFSw2a1kxCHd1IJ9iU%2FJSGv7xYjTfeTwIt6sLS0M%2FmKpkp9rom5Exvp9yeLYub7Oe3vr7M8zXQKUYI8MAh%2Fta3dw5B3ot0ShKPXViR2ptlPbYYdjNLvw5WioOfBe08H"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Invalid input JSON on line 1, column 202: Enum type must be one of: [calculation_equation, checkbox, phonenumber, number, textarea, booleancheckbox, file, text, date, html, select, radio]","correlationId":"dcc2845f-b733-4459-a26e-0aee3ff1715f","category":"VALIDATION_ERROR"}
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 238, in update_dropdown_property
+    hubspot_client.crm.properties.core_api.update(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        object_type="contacts",
+        ^^^^^^^^^^^^^^^^^^^^^^^
+        property_name=property_name,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        property_update=update_prop
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api/core_api.py", line 614, in update
+    return self.update_with_http_info(object_type, property_name, property_update, **kwargs)  # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api/core_api.py", line 709, in update_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        "/crm/v3/properties/{objectType}/{propertyName}",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth=local_var_params.get("_request_auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 378, in call_api
+    return self.__call_api(
+           ~~~~~~~~~~~~~~~^
+        resource_path,
+        ^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 190, in __call_api
+    raise e
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 185, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params, post_params=post_params, body=body, _preload_content=_preload_content, _request_timeout=_request_timeout
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 432, in request
+    return self.rest_client.PATCH(url, query_params=query_params, headers=headers, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/rest.py", line 213, in PATCH
+    return self.request("PATCH", url, headers=headers, query_params=query_params, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/rest.py", line 190, in request
+    raise ApiException(http_resp=r)
+hubspot.crm.properties.exceptions.ApiException: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 15:04:33 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '303', 'Connection': 'keep-alive', 'CF-Ray': '95c0798a29783b34-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'dcc2845f-b733-4459-a26e-0aee3ff1715f', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624966', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '188', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=XJRjBGTEVDuGAhi_13efMGFGvRCqqKfR_f6HBgjh0V4-1751987073-1.0.1.1-PUlkrYjUGNPvtC5BSkEGAd4dcmw2gUYVqSIvggVvsFYTddvGAqlTic1D_3oIsg1LcO.Wz9n_h514eT3pFo2got5a2mTVnPG9Bv9SRT6yyEc; path=/; expires=Tue, 08-Jul-25 15:34:33 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=DdFSw2a1kxCHd1IJ9iU%2FJSGv7xYjTfeTwIt6sLS0M%2FmKpkp9rom5Exvp9yeLYub7Oe3vr7M8zXQKUYI8MAh%2Fta3dw5B3ot0ShKPXViR2ptlPbYYdjNLvw5WioOfBe08H"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Invalid input JSON on line 1, column 202: Enum type must be one of: [calculation_equation, checkbox, phonenumber, number, textarea, booleancheckbox, file, text, date, html, select, radio]","correlationId":"dcc2845f-b733-4459-a26e-0aee3ff1715f","category":"VALIDATION_ERROR"}
+
+2025-07-08 20:34:33,917 - main - INFO - Updating skills in HubSpot
+2025-07-08 20:34:35,008 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-08 20:34:36,169 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-08 20:38:49,217 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 20:38:49,218 - main - INFO - Extracting text from file
+2025-07-08 20:38:49,322 - main - INFO - Uploading file to HubSpot
+2025-07-08 20:38:50,881 - main - INFO - Sending to Gemini for parsing
+2025-07-08 20:39:00,836 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-08 20:39:01,931 - main - INFO - Updating skills in HubSpot
+2025-07-08 20:39:03,033 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-08 20:39:03,459 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-08 20:41:03,489 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 20:41:03,489 - main - INFO - Extracting text from file
+2025-07-08 20:41:03,594 - main - INFO - Uploading file to HubSpot
+2025-07-08 20:41:04,337 - main - INFO - Sending to Gemini for parsing
+2025-07-08 20:41:10,094 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-08 20:41:10,750 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-08 20:41:11,352 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-08 20:41:11,981 - main - INFO - Updating skills in HubSpot
+2025-07-08 20:41:13,767 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-08 20:41:14,574 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-08 21:05:03,950 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 21:05:03,951 - main - INFO - Extracting text from file
+2025-07-08 21:05:04,039 - main - INFO - Uploading file to HubSpot
+2025-07-08 21:05:05,706 - main - INFO - Sending to Gemini for parsing
+2025-07-08 21:05:11,591 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-08 21:05:12,324 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-08 21:05:13,027 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-08 21:05:13,779 - main - INFO - Updating skills in HubSpot
+2025-07-08 21:05:15,270 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-08 21:05:15,661 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-08 21:19:22,855 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 21:19:22,857 - main - INFO - Extracting text from file
+2025-07-08 21:19:22,962 - main - INFO - Uploading file to HubSpot
+2025-07-08 21:19:23,755 - main - INFO - Sending to Gemini for parsing
+2025-07-08 21:19:35,407 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-08 21:19:36,309 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-08 21:19:37,052 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-08 21:19:37,728 - main - INFO - Updating skills in HubSpot
+2025-07-08 21:19:39,160 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-08 21:19:39,557 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-08 22:25:40,474 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 22:25:40,474 - main - INFO - Extracting text from file
+2025-07-08 22:25:40,563 - main - INFO - Uploading file to HubSpot
+2025-07-08 22:25:41,335 - main - INFO - Sending to Gemini for parsing
+2025-07-08 22:25:57,713 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-08 22:26:00,175 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-08 22:26:00,797 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-08 22:26:01,395 - main - INFO - Updating skills in HubSpot
+2025-07-08 22:26:02,088 - main - INFO - Updating keywords in HubSpot
+2025-07-08 22:26:02,325 - main - ERROR - HubSpot operation failed: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 16:56:02 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '230', 'Connection': 'keep-alive', 'CF-Ray': '95c11cd53aa2ffa7-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'e5facda8-627f-45e0-91d7-d109a15c2d3d', 'x-hubspot-notfound': 'true', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624912', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '181', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=26ZHVfbrNrCkrDqM5eS6BGqAVPH4.bQSZuKLv70JInI-1751993762-1.0.1.1-gK.rhkMSW5uHmvEY4HzVwPKWxnzocx.IDPvPo3AqVlP2J2PNgZgh.X4deM6_.wI5MBSJzJJjBdf.yrizyyJHjHI29yo_NRdOKNTB9j5wmLE; path=/; expires=Tue, 08-Jul-25 17:26:02 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=N4bs9Mps65WU%2BxbRIDf08KJKax0Ap4lVQdgqnqFxRK5huSb3TvQ77BW4pi4U8Uy1lt2w9i2NVTPaso0tuAuzPF08QtauHFc%2BwLS5uoJ3hNriQdVnOF0G3DV%2BHP9LIdWv"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"No property named 'keywords' exists.","correlationId":"e5facda8-627f-45e0-91d7-d109a15c2d3d","context":{"name":["keywords"]},"category":"OBJECT_NOT_FOUND","subCategory":"Properties.PROPERTY_NOT_FOUND"}
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 455, in parse_resume
+    prop = hubspot_client.crm.properties.core_api.get_by_name(
+        object_type="contacts", property_name="keywords"
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api/core_api.py", line 472, in get_by_name
+    return self.get_by_name_with_http_info(object_type, property_name, **kwargs)  # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api/core_api.py", line 563, in get_by_name_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        "/crm/v3/properties/{objectType}/{propertyName}",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth=local_var_params.get("_request_auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 378, in call_api
+    return self.__call_api(
+           ~~~~~~~~~~~~~~~^
+        resource_path,
+        ^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 190, in __call_api
+    raise e
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 185, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params, post_params=post_params, body=body, _preload_content=_preload_content, _request_timeout=_request_timeout
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 422, in request
+    return self.rest_client.GET(url, query_params=query_params, _preload_content=_preload_content, _request_timeout=_request_timeout, headers=headers)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/rest.py", line 195, in GET
+    return self.request("GET", url, headers=headers, _preload_content=_preload_content, _request_timeout=_request_timeout, query_params=query_params)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/rest.py", line 185, in request
+    raise NotFoundException(http_resp=r)
+hubspot.crm.properties.exceptions.NotFoundException: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 16:56:02 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '230', 'Connection': 'keep-alive', 'CF-Ray': '95c11cd53aa2ffa7-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'e5facda8-627f-45e0-91d7-d109a15c2d3d', 'x-hubspot-notfound': 'true', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624912', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '181', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=26ZHVfbrNrCkrDqM5eS6BGqAVPH4.bQSZuKLv70JInI-1751993762-1.0.1.1-gK.rhkMSW5uHmvEY4HzVwPKWxnzocx.IDPvPo3AqVlP2J2PNgZgh.X4deM6_.wI5MBSJzJJjBdf.yrizyyJHjHI29yo_NRdOKNTB9j5wmLE; path=/; expires=Tue, 08-Jul-25 17:26:02 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=N4bs9Mps65WU%2BxbRIDf08KJKax0Ap4lVQdgqnqFxRK5huSb3TvQ77BW4pi4U8Uy1lt2w9i2NVTPaso0tuAuzPF08QtauHFc%2BwLS5uoJ3hNriQdVnOF0G3DV%2BHP9LIdWv"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"No property named 'keywords' exists.","correlationId":"e5facda8-627f-45e0-91d7-d109a15c2d3d","context":{"name":["keywords"]},"category":"OBJECT_NOT_FOUND","subCategory":"Properties.PROPERTY_NOT_FOUND"}
+
+2025-07-08 22:26:02,334 - main - ERROR - AI parsing failed: 500: HubSpot operation failed: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 16:56:02 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '230', 'Connection': 'keep-alive', 'CF-Ray': '95c11cd53aa2ffa7-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'e5facda8-627f-45e0-91d7-d109a15c2d3d', 'x-hubspot-notfound': 'true', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624912', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '181', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=26ZHVfbrNrCkrDqM5eS6BGqAVPH4.bQSZuKLv70JInI-1751993762-1.0.1.1-gK.rhkMSW5uHmvEY4HzVwPKWxnzocx.IDPvPo3AqVlP2J2PNgZgh.X4deM6_.wI5MBSJzJJjBdf.yrizyyJHjHI29yo_NRdOKNTB9j5wmLE; path=/; expires=Tue, 08-Jul-25 17:26:02 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=N4bs9Mps65WU%2BxbRIDf08KJKax0Ap4lVQdgqnqFxRK5huSb3TvQ77BW4pi4U8Uy1lt2w9i2NVTPaso0tuAuzPF08QtauHFc%2BwLS5uoJ3hNriQdVnOF0G3DV%2BHP9LIdWv"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"No property named 'keywords' exists.","correlationId":"e5facda8-627f-45e0-91d7-d109a15c2d3d","context":{"name":["keywords"]},"category":"OBJECT_NOT_FOUND","subCategory":"Properties.PROPERTY_NOT_FOUND"}
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 455, in parse_resume
+    prop = hubspot_client.crm.properties.core_api.get_by_name(
+        object_type="contacts", property_name="keywords"
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api/core_api.py", line 472, in get_by_name
+    return self.get_by_name_with_http_info(object_type, property_name, **kwargs)  # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api/core_api.py", line 563, in get_by_name_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        "/crm/v3/properties/{objectType}/{propertyName}",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth=local_var_params.get("_request_auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 378, in call_api
+    return self.__call_api(
+           ~~~~~~~~~~~~~~~^
+        resource_path,
+        ^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 190, in __call_api
+    raise e
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 185, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params, post_params=post_params, body=body, _preload_content=_preload_content, _request_timeout=_request_timeout
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/api_client.py", line 422, in request
+    return self.rest_client.GET(url, query_params=query_params, _preload_content=_preload_content, _request_timeout=_request_timeout, headers=headers)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/rest.py", line 195, in GET
+    return self.request("GET", url, headers=headers, _preload_content=_preload_content, _request_timeout=_request_timeout, query_params=query_params)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/properties/rest.py", line 185, in request
+    raise NotFoundException(http_resp=r)
+hubspot.crm.properties.exceptions.NotFoundException: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 16:56:02 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '230', 'Connection': 'keep-alive', 'CF-Ray': '95c11cd53aa2ffa7-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'e5facda8-627f-45e0-91d7-d109a15c2d3d', 'x-hubspot-notfound': 'true', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624912', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '181', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=26ZHVfbrNrCkrDqM5eS6BGqAVPH4.bQSZuKLv70JInI-1751993762-1.0.1.1-gK.rhkMSW5uHmvEY4HzVwPKWxnzocx.IDPvPo3AqVlP2J2PNgZgh.X4deM6_.wI5MBSJzJJjBdf.yrizyyJHjHI29yo_NRdOKNTB9j5wmLE; path=/; expires=Tue, 08-Jul-25 17:26:02 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=N4bs9Mps65WU%2BxbRIDf08KJKax0Ap4lVQdgqnqFxRK5huSb3TvQ77BW4pi4U8Uy1lt2w9i2NVTPaso0tuAuzPF08QtauHFc%2BwLS5uoJ3hNriQdVnOF0G3DV%2BHP9LIdWv"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"No property named 'keywords' exists.","correlationId":"e5facda8-627f-45e0-91d7-d109a15c2d3d","context":{"name":["keywords"]},"category":"OBJECT_NOT_FOUND","subCategory":"Properties.PROPERTY_NOT_FOUND"}
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 549, in parse_resume
+    raise HTTPException(status_code=500, detail=f"HubSpot operation failed: {str(e)}")
+fastapi.exceptions.HTTPException: 500: HubSpot operation failed: (404)
+Reason: Not Found
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 16:56:02 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '230', 'Connection': 'keep-alive', 'CF-Ray': '95c11cd53aa2ffa7-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'e5facda8-627f-45e0-91d7-d109a15c2d3d', 'x-hubspot-notfound': 'true', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624912', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '181', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=26ZHVfbrNrCkrDqM5eS6BGqAVPH4.bQSZuKLv70JInI-1751993762-1.0.1.1-gK.rhkMSW5uHmvEY4HzVwPKWxnzocx.IDPvPo3AqVlP2J2PNgZgh.X4deM6_.wI5MBSJzJJjBdf.yrizyyJHjHI29yo_NRdOKNTB9j5wmLE; path=/; expires=Tue, 08-Jul-25 17:26:02 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=N4bs9Mps65WU%2BxbRIDf08KJKax0Ap4lVQdgqnqFxRK5huSb3TvQ77BW4pi4U8Uy1lt2w9i2NVTPaso0tuAuzPF08QtauHFc%2BwLS5uoJ3hNriQdVnOF0G3DV%2BHP9LIdWv"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"No property named 'keywords' exists.","correlationId":"e5facda8-627f-45e0-91d7-d109a15c2d3d","context":{"name":["keywords"]},"category":"OBJECT_NOT_FOUND","subCategory":"Properties.PROPERTY_NOT_FOUND"}
+
+2025-07-08 22:30:18,379 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 22:30:18,379 - main - INFO - Extracting text from file
+2025-07-08 22:30:18,486 - main - INFO - Uploading file to HubSpot
+2025-07-08 22:30:19,215 - main - INFO - Sending to Gemini for parsing
+2025-07-08 22:30:33,977 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-08 22:30:34,953 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-08 22:30:35,615 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-08 22:30:36,222 - main - INFO - Updating skills in HubSpot
+2025-07-08 22:30:36,896 - main - INFO - Updating keywords in HubSpot
+2025-07-08 22:30:37,138 - main - INFO - Creating new 'keywords' property in HubSpot
+2025-07-08 22:30:37,495 - main - ERROR - Failed to update keywords property: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 17:00:37 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '312', 'Connection': 'keep-alive', 'CF-Ray': '95c1238c5af4c266-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'bc084319-87a0-4a6b-83c8-128956a9e9b9', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624901', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '180', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=6PQ.b878RJER5ncq6w2r1zatabQx9RYM6NNMCbhfYXY-1751994037-1.0.1.1-EMnIgDMuf_UKiSWiK5waLsA2UNzNfevY8MMtYRHrtB2gh1ZvP0BW3xHE7OGh47vbwVaKxXH7Mpd8IfV3DFLjxlv151qJWSBPGdBVLEqUmwA; path=/; expires=Tue, 08-Jul-25 17:30:37 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=IKdvNQymMno8po9ZkwSuobJAKpFhB9sUbgQvbB%2FWqlX%2BFGfhus9kj7ht7acnFqyAk4r9cVYeqJVbuNJolH90cyqDxbRNIa2AOVS3aHjrhhITJZY0jHhtQ3Tb3Mb49toc"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Property 'keywords' of object type '0-1' has no options but options are required!","correlationId":"bc084319-87a0-4a6b-83c8-128956a9e9b9","context":{"property":["keywords"],"objectTypeId":["0-1"]},"category":"VALIDATION_ERROR","subCategory":"PropertyValidationError.MISSING_OPTIONS"}
+
+2025-07-08 22:30:37,849 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-08 22:30:38,267 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-08 22:37:56,987 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 22:37:56,987 - main - INFO - Extracting text from file
+2025-07-08 22:37:57,094 - main - INFO - Uploading file to HubSpot
+2025-07-08 22:37:57,804 - main - INFO - Sending to Gemini for parsing
+2025-07-08 22:38:15,408 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-08 22:38:16,405 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-08 22:38:17,225 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-08 22:38:17,926 - main - INFO - Updating skills in HubSpot
+2025-07-08 22:38:18,606 - main - INFO - Updating keywords in HubSpot
+2025-07-08 22:38:18,858 - main - INFO - Creating new 'keywords' property in HubSpot
+2025-07-08 22:38:18,858 - main - ERROR - Failed to update keywords property: name 'opts_payload' is not defined
+2025-07-08 22:38:19,187 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-08 22:38:19,566 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-08 22:39:00,102 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 22:39:00,103 - main - INFO - Extracting text from file
+2025-07-08 22:39:00,211 - main - INFO - Uploading file to HubSpot
+2025-07-08 22:39:00,841 - main - INFO - Sending to Gemini for parsing
+2025-07-08 22:39:22,068 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-08 22:39:23,747 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-08 22:39:24,361 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-08 22:39:25,092 - main - INFO - Updating skills in HubSpot
+2025-07-08 22:39:25,749 - main - INFO - Updating keywords in HubSpot
+2025-07-08 22:39:26,002 - main - ERROR - Failed to update keywords property: name 'combined' is not defined
+2025-07-08 22:39:26,311 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-08 22:39:26,654 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-08 22:40:32,168 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 22:40:32,168 - main - INFO - Extracting text from file
+2025-07-08 22:40:32,272 - main - INFO - Uploading file to HubSpot
+2025-07-08 22:40:32,910 - main - INFO - Sending to Gemini for parsing
+2025-07-08 22:40:45,247 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-08 22:40:46,885 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-08 22:40:47,547 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-08 22:40:48,199 - main - INFO - Updating skills in HubSpot
+2025-07-08 22:40:49,051 - main - INFO - Updating keywords in HubSpot
+2025-07-08 22:40:49,322 - main - ERROR - Failed to update keywords property: cannot access local variable 'combined' where it is not associated with a value
+2025-07-08 22:40:49,622 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-08 22:40:50,004 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-08 22:45:05,543 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 22:45:05,543 - main - INFO - Extracting text from file
+2025-07-08 22:45:05,648 - main - INFO - Uploading file to HubSpot
+2025-07-08 22:45:06,347 - main - INFO - Sending to Gemini for parsing
+2025-07-08 22:45:22,027 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-08 22:45:22,870 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-08 22:45:23,505 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-08 22:45:24,891 - main - INFO - Updating skills in HubSpot
+2025-07-08 22:45:25,542 - main - INFO - Updating keywords in HubSpot
+2025-07-08 22:45:25,814 - main - INFO - Creating new 'keywords' property in HubSpot
+2025-07-08 22:45:26,652 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-08 22:45:27,702 - main - ERROR - HubSpot operation failed: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 17:15:27 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '728', 'Connection': 'keep-alive', 'CF-Ray': '95c13943de7a3f79-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': '8deb4bc6-6bd5-4e8d-92b3-d08fc13b0a55', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624850', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '179', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '17', 'Set-Cookie': '__cf_bm=WbLA067n9XZgoPMo_QB6D_cRjILNzK68DnFX3LBqxRA-1751994927-1.0.1.1-fI7S0BAbKAmGbi8aKVPpQ6vGz.Cvn1HJyoRg3XwqUtMKWCHx_fNpj41GLFdVX90Sr.T0cQKq6COiru_u26ijWD08NoLzDiIMM.gIOS5v5Hs; path=/; expires=Tue, 08-Jul-25 17:45:27 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=tFySyWzeizl2rAE79Q%2Bz8hDPDAf%2FAFRag%2B%2BZTsS2YnjeRJU1OnLSk9ziPHmSwrK2Xfcm%2B9JoRaUGtNRkUxm5N%2FCu%2BenPKhyG%2FrRqTJGk4SBHW3yqJ%2FIUB6YtnhOPbUPa"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Property values were not valid: [{\"isValid\":false,\"message\":\"Research & Development was not one of the allowed options: [label: \\\"test\\\"\\nvalue: \\\"test\\\"\\ndisplay_order: 0\\ndouble_data: 0.0\\nhidden: false\\ndescription: \\\"\\\"\\nread_only: false\\n]\",\"error\":\"INVALID_OPTION\",\"name\":\"keywords_domains\"}]","correlationId":"8deb4bc6-6bd5-4e8d-92b3-d08fc13b0a55","errors":[{"message":"Research & Development was not one of the allowed options: [label: \"test\"\nvalue: \"test\"\ndisplay_order: 0\ndouble_data: 0.0\nhidden: false\ndescription: \"\"\nread_only: false\n]","code":"INVALID_OPTION","context":{"propertyName":["keywords_domains"]}}],"category":"VALIDATION_ERROR"}
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 541, in parse_resume
+    hubspot_client.crm.contacts.basic_api.update(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        contact_id,
+        ^^^^^^^^^^^
+    ...<17 lines>...
+        )
+        ^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api/basic_api.py", line 880, in update
+    return self.update_with_http_info(contact_id, simple_public_object_input, **kwargs)  # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api/basic_api.py", line 972, in update_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        "/crm/v3/objects/contacts/{contactId}",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth=local_var_params.get("_request_auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 378, in call_api
+    return self.__call_api(
+           ~~~~~~~~~~~~~~~^
+        resource_path,
+        ^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 190, in __call_api
+    raise e
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 185, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params, post_params=post_params, body=body, _preload_content=_preload_content, _request_timeout=_request_timeout
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 432, in request
+    return self.rest_client.PATCH(url, query_params=query_params, headers=headers, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/rest.py", line 213, in PATCH
+    return self.request("PATCH", url, headers=headers, query_params=query_params, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/rest.py", line 190, in request
+    raise ApiException(http_resp=r)
+hubspot.crm.contacts.exceptions.ApiException: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 17:15:27 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '728', 'Connection': 'keep-alive', 'CF-Ray': '95c13943de7a3f79-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': '8deb4bc6-6bd5-4e8d-92b3-d08fc13b0a55', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624850', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '179', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '17', 'Set-Cookie': '__cf_bm=WbLA067n9XZgoPMo_QB6D_cRjILNzK68DnFX3LBqxRA-1751994927-1.0.1.1-fI7S0BAbKAmGbi8aKVPpQ6vGz.Cvn1HJyoRg3XwqUtMKWCHx_fNpj41GLFdVX90Sr.T0cQKq6COiru_u26ijWD08NoLzDiIMM.gIOS5v5Hs; path=/; expires=Tue, 08-Jul-25 17:45:27 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=tFySyWzeizl2rAE79Q%2Bz8hDPDAf%2FAFRag%2B%2BZTsS2YnjeRJU1OnLSk9ziPHmSwrK2Xfcm%2B9JoRaUGtNRkUxm5N%2FCu%2BenPKhyG%2FrRqTJGk4SBHW3yqJ%2FIUB6YtnhOPbUPa"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Property values were not valid: [{\"isValid\":false,\"message\":\"Research & Development was not one of the allowed options: [label: \\\"test\\\"\\nvalue: \\\"test\\\"\\ndisplay_order: 0\\ndouble_data: 0.0\\nhidden: false\\ndescription: \\\"\\\"\\nread_only: false\\n]\",\"error\":\"INVALID_OPTION\",\"name\":\"keywords_domains\"}]","correlationId":"8deb4bc6-6bd5-4e8d-92b3-d08fc13b0a55","errors":[{"message":"Research & Development was not one of the allowed options: [label: \"test\"\nvalue: \"test\"\ndisplay_order: 0\ndouble_data: 0.0\nhidden: false\ndescription: \"\"\nread_only: false\n]","code":"INVALID_OPTION","context":{"propertyName":["keywords_domains"]}}],"category":"VALIDATION_ERROR"}
+
+2025-07-08 22:45:27,715 - main - ERROR - AI parsing failed: 500: HubSpot operation failed: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 17:15:27 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '728', 'Connection': 'keep-alive', 'CF-Ray': '95c13943de7a3f79-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': '8deb4bc6-6bd5-4e8d-92b3-d08fc13b0a55', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624850', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '179', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '17', 'Set-Cookie': '__cf_bm=WbLA067n9XZgoPMo_QB6D_cRjILNzK68DnFX3LBqxRA-1751994927-1.0.1.1-fI7S0BAbKAmGbi8aKVPpQ6vGz.Cvn1HJyoRg3XwqUtMKWCHx_fNpj41GLFdVX90Sr.T0cQKq6COiru_u26ijWD08NoLzDiIMM.gIOS5v5Hs; path=/; expires=Tue, 08-Jul-25 17:45:27 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=tFySyWzeizl2rAE79Q%2Bz8hDPDAf%2FAFRag%2B%2BZTsS2YnjeRJU1OnLSk9ziPHmSwrK2Xfcm%2B9JoRaUGtNRkUxm5N%2FCu%2BenPKhyG%2FrRqTJGk4SBHW3yqJ%2FIUB6YtnhOPbUPa"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Property values were not valid: [{\"isValid\":false,\"message\":\"Research & Development was not one of the allowed options: [label: \\\"test\\\"\\nvalue: \\\"test\\\"\\ndisplay_order: 0\\ndouble_data: 0.0\\nhidden: false\\ndescription: \\\"\\\"\\nread_only: false\\n]\",\"error\":\"INVALID_OPTION\",\"name\":\"keywords_domains\"}]","correlationId":"8deb4bc6-6bd5-4e8d-92b3-d08fc13b0a55","errors":[{"message":"Research & Development was not one of the allowed options: [label: \"test\"\nvalue: \"test\"\ndisplay_order: 0\ndouble_data: 0.0\nhidden: false\ndescription: \"\"\nread_only: false\n]","code":"INVALID_OPTION","context":{"propertyName":["keywords_domains"]}}],"category":"VALIDATION_ERROR"}
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 541, in parse_resume
+    hubspot_client.crm.contacts.basic_api.update(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        contact_id,
+        ^^^^^^^^^^^
+    ...<17 lines>...
+        )
+        ^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api/basic_api.py", line 880, in update
+    return self.update_with_http_info(contact_id, simple_public_object_input, **kwargs)  # noqa: E501
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api/basic_api.py", line 972, in update_with_http_info
+    return self.api_client.call_api(
+           ~~~~~~~~~~~~~~~~~~~~~~~~^
+        "/crm/v3/objects/contacts/{contactId}",
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth=local_var_params.get("_request_auth"),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 378, in call_api
+    return self.__call_api(
+           ~~~~~~~~~~~~~~~^
+        resource_path,
+        ^^^^^^^^^^^^^^
+    ...<14 lines>...
+        _request_auth,
+        ^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 190, in __call_api
+    raise e
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 185, in __call_api
+    response_data = self.request(
+        method, url, query_params=query_params, headers=header_params, post_params=post_params, body=body, _preload_content=_preload_content, _request_timeout=_request_timeout
+    )
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/api_client.py", line 432, in request
+    return self.rest_client.PATCH(url, query_params=query_params, headers=headers, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/rest.py", line 213, in PATCH
+    return self.request("PATCH", url, headers=headers, query_params=query_params, post_params=post_params, _preload_content=_preload_content, _request_timeout=_request_timeout, body=body)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/venv/lib/python3.13/site-packages/hubspot/crm/contacts/rest.py", line 190, in request
+    raise ApiException(http_resp=r)
+hubspot.crm.contacts.exceptions.ApiException: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 17:15:27 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '728', 'Connection': 'keep-alive', 'CF-Ray': '95c13943de7a3f79-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': '8deb4bc6-6bd5-4e8d-92b3-d08fc13b0a55', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624850', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '179', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '17', 'Set-Cookie': '__cf_bm=WbLA067n9XZgoPMo_QB6D_cRjILNzK68DnFX3LBqxRA-1751994927-1.0.1.1-fI7S0BAbKAmGbi8aKVPpQ6vGz.Cvn1HJyoRg3XwqUtMKWCHx_fNpj41GLFdVX90Sr.T0cQKq6COiru_u26ijWD08NoLzDiIMM.gIOS5v5Hs; path=/; expires=Tue, 08-Jul-25 17:45:27 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=tFySyWzeizl2rAE79Q%2Bz8hDPDAf%2FAFRag%2B%2BZTsS2YnjeRJU1OnLSk9ziPHmSwrK2Xfcm%2B9JoRaUGtNRkUxm5N%2FCu%2BenPKhyG%2FrRqTJGk4SBHW3yqJ%2FIUB6YtnhOPbUPa"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Property values were not valid: [{\"isValid\":false,\"message\":\"Research & Development was not one of the allowed options: [label: \\\"test\\\"\\nvalue: \\\"test\\\"\\ndisplay_order: 0\\ndouble_data: 0.0\\nhidden: false\\ndescription: \\\"\\\"\\nread_only: false\\n]\",\"error\":\"INVALID_OPTION\",\"name\":\"keywords_domains\"}]","correlationId":"8deb4bc6-6bd5-4e8d-92b3-d08fc13b0a55","errors":[{"message":"Research & Development was not one of the allowed options: [label: \"test\"\nvalue: \"test\"\ndisplay_order: 0\ndouble_data: 0.0\nhidden: false\ndescription: \"\"\nread_only: false\n]","code":"INVALID_OPTION","context":{"propertyName":["keywords_domains"]}}],"category":"VALIDATION_ERROR"}
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/priyanshijain/Downloads/CV-Parser-Backend-main/main.py", line 590, in parse_resume
+    raise HTTPException(status_code=500, detail=f"HubSpot operation failed: {str(e)}")
+fastapi.exceptions.HTTPException: 500: HubSpot operation failed: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 08 Jul 2025 17:15:27 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '728', 'Connection': 'keep-alive', 'CF-Ray': '95c13943de7a3f79-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': '8deb4bc6-6bd5-4e8d-92b3-d08fc13b0a55', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624850', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '179', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '17', 'Set-Cookie': '__cf_bm=WbLA067n9XZgoPMo_QB6D_cRjILNzK68DnFX3LBqxRA-1751994927-1.0.1.1-fI7S0BAbKAmGbi8aKVPpQ6vGz.Cvn1HJyoRg3XwqUtMKWCHx_fNpj41GLFdVX90Sr.T0cQKq6COiru_u26ijWD08NoLzDiIMM.gIOS5v5Hs; path=/; expires=Tue, 08-Jul-25 17:45:27 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=tFySyWzeizl2rAE79Q%2Bz8hDPDAf%2FAFRag%2B%2BZTsS2YnjeRJU1OnLSk9ziPHmSwrK2Xfcm%2B9JoRaUGtNRkUxm5N%2FCu%2BenPKhyG%2FrRqTJGk4SBHW3yqJ%2FIUB6YtnhOPbUPa"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Property values were not valid: [{\"isValid\":false,\"message\":\"Research & Development was not one of the allowed options: [label: \\\"test\\\"\\nvalue: \\\"test\\\"\\ndisplay_order: 0\\ndouble_data: 0.0\\nhidden: false\\ndescription: \\\"\\\"\\nread_only: false\\n]\",\"error\":\"INVALID_OPTION\",\"name\":\"keywords_domains\"}]","correlationId":"8deb4bc6-6bd5-4e8d-92b3-d08fc13b0a55","errors":[{"message":"Research & Development was not one of the allowed options: [label: \"test\"\nvalue: \"test\"\ndisplay_order: 0\ndouble_data: 0.0\nhidden: false\ndescription: \"\"\nread_only: false\n]","code":"INVALID_OPTION","context":{"propertyName":["keywords_domains"]}}],"category":"VALIDATION_ERROR"}
+
+2025-07-08 22:56:00,637 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-08 22:56:00,637 - main - INFO - Extracting text from file
+2025-07-08 22:56:00,739 - main - INFO - Uploading file to HubSpot
+2025-07-08 22:56:01,502 - main - INFO - Sending to Gemini for parsing
+2025-07-08 22:56:14,170 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-08 22:56:15,060 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-08 22:56:16,430 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-08 22:56:17,062 - main - INFO - Updating skills in HubSpot
+2025-07-08 22:56:18,101 - main - INFO - Updating keywords in HubSpot
+2025-07-08 22:56:19,840 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-08 22:56:20,187 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-09 02:11:38,148 - main - INFO - Starting resume processing for file: Khushboo(Jay).docx
+2025-07-09 02:11:38,149 - main - INFO - Extracting text from file
+2025-07-09 02:11:38,180 - main - INFO - Uploading file to HubSpot
+2025-07-09 02:11:39,147 - main - INFO - Sending to Gemini for parsing
+2025-07-09 02:12:13,150 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-09 02:12:13,617 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-09 02:12:14,607 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-09 02:12:15,649 - main - INFO - Updating skills in HubSpot
+2025-07-09 02:12:16,560 - main - INFO - Updating keywords in HubSpot
+2025-07-09 02:12:18,265 - main - INFO - Creating new contact: salesforce.khush@gmail.com
+2025-07-09 02:12:18,787 - main - INFO - Successfully processed resume for salesforce.khush@gmail.com
+2025-07-09 02:18:38,595 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-09 02:18:38,597 - main - INFO - Extracting text from file
+2025-07-09 02:18:38,698 - main - INFO - Uploading file to HubSpot
+2025-07-09 02:18:39,439 - main - INFO - Sending to Gemini for parsing
+2025-07-09 02:18:55,925 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-09 02:18:56,830 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-09 02:18:58,191 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-09 02:18:58,882 - main - INFO - Updating skills in HubSpot
+2025-07-09 02:18:59,602 - main - INFO - Updating keywords in HubSpot
+2025-07-09 02:19:00,747 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-09 02:19:01,266 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-09 18:01:46,259 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-09 18:01:46,261 - main - INFO - Extracting text from file
+2025-07-09 18:01:46,352 - main - INFO - Uploading file to HubSpot
+2025-07-09 18:01:47,618 - main - INFO - Sending to Gemini for parsing
+2025-07-09 18:02:17,332 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-09 18:02:20,238 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-09 18:02:21,261 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-09 18:02:22,346 - main - INFO - Updating skills in HubSpot
+2025-07-09 18:02:23,409 - main - INFO - Updating keywords in HubSpot
+2025-07-09 18:02:25,248 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-09 18:02:25,921 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-09 18:11:41,761 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-09 18:11:41,763 - main - INFO - Extracting text from file
+2025-07-09 18:11:41,980 - main - INFO - Uploading file to HubSpot
+2025-07-09 18:11:44,142 - main - INFO - Sending to Gemini for parsing
+2025-07-09 18:11:58,150 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-09 18:11:59,565 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-09 18:12:00,390 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-09 18:12:01,270 - main - INFO - Updating skills in HubSpot
+2025-07-09 18:12:02,154 - main - INFO - Updating keywords in HubSpot
+2025-07-09 18:12:03,646 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-09 18:12:04,126 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-09 18:23:28,989 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-09 18:23:28,990 - main - INFO - Extracting text from file
+2025-07-09 18:23:29,090 - main - INFO - Uploading file to HubSpot
+2025-07-09 18:23:29,851 - main - INFO - Sending to Gemini for parsing
+2025-07-09 18:23:44,329 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-09 18:23:45,470 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-09 18:23:46,174 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-09 18:23:46,915 - main - INFO - Updating skills in HubSpot
+2025-07-09 18:23:47,670 - main - INFO - Updating keywords in HubSpot
+2025-07-09 18:23:49,007 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-09 18:23:49,364 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-09 18:32:43,436 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example (1).pdf
+2025-07-09 18:32:43,437 - main - INFO - Extracting text from file
+2025-07-09 18:32:43,528 - main - INFO - Uploading file to HubSpot
+2025-07-09 18:32:44,341 - main - INFO - Sending to Gemini for parsing
+2025-07-09 18:33:09,206 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-09 18:33:10,182 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-09 18:33:10,938 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-09 18:33:11,657 - main - INFO - Updating skills in HubSpot
+2025-07-09 18:33:12,443 - main - INFO - Updating keywords in HubSpot
+2025-07-09 18:33:13,633 - main - INFO - Creating new contact: salvador.sanz@email.com
+2025-07-09 18:33:14,423 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-09 18:38:55,747 - main - INFO - Starting resume processing for file: software-engineer-resume-example.pdf
+2025-07-09 18:38:55,748 - main - INFO - Extracting text from file
+2025-07-09 18:38:55,822 - main - INFO - Uploading file to HubSpot
+2025-07-09 18:38:56,617 - main - INFO - Sending to Gemini for parsing
+2025-07-09 18:39:27,237 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-09 18:39:28,320 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-09 18:39:29,058 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-09 18:39:30,082 - main - INFO - Updating skills in HubSpot
+2025-07-09 18:39:30,850 - main - INFO - Updating keywords in HubSpot
+2025-07-09 18:39:32,172 - main - INFO - Creating new contact: cmcturland@email.com
+2025-07-09 18:39:32,848 - main - INFO - Successfully processed resume for cmcturland@email.com
