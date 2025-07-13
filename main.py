@@ -1,26 +1,23 @@
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI, UploadFile, Depends, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-import pdfplumber
-import logging
-import io
-import os
+import pdfplumber, logging, io, os, json, re, requests, ssl, certifi
 from docx import Document
 from tempfile import NamedTemporaryFile
 from dotenv import load_dotenv
 import google.generativeai as genai
-import requests
-import json
-import re
 from hubspot import HubSpot
 from hubspot.crm.properties import PropertyCreate
 from hubspot.crm.contacts import (
     PublicObjectSearchRequest, Filter, FilterGroup,
     SimplePublicObjectInputForCreate, SimplePublicObjectInput
 )
-import ssl
-import certifi
-import os
+from motor.motor_asyncio import AsyncIOMotorDatabase
+from database import connect_db, close_db, get_db
+
+load_dotenv()
+
+app = FastAPI()
 
 # Configure SSL context
 ssl_context = ssl.create_default_context(cafile=certifi.where())
@@ -31,10 +28,6 @@ hubspot_client = HubSpot(
     access_token=os.getenv("HUBSPOT_TOKEN"),
     api_client_configuration={"ssl_context": ssl_context}
 )
-
-load_dotenv()
-
-app = FastAPI()
 
 # Configure logging
 logging.basicConfig(
@@ -69,181 +62,50 @@ FOLDER_ID="249026326717"
 
 
 RESUME_PROMPT = """
-You are a resume parser. Extract the following fields from the resume text below and output ONLY a VALID JSON object that exactly matches this schema (no extra text, formatting, or comments):
+You are an advanced resume parser.
 
-Analyze the provided resume text and extract the current location information according to these strict rules:
+Your task is to analyze the following resume text and extract only a valid JSON object with the following schema. You must:
 
-1. Primary Source: First check the contact information section (looking for address fields, phone/email nearby text, or header/footer content)
-2. Secondary Source: If not found, use the location from the most recent job/experience entry
-3. Normalization: 
-   - Convert all location names to their official full forms (e.g., "CA" → "California", "NYC" → "New York City")
-   - Use standard country names (e.g., "USA" → "United States", "UK" → "United Kingdom")
-4. Priority: Always prefer current location markers over permanent addresses if both exist
-5. Output Format: Return empty strings ("") for any missing fields
+- Identify the full name, email, and phone number from the contact section
+- Identify the current or most recent job title and company
+- Extract a list of relevant technical and soft skills
+- Summarize the candidate's professional experience in 1-2 lines
+- Extract the most recent location from the contact section or current job (with proper normalization)
+- Calculate and return:
+  - total_experience: A descriptive string value of total work experience (e.g., "7+ years of experience")
+  - year_of_experience: A whole number (e.g., 7), rounded **up** if experience is fractional
+
+To calculate total experience:
+- Identify and normalize all date ranges (e.g., "Jan 2020 - Present", "03/2017 - 12/2020", etc.)
+- Include only relevant full-time work experience (skip internships or academic projects unless stated as full-time)
+- Merge overlapping periods and sum non-contiguous experience
+- Round fractional years **up** to the next whole number
+
+Normalize all fields:
+- Convert abbreviated state and country names to their full official forms (e.g., "CA" → "California", "USA" → "United States")
+- Use proper case for names and city/state
+
+Output strictly a valid JSON object in the following schema. Use empty strings (`""`) or empty lists (`[]`) if values are not found. Do not include any extra formatting or text outside the JSON.
 
 {
-  "name": "",         // Full name of the candidate
-  "email": "",        // Email address
-  "phone": "",        // Contact number
-  "job_title": "",    // Current or most recent job title
-  "skills": [],       // List of key technical and soft skills
-  "experience": "",   // Brief summary of professional experience
-  "company": "",      // Current or most recent employer
-  "location": ""      // City and state/country
-  "total_experience": ""  //number of years of experience , text property please give accurate ans 
-  "year_of_experience" : ""  //if number of experience is 11+ then put it as 11 , i want output as whole number , also do ceil of this number , i want number only
+  "name": "",
+  "email": "",
+  "phone": "",
+  "job_title": "",
+  "skills": [],
+  "experience": "",
+  "company": "",
   "location": {
-    "city": "",       // Extracted city name in proper case (e.g., "Mumbai")
-    "state": "",      // Full state/province name (e.g., "Ontario")
-    "country": ""     // Full country name (e.g., "Canada")
-
-  "keywords": [],  // Auto-detected role-appropriate keywords
-  "role_type": "",  // "technical", "non-technical", or "hybrid"
-  }
-
+    "city": "",
+    "state": "",
+    "country": ""
+  },
+  "total_experience": "",
+  "year_of_experience": ""
 }
 
-Special Instructions:
-- Ignore postal codes and street addresses unless they contain city/state names
-- If location appears ambiguous (e.g., "Remote" or "Multiple locations"), return empty strings
-- Verify consistency if location appears in multiple sections
-- For countries, resolve abbreviations using ISO standards
-- Reject inferred locations - only use explicitly stated information
-
-
-KEYWORD EXTRACTION STRATEGY:
-Please dont change any keywords , put as it is from resume dont add or delete keywords
-1. ROLE DETECTION PHASE:
-   - Analyze job_title and experience to determine:
-     * Technical (SWE, Data Scientist, DevOps)
-     * Non-technical (HR, Sales, Marketing)
-     * Hybrid (Product Manager, Analytics)
-
-2. DYNAMIC KEYWORD CATEGORIES:
-   [For Technical Roles]:
-   - Languages, Frameworks, Cloud, Databases
-   - Tools, Certifications, Methodologies
-
-   [For Non-Technical Roles]:
-   - Domain Knowledge, Soft Skills
-   - Industry Tools, Certifications
-   - Process Knowledge
-
-   [For Hybrid Roles]:
-   - Combination of both technical and non-technical
-   - Emphasize cross-functional skills
-
-3. UNIVERSAL INCLUSIONS:
-   - All mentioned technologies/tools
-   - Certifications with full names
-   - Industry buzzwords
-   - Domain-specific terminology
-   - Notable achievements/features
-
-4. SMART PROCESSING RULES:
-   - Auto-normalize without losing meaning:
-     "React.js" → "React", "MS Excel" → "Excel"
-   - Preserve proficiency levels when stated
-   - Expand acronyms first occurrence:
-     "CRM (Customer Relationship Management)"
-   - Include version numbers for key tech
-   - Tag industry domains:
-     "(Healthcare)", "(FinTech)", "(E-commerce)"
-
-EXAMPLE OUTPUTS:
-
-1. Technical Role (Developer):
-{
-  "role_type": "technical",
-  "keywords": [
-    "Java 8",
-    "Spring Boot",
-    "Microservices",
-    "AWS Certified",
-    "Docker",
-    "CI/CD Pipelines",
-    "Agile Scrum",
-    "Kubernetes",
-    "(FinTech Domain)"
-  ]
-}
-
-2. Non-Technical Role (HR):
-{
-  "role_type": "non-technical",
-  "keywords": [
-    "Talent Acquisition",
-    "Workday HRIS",
-    "Employee Engagement",
-    "SHRM-CP Certified",
-    "Compensation Benchmarking",
-    "Labor Law Compliance",
-    "(Healthcare Industry)"
-  ]
-}
-
-3. Hybrid Role (Product Manager):
-{
-  "role_type": "hybrid",
-  "keywords": [
-    "Product Roadmapping",
-    "JIRA Administration",
-    "SQL Queries",
-    "Stakeholder Management",
-    "Market Analysis",
-    "Python (Basic)",
-    "(SaaS Experience)"
-  ]
-}
-
+Resume Text:
 """
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 def extract_text_from_pdf(file_bytes):
     text = ""
@@ -346,74 +208,77 @@ def update_dropdown_property(property_name: str, label: str, value: str) -> str:
 
 
 
-def update_keywords_property(keywords_list):
-    """Create or update the keywords property in HubSpot"""
-    if not keywords_list:
-        return []
+# def update_keywords_property(keywords_list):
+#     """Create or update the keywords property in HubSpot"""
+#     if not keywords_list:
+#         return []
 
-    try:
-        existing_options = set()
-        new_keywords = {k.strip() for k in keywords_list if k.strip()}
+#     try:
+#         existing_options = set()
+#         new_keywords = {k.strip() for k in keywords_list if k.strip()}
         
-        # First try to get existing property
-        try:
-            prop = hubspot_client.crm.properties.core_api.get_by_name(
-                object_type="contacts",
-                property_name="keywords_domains"
-            )
-            existing_options = {opt.value for opt in prop.options}
-        except Exception as e:
-            logger.info("Creating new 'keywords_domains' property in HubSpot")
-            # Property doesn't exist, create it with initial keywords
-            create_prop = {
-                "name": "keywords_domains",
-                "label": "keywords_domains",
-                "groupName": "contactinformation",
-                "type": "enumeration",
-                "fieldType": "checkbox",
-                "options": [{"label": k, "value": k} for k in sorted(new_keywords)]
-            }
-            hubspot_client.crm.properties.core_api.create(
-                object_type="contacts",
-                property_create=create_prop
-            )
-            return list(new_keywords)
+#         # First try to get existing property
+#         try:
+#             prop = hubspot_client.crm.properties.core_api.get_by_name(
+#                 object_type="contacts",
+#                 property_name="keywords_domains"
+#             )
+#             existing_options = {opt.value for opt in prop.options}
+#         except Exception as e:
+#             logger.info("Creating new 'keywords_domains' property in HubSpot")
+#             # Property doesn't exist, create it with initial keywords
+#             create_prop = {
+#                 "name": "keywords_domains",
+#                 "label": "keywords_domains",
+#                 "groupName": "contactinformation",
+#                 "type": "enumeration",
+#                 "fieldType": "checkbox",
+#                 "options": [{"label": k, "value": k} for k in sorted(new_keywords)]
+#             }
+#             hubspot_client.crm.properties.core_api.create(
+#                 object_type="contacts",
+#                 property_create=create_prop
+#             )
+#             return list(new_keywords)
 
-        # If we get here, property exists - update with any new keywords
-        all_keywords = existing_options.union(new_keywords)
+#         # If we get here, property exists - update with any new keywords
+#         all_keywords = existing_options.union(new_keywords)
         
-        # Only update if there are new keywords to add
-        if new_keywords - existing_options:
-            update_prop = {
-                "options": [{"label": k, "value": k} for k in sorted(all_keywords)]
-            }
-            hubspot_client.crm.properties.core_api.update(
-                object_type="contacts",
-                property_name="keywords_domains",
-                property_update=update_prop
-            )
+#         # Only update if there are new keywords to add
+#         if new_keywords - existing_options:
+#             update_prop = {
+#                 "options": [{"label": k, "value": k} for k in sorted(all_keywords)]
+#             }
+#             hubspot_client.crm.properties.core_api.update(
+#                 object_type="contacts",
+#                 property_name="keywords_domains",
+#                 property_update=update_prop
+#             )
 
-        return list(new_keywords - existing_options)
+#         return list(new_keywords - existing_options)
 
-    except Exception as e:
-        logger.error(f"Failed to update keywords property: {str(e)}")
-        return []
-
-
+#     except Exception as e:
+#         logger.error(f"Failed to update keywords property: {str(e)}")
+#         return []
 
 
+# Startup and shutdown events
+@app.on_event("startup")
+async def on_start():
+    connect_db()
+    db = get_db()
+    await db["resumes"].create_index(
+        [("extracted_text", "text")],
+        name="resumes_text_idx"
+    )
 
-
-
-
-
-
-
-
+@app.on_event("shutdown")
+def on_stop():
+    close_db()
 
 
 @app.post("/parse_resume/")
-async def parse_resume(file: UploadFile = File(...)):
+async def parse_resume(file: UploadFile = File(...), db: AsyncIOMotorDatabase = Depends(get_db)):
     try:
         logger.info(f"Starting resume processing for file: {file.filename}")
         data = await file.read()
@@ -518,10 +383,10 @@ async def parse_resume(file: UploadFile = File(...)):
 
                 # In your parse_resume function, replace the keywords section with:
 
-                logger.info("Updating keywords in HubSpot")
-                keywords = parsed.get("keywords", [])
-                selected_keywords = update_keywords_property(keywords)
-                keywords_str = ";".join(selected_keywords) if selected_keywords else ""
+                # logger.info("Updating keywords in HubSpot")
+                # keywords = parsed.get("keywords", [])
+                # selected_keywords = update_keywords_property(keywords)
+                # keywords_str = ";".join(selected_keywords) if selected_keywords else ""
 
 
                 email = parsed["email"]
@@ -548,7 +413,7 @@ async def parse_resume(file: UploadFile = File(...)):
                                 "jobtitle": parsed["job_title"],
                                 "company": parsed["company"],
                                 "skills": skills_str,
-                                "keywords_domains" : keywords_str,
+                                # "keywords_domains" : keywords_str,
                                 "resume_file_url": file_url,
                                 "total_experience" : total_experience,
                                 "year_of_experience" : year_of_experience,
@@ -575,7 +440,7 @@ async def parse_resume(file: UploadFile = File(...)):
                         "city_dropdown": selected_city,
                         "state_dropdown": selected_state,
                         "country_dropdown": selected_country,
-                        "keywords_domains" : keywords_str,
+                        # "keywords_domains" : keywords_str,
                     }
                     hs_obj = hubspot_client.crm.contacts.basic_api.create(
                         simple_public_object_input_for_create=SimplePublicObjectInputForCreate(properties=in_props)
@@ -583,6 +448,19 @@ async def parse_resume(file: UploadFile = File(...)):
                     contact_id = hs_obj.id
 
                 logger.info(f"Successfully processed resume for {email}")
+
+                await db["resumes"].update_one(
+                    {"contact_id": contact_id},
+                    {"$set": {
+                        "contact_id": contact_id,
+                        "name": parsed["name"],
+                        "email": parsed["email"],
+                        "job_title": parsed["job_title"],
+                        "extracted_text": text,
+                    }},
+                    upsert=True
+                )
+
                 return JSONResponse(content=parsed)
 
             except Exception as e:
@@ -598,3 +476,24 @@ async def parse_resume(file: UploadFile = File(...)):
     except Exception as e:
         logger.error(f"Unexpected error in parse_resume: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail="Internal server error")
+    
+
+
+@app.get("/resumes/{contact_id}")
+async def get_resume(contact_id: str, db=Depends(get_db)):
+    doc = await db["resumes"].find_one({"contact_id": contact_id}, {"_id": 0})
+    if not doc:
+        raise HTTPException(404, "Not found")
+    return doc
+
+
+@app.get("/search/")
+async def search_resumes(
+    q: str,
+    db: AsyncIOMotorDatabase = Depends(get_db)
+):
+    cursor = db["resumes"].find(
+        {"$text": {"$search": q}},
+        {"score": {"$meta": "textScore"}, "_id": 0}
+    ).sort([("score", {"$meta": "textScore"})]).limit(10)
+    return {"query": q, "results": await cursor.to_list(10)}

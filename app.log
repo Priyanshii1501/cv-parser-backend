@@ -1470,3 +1470,607 @@ HTTP response body: {"status":"error","message":"Property values were not valid:
 2025-07-09 18:39:30,850 - main - INFO - Updating keywords in HubSpot
 2025-07-09 18:39:32,172 - main - INFO - Creating new contact: cmcturland@email.com
 2025-07-09 18:39:32,848 - main - INFO - Successfully processed resume for cmcturland@email.com
+2025-07-11 18:41:58,076 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example.pdf
+2025-07-11 18:41:58,077 - main - INFO - Extracting text from file
+2025-07-11 18:41:58,208 - main - INFO - Uploading file to HubSpot
+2025-07-11 18:41:59,038 - main - INFO - Sending to Gemini for parsing
+2025-07-11 18:42:22,313 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-11 18:42:23,213 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-11 18:42:23,891 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-11 18:42:24,589 - main - INFO - Updating skills in HubSpot
+2025-07-11 18:42:25,274 - main - INFO - Updating keywords in HubSpot
+2025-07-11 18:42:26,503 - main - INFO - Creating new contact: salvador.sanz@email.com
+2025-07-11 18:42:27,062 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-11 19:06:40,500 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example.pdf
+2025-07-11 19:06:40,500 - main - INFO - Extracting text from file
+2025-07-11 19:06:40,621 - main - INFO - Uploading file to HubSpot
+2025-07-11 19:06:41,350 - main - INFO - Sending to Gemini for parsing
+2025-07-11 19:06:52,247 - main - ERROR - AI parsing failed: 'str' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 331, in parse_resume
+    city = location_data.get("city", "").strip()
+           ^^^^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+2025-07-11 19:07:23,345 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example.pdf
+2025-07-11 19:07:23,346 - main - INFO - Extracting text from file
+2025-07-11 19:07:23,472 - main - INFO - Uploading file to HubSpot
+2025-07-11 19:07:24,110 - main - INFO - Sending to Gemini for parsing
+2025-07-11 19:07:42,570 - main - ERROR - AI parsing failed: 'str' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 331, in parse_resume
+    city = location_data.get("city", "").strip()
+           ^^^^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+2025-07-11 19:09:29,305 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example.pdf
+2025-07-11 19:09:29,306 - main - INFO - Extracting text from file
+2025-07-11 19:09:29,435 - main - INFO - Uploading file to HubSpot
+2025-07-11 19:09:30,306 - main - INFO - Sending to Gemini for parsing
+2025-07-11 19:09:39,284 - main - ERROR - AI parsing failed: 'str' object has no attribute 'get'
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 343, in parse_resume
+    city = location_data.get("city", "").strip()
+           ^^^^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+2025-07-11 19:36:09,990 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example.pdf
+2025-07-11 19:36:09,991 - main - INFO - Extracting text from file
+2025-07-11 19:36:10,117 - main - INFO - Uploading file to HubSpot
+2025-07-11 19:36:11,264 - main - INFO - Sending to Gemini for parsing
+2025-07-11 19:36:20,997 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-11 19:36:21,891 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-11 19:36:22,514 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-11 19:36:23,127 - main - INFO - Updating skills in HubSpot
+2025-07-11 19:36:24,163 - main - INFO - Creating new contact: salvador.sanz@email.com
+2025-07-11 19:36:24,687 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-11 19:42:51,718 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example.pdf
+2025-07-11 19:42:51,719 - main - INFO - Extracting text from file
+2025-07-11 19:42:51,836 - main - INFO - Uploading file to HubSpot
+2025-07-11 19:42:52,490 - main - INFO - Sending to Gemini for parsing
+2025-07-11 19:43:10,477 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-11 19:43:11,337 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-11 19:43:12,041 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-11 19:43:12,727 - main - INFO - Updating skills in HubSpot
+2025-07-11 19:43:13,693 - main - INFO - Creating new contact: salvador.sanz@email.com
+2025-07-11 19:43:14,202 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-11 19:45:58,120 - main - INFO - Starting resume processing for file: senior-software-engineer-resume-example.pdf
+2025-07-11 19:45:58,122 - main - INFO - Extracting text from file
+2025-07-11 19:45:58,225 - main - INFO - Uploading file to HubSpot
+2025-07-11 19:45:58,980 - main - INFO - Sending to Gemini for parsing
+2025-07-11 19:46:06,266 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-11 19:46:06,956 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-11 19:46:07,616 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-11 19:46:08,589 - main - INFO - Updating skills in HubSpot
+2025-07-11 19:46:09,895 - main - INFO - Creating new contact: tukura@email.com
+2025-07-11 19:46:10,433 - main - INFO - Successfully processed resume for tukura@email.com
+2025-07-11 23:28:32,823 - asyncio - ERROR - Future exception was never retrieved
+future: <Future finished exception=OperationFailure("bad auth : authentication failed, full error: {'ok': 0, 'errmsg': 'bad auth : authentication failed', 'code': 8000, 'codeName': 'AtlasError'}")>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/database.py", line 926, in command
+    with self._client._conn_for_reads(read_preference, session, operation=command_name) as (
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1846, in _conn_from_server
+    with self._checkout(server, session) as conn:
+         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1756, in _checkout
+    with server.checkout(handler=err_handler) as conn:
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 1119, in checkout
+    conn = self._get_conn(checkout_started_time, handler=handler)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 1281, in _get_conn
+    conn = self.connect(handler=handler)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 1073, in connect
+    conn.authenticate()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 526, in authenticate
+    auth.authenticate(creds, self, reauthenticate=reauthenticate)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/auth.py", line 450, in authenticate
+    auth_func(credentials, conn)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/auth.py", line 355, in _authenticate_default
+    return _authenticate_scram(credentials, conn, "SCRAM-SHA-1")
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/auth.py", line 135, in _authenticate_scram
+    res = conn.command(source, cmd)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/helpers.py", line 47, in inner
+    return func(*args, **kwargs)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 414, in command
+    return command(
+        self,
+    ...<20 lines>...
+        write_concern=write_concern,
+    )
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/network.py", line 212, in command
+    helpers_shared._check_command_response(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        response_doc,
+        ^^^^^^^^^^^^^
+    ...<2 lines>...
+        parse_write_concern_error=parse_write_concern_error,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/helpers_shared.py", line 250, in _check_command_response
+    raise OperationFailure(errmsg, code, response, max_wire_version)
+pymongo.errors.OperationFailure: bad auth : authentication failed, full error: {'ok': 0, 'errmsg': 'bad auth : authentication failed', 'code': 8000, 'codeName': 'AtlasError'}
+2025-07-11 23:28:32,829 - asyncio - ERROR - Future exception was never retrieved
+future: <Future finished exception=OperationFailure("bad auth : authentication failed, full error: {'ok': 0, 'errmsg': 'bad auth : authentication failed', 'code': 8000, 'codeName': 'AtlasError'}")>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/database.py", line 926, in command
+    with self._client._conn_for_reads(read_preference, session, operation=command_name) as (
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1846, in _conn_from_server
+    with self._checkout(server, session) as conn:
+         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1756, in _checkout
+    with server.checkout(handler=err_handler) as conn:
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 1119, in checkout
+    conn = self._get_conn(checkout_started_time, handler=handler)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 1281, in _get_conn
+    conn = self.connect(handler=handler)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 1073, in connect
+    conn.authenticate()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 526, in authenticate
+    auth.authenticate(creds, self, reauthenticate=reauthenticate)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/auth.py", line 450, in authenticate
+    auth_func(credentials, conn)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/auth.py", line 355, in _authenticate_default
+    return _authenticate_scram(credentials, conn, "SCRAM-SHA-1")
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/auth.py", line 135, in _authenticate_scram
+    res = conn.command(source, cmd)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/helpers.py", line 47, in inner
+    return func(*args, **kwargs)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 414, in command
+    return command(
+        self,
+    ...<20 lines>...
+        write_concern=write_concern,
+    )
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/network.py", line 212, in command
+    helpers_shared._check_command_response(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        response_doc,
+        ^^^^^^^^^^^^^
+    ...<2 lines>...
+        parse_write_concern_error=parse_write_concern_error,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/helpers_shared.py", line 250, in _check_command_response
+    raise OperationFailure(errmsg, code, response, max_wire_version)
+pymongo.errors.OperationFailure: bad auth : authentication failed, full error: {'ok': 0, 'errmsg': 'bad auth : authentication failed', 'code': 8000, 'codeName': 'AtlasError'}
+2025-07-11 23:28:40,270 - asyncio - ERROR - Future exception was never retrieved
+future: <Future finished exception=OperationFailure("bad auth : authentication failed, full error: {'ok': 0, 'errmsg': 'bad auth : authentication failed', 'code': 8000, 'codeName': 'AtlasError'}")>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/database.py", line 926, in command
+    with self._client._conn_for_reads(read_preference, session, operation=command_name) as (
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1846, in _conn_from_server
+    with self._checkout(server, session) as conn:
+         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1756, in _checkout
+    with server.checkout(handler=err_handler) as conn:
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 1119, in checkout
+    conn = self._get_conn(checkout_started_time, handler=handler)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 1281, in _get_conn
+    conn = self.connect(handler=handler)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 1073, in connect
+    conn.authenticate()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 526, in authenticate
+    auth.authenticate(creds, self, reauthenticate=reauthenticate)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/auth.py", line 450, in authenticate
+    auth_func(credentials, conn)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/auth.py", line 355, in _authenticate_default
+    return _authenticate_scram(credentials, conn, "SCRAM-SHA-1")
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/auth.py", line 135, in _authenticate_scram
+    res = conn.command(source, cmd)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/helpers.py", line 47, in inner
+    return func(*args, **kwargs)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 414, in command
+    return command(
+        self,
+    ...<20 lines>...
+        write_concern=write_concern,
+    )
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/network.py", line 212, in command
+    helpers_shared._check_command_response(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        response_doc,
+        ^^^^^^^^^^^^^
+    ...<2 lines>...
+        parse_write_concern_error=parse_write_concern_error,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/helpers_shared.py", line 250, in _check_command_response
+    raise OperationFailure(errmsg, code, response, max_wire_version)
+pymongo.errors.OperationFailure: bad auth : authentication failed, full error: {'ok': 0, 'errmsg': 'bad auth : authentication failed', 'code': 8000, 'codeName': 'AtlasError'}
+2025-07-11 23:28:40,277 - asyncio - ERROR - Future exception was never retrieved
+future: <Future finished exception=OperationFailure("bad auth : authentication failed, full error: {'ok': 0, 'errmsg': 'bad auth : authentication failed', 'code': 8000, 'codeName': 'AtlasError'}")>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/database.py", line 926, in command
+    with self._client._conn_for_reads(read_preference, session, operation=command_name) as (
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1846, in _conn_from_server
+    with self._checkout(server, session) as conn:
+         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1756, in _checkout
+    with server.checkout(handler=err_handler) as conn:
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 1119, in checkout
+    conn = self._get_conn(checkout_started_time, handler=handler)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 1281, in _get_conn
+    conn = self.connect(handler=handler)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 1073, in connect
+    conn.authenticate()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 526, in authenticate
+    auth.authenticate(creds, self, reauthenticate=reauthenticate)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/auth.py", line 450, in authenticate
+    auth_func(credentials, conn)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/auth.py", line 355, in _authenticate_default
+    return _authenticate_scram(credentials, conn, "SCRAM-SHA-1")
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/auth.py", line 135, in _authenticate_scram
+    res = conn.command(source, cmd)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/helpers.py", line 47, in inner
+    return func(*args, **kwargs)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 414, in command
+    return command(
+        self,
+    ...<20 lines>...
+        write_concern=write_concern,
+    )
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/network.py", line 212, in command
+    helpers_shared._check_command_response(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        response_doc,
+        ^^^^^^^^^^^^^
+    ...<2 lines>...
+        parse_write_concern_error=parse_write_concern_error,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/helpers_shared.py", line 250, in _check_command_response
+    raise OperationFailure(errmsg, code, response, max_wire_version)
+pymongo.errors.OperationFailure: bad auth : authentication failed, full error: {'ok': 0, 'errmsg': 'bad auth : authentication failed', 'code': 8000, 'codeName': 'AtlasError'}
+2025-07-11 23:29:40,355 - asyncio - ERROR - Future exception was never retrieved
+future: <Future finished exception=OperationFailure("bad auth : authentication failed, full error: {'ok': 0, 'errmsg': 'bad auth : authentication failed', 'code': 8000, 'codeName': 'AtlasError'}")>
+Traceback (most recent call last):
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/_csot.py", line 125, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/database.py", line 926, in command
+    with self._client._conn_for_reads(read_preference, session, operation=command_name) as (
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1846, in _conn_from_server
+    with self._checkout(server, session) as conn:
+         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/mongo_client.py", line 1756, in _checkout
+    with server.checkout(handler=err_handler) as conn:
+         ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.5/Frameworks/Python.framework/Versions/3.13/lib/python3.13/contextlib.py", line 141, in __enter__
+    return next(self.gen)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 1119, in checkout
+    conn = self._get_conn(checkout_started_time, handler=handler)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 1281, in _get_conn
+    conn = self.connect(handler=handler)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 1073, in connect
+    conn.authenticate()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 526, in authenticate
+    auth.authenticate(creds, self, reauthenticate=reauthenticate)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/auth.py", line 450, in authenticate
+    auth_func(credentials, conn)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/auth.py", line 355, in _authenticate_default
+    return _authenticate_scram(credentials, conn, "SCRAM-SHA-1")
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/auth.py", line 135, in _authenticate_scram
+    res = conn.command(source, cmd)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/helpers.py", line 47, in inner
+    return func(*args, **kwargs)
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/pool.py", line 414, in command
+    return command(
+        self,
+    ...<20 lines>...
+        write_concern=write_concern,
+    )
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/synchronous/network.py", line 212, in command
+    helpers_shared._check_command_response(
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        response_doc,
+        ^^^^^^^^^^^^^
+    ...<2 lines>...
+        parse_write_concern_error=parse_write_concern_error,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/consultadd/cv-parser-backend/.venv/lib/python3.13/site-packages/pymongo/helpers_shared.py", line 250, in _check_command_response
+    raise OperationFailure(errmsg, code, response, max_wire_version)
+pymongo.errors.OperationFailure: bad auth : authentication failed, full error: {'ok': 0, 'errmsg': 'bad auth : authentication failed', 'code': 8000, 'codeName': 'AtlasError'}
+2025-07-11 23:41:24,358 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example.pdf
+2025-07-11 23:41:24,359 - main - INFO - Extracting text from file
+2025-07-11 23:41:24,481 - main - INFO - Uploading file to HubSpot
+2025-07-11 23:41:25,239 - main - INFO - Sending to Gemini for parsing
+2025-07-11 23:41:34,295 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-11 23:41:35,584 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-11 23:41:36,180 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-11 23:41:36,807 - main - INFO - Updating skills in HubSpot
+2025-07-11 23:41:37,741 - main - INFO - Creating new contact: salvador.sanz@email.com
+2025-07-11 23:41:38,300 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-11 23:41:38,301 - main - ERROR - HubSpot operation failed: name 'database' is not defined
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 445, in parse_resume
+    await database["resumes"].update_one(
+          ^^^^^^^^
+NameError: name 'database' is not defined
+2025-07-11 23:41:38,304 - main - ERROR - AI parsing failed: 500: HubSpot operation failed: name 'database' is not defined
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 445, in parse_resume
+    await database["resumes"].update_one(
+          ^^^^^^^^
+NameError: name 'database' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 461, in parse_resume
+    raise HTTPException(status_code=500, detail=f"HubSpot operation failed: {str(e)}")
+fastapi.exceptions.HTTPException: 500: HubSpot operation failed: name 'database' is not defined
+2025-07-11 23:45:25,038 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example.pdf
+2025-07-11 23:45:25,039 - main - INFO - Extracting text from file
+2025-07-11 23:45:25,161 - main - INFO - Uploading file to HubSpot
+2025-07-11 23:45:25,899 - main - INFO - Sending to Gemini for parsing
+2025-07-11 23:45:34,891 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-11 23:45:35,821 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-11 23:45:36,418 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-11 23:45:37,027 - main - INFO - Updating skills in HubSpot
+2025-07-11 23:45:38,272 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-11 23:45:38,606 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-11 23:45:38,607 - main - ERROR - HubSpot operation failed: name 'db' is not defined
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 445, in parse_resume
+    await db["resumes"].update_one(
+          ^^
+NameError: name 'db' is not defined
+2025-07-11 23:45:38,611 - main - ERROR - AI parsing failed: 500: HubSpot operation failed: name 'db' is not defined
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 445, in parse_resume
+    await db["resumes"].update_one(
+          ^^
+NameError: name 'db' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 461, in parse_resume
+    raise HTTPException(status_code=500, detail=f"HubSpot operation failed: {str(e)}")
+fastapi.exceptions.HTTPException: 500: HubSpot operation failed: name 'db' is not defined
+2025-07-11 23:46:57,457 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example.pdf
+2025-07-11 23:46:57,458 - main - INFO - Extracting text from file
+2025-07-11 23:46:57,582 - main - INFO - Uploading file to HubSpot
+2025-07-11 23:46:58,228 - main - INFO - Sending to Gemini for parsing
+2025-07-11 23:47:11,492 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-11 23:47:12,395 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-11 23:47:13,000 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-11 23:47:13,585 - main - INFO - Updating skills in HubSpot
+2025-07-11 23:47:14,780 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-11 23:47:15,133 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-11 23:47:15,134 - main - ERROR - HubSpot operation failed: 'function' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 445, in parse_resume
+    await get_db["resumes"].update_one(
+          ~~~~~~^^^^^^^^^^^
+TypeError: 'function' object is not subscriptable
+2025-07-11 23:47:15,135 - main - ERROR - AI parsing failed: 500: HubSpot operation failed: 'function' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 445, in parse_resume
+    await get_db["resumes"].update_one(
+          ~~~~~~^^^^^^^^^^^
+TypeError: 'function' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 461, in parse_resume
+    raise HTTPException(status_code=500, detail=f"HubSpot operation failed: {str(e)}")
+fastapi.exceptions.HTTPException: 500: HubSpot operation failed: 'function' object is not subscriptable
+2025-07-11 23:49:10,165 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example.pdf
+2025-07-11 23:49:10,166 - main - INFO - Extracting text from file
+2025-07-11 23:49:10,293 - main - INFO - Uploading file to HubSpot
+2025-07-11 23:49:10,937 - main - INFO - Sending to Gemini for parsing
+2025-07-11 23:49:21,419 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-11 23:49:22,221 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-11 23:49:23,264 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-11 23:49:23,893 - main - INFO - Updating skills in HubSpot
+2025-07-11 23:49:24,781 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-11 23:49:25,164 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-11 23:49:25,165 - main - ERROR - HubSpot operation failed: 'Depends' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 446, in parse_resume
+    await db["resumes"].update_one(
+          ~~^^^^^^^^^^^
+TypeError: 'Depends' object is not subscriptable
+2025-07-11 23:49:25,167 - main - ERROR - AI parsing failed: 500: HubSpot operation failed: 'Depends' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 446, in parse_resume
+    await db["resumes"].update_one(
+          ~~^^^^^^^^^^^
+TypeError: 'Depends' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 462, in parse_resume
+    raise HTTPException(status_code=500, detail=f"HubSpot operation failed: {str(e)}")
+fastapi.exceptions.HTTPException: 500: HubSpot operation failed: 'Depends' object is not subscriptable
+2025-07-11 23:51:52,614 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example.pdf
+2025-07-11 23:51:52,615 - main - INFO - Extracting text from file
+2025-07-11 23:51:52,742 - main - INFO - Uploading file to HubSpot
+2025-07-11 23:51:53,409 - main - INFO - Sending to Gemini for parsing
+2025-07-11 23:52:00,426 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-11 23:52:01,113 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-11 23:52:01,736 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-11 23:52:02,385 - main - INFO - Updating skills in HubSpot
+2025-07-11 23:52:03,714 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-11 23:52:04,056 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-11 23:52:04,057 - main - ERROR - HubSpot operation failed: 'Depends' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 447, in parse_resume
+    await db["resumes"].update_one(
+          ~~^^^^^^^^^^^
+TypeError: 'Depends' object is not subscriptable
+2025-07-11 23:52:04,060 - main - ERROR - AI parsing failed: 500: HubSpot operation failed: 'Depends' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 447, in parse_resume
+    await db["resumes"].update_one(
+          ~~^^^^^^^^^^^
+TypeError: 'Depends' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 463, in parse_resume
+    raise HTTPException(status_code=500, detail=f"HubSpot operation failed: {str(e)}")
+fastapi.exceptions.HTTPException: 500: HubSpot operation failed: 'Depends' object is not subscriptable
+2025-07-12 00:01:06,183 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example.pdf
+2025-07-12 00:01:06,184 - main - INFO - Extracting text from file
+2025-07-12 00:01:06,311 - main - INFO - Uploading file to HubSpot
+2025-07-12 00:01:07,032 - main - INFO - Sending to Gemini for parsing
+2025-07-12 00:01:18,487 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-12 00:01:19,499 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-12 00:01:20,251 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-12 00:01:20,856 - main - INFO - Updating skills in HubSpot
+2025-07-12 00:01:21,799 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-12 00:01:22,157 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-12 00:01:22,157 - main - ERROR - HubSpot operation failed: 'Depends' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 448, in parse_resume
+    await db["resumes"].update_one(
+          ~~^^^^^^^^^^^
+TypeError: 'Depends' object is not subscriptable
+2025-07-12 00:01:22,160 - main - ERROR - AI parsing failed: 500: HubSpot operation failed: 'Depends' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 448, in parse_resume
+    await db["resumes"].update_one(
+          ~~^^^^^^^^^^^
+TypeError: 'Depends' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 464, in parse_resume
+    raise HTTPException(status_code=500, detail=f"HubSpot operation failed: {str(e)}")
+fastapi.exceptions.HTTPException: 500: HubSpot operation failed: 'Depends' object is not subscriptable
+2025-07-13 23:14:51,694 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example.pdf
+2025-07-13 23:14:51,695 - main - INFO - Extracting text from file
+2025-07-13 23:14:51,804 - main - INFO - Uploading file to HubSpot
+2025-07-13 23:14:52,696 - main - INFO - Sending to Gemini for parsing
+2025-07-13 23:14:59,549 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-13 23:15:00,306 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-13 23:15:01,021 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-13 23:15:01,696 - main - INFO - Updating skills in HubSpot
+2025-07-13 23:15:02,830 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-13 23:15:03,238 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-13 23:15:03,238 - main - ERROR - HubSpot operation failed: 'Depends' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 448, in parse_resume
+    await db["resumes"].update_one(
+          ~~^^^^^^^^^^^
+TypeError: 'Depends' object is not subscriptable
+2025-07-13 23:15:03,242 - main - ERROR - AI parsing failed: 500: HubSpot operation failed: 'Depends' object is not subscriptable
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 448, in parse_resume
+    await db["resumes"].update_one(
+          ~~^^^^^^^^^^^
+TypeError: 'Depends' object is not subscriptable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 464, in parse_resume
+    raise HTTPException(status_code=500, detail=f"HubSpot operation failed: {str(e)}")
+fastapi.exceptions.HTTPException: 500: HubSpot operation failed: 'Depends' object is not subscriptable
+2025-07-13 23:22:16,856 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example.pdf
+2025-07-13 23:22:16,857 - main - INFO - Extracting text from file
+2025-07-13 23:22:16,982 - main - INFO - Uploading file to HubSpot
+2025-07-13 23:22:17,844 - main - INFO - Sending to Gemini for parsing
+2025-07-13 23:22:23,745 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-13 23:22:24,678 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-13 23:22:25,662 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-13 23:22:26,426 - main - INFO - Updating skills in HubSpot
+2025-07-13 23:22:28,403 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-13 23:22:28,870 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-13 23:27:04,140 - main - INFO - Starting resume processing for file: python-developer-resume-example.pdf
+2025-07-13 23:27:04,141 - main - INFO - Extracting text from file
+2025-07-13 23:27:04,258 - main - INFO - Uploading file to HubSpot
+2025-07-13 23:27:05,082 - main - INFO - Sending to Gemini for parsing
+2025-07-13 23:27:12,398 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-13 23:27:13,137 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-13 23:27:13,833 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-13 23:27:14,529 - main - INFO - Updating skills in HubSpot
+2025-07-13 23:27:16,403 - main - INFO - Updating existing contact: ggonzalez@email.com
+2025-07-13 23:27:16,865 - main - INFO - Successfully processed resume for ggonzalez@email.com
+2025-07-14 00:03:33,771 - main - INFO - Starting resume processing for file: software-engineer-resume-example.pdf
+2025-07-14 00:03:33,772 - main - INFO - Extracting text from file
+2025-07-14 00:03:33,896 - main - INFO - Uploading file to HubSpot
+2025-07-14 00:03:34,743 - main - INFO - Sending to Gemini for parsing
+2025-07-14 00:03:42,791 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-14 00:03:43,825 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-14 00:03:44,451 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-14 00:03:45,490 - main - INFO - Updating skills in HubSpot
+2025-07-14 00:03:46,757 - main - INFO - Updating existing contact: cmcturland@email.com
+2025-07-14 00:03:47,477 - main - INFO - Successfully processed resume for cmcturland@email.com
