@@ -2074,3 +2074,57 @@ fastapi.exceptions.HTTPException: 500: HubSpot operation failed: 'Depends' objec
 2025-07-14 00:03:45,490 - main - INFO - Updating skills in HubSpot
 2025-07-14 00:03:46,757 - main - INFO - Updating existing contact: cmcturland@email.com
 2025-07-14 00:03:47,477 - main - INFO - Successfully processed resume for cmcturland@email.com
+2025-07-14 21:27:13,981 - main - INFO - Starting resume processing for file: software-engineering-manager-resume-example.pdf
+2025-07-14 21:27:13,983 - main - INFO - Extracting text from file
+2025-07-14 21:27:14,107 - main - INFO - Uploading file to HubSpot
+2025-07-14 21:27:15,000 - main - INFO - Sending to Gemini for parsing
+2025-07-14 21:27:23,258 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-14 21:27:24,032 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-14 21:27:24,910 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-14 21:27:25,606 - main - INFO - Updating skills in HubSpot
+2025-07-14 21:27:26,966 - main - INFO - Creating new contact: zaragreen@email.com
+2025-07-14 21:27:27,540 - main - INFO - Successfully processed resume for zaragreen@email.com
+2025-07-14 22:57:17,661 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example.pdf
+2025-07-14 22:57:17,662 - main - INFO - Extracting text from file
+2025-07-14 22:57:17,802 - main - INFO - Uploading file to HubSpot
+2025-07-14 22:57:18,554 - main - INFO - Sending to Gemini for parsing
+2025-07-14 22:57:26,056 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-14 22:57:27,128 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-14 22:57:27,823 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-14 22:57:28,765 - main - INFO - Updating skills in HubSpot
+2025-07-14 22:57:29,704 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-14 22:57:30,058 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-14 22:57:30,072 - main - INFO - Successfully added resume data for salvador.sanz@email.com in database.
+2025-07-14 22:57:54,125 - main - INFO - Starting resume processing for file: software-engineer-intern-resume-example.pdf
+2025-07-14 22:57:54,125 - main - INFO - Extracting text from file
+2025-07-14 22:57:54,248 - main - INFO - Uploading file to HubSpot
+2025-07-14 22:57:55,077 - main - INFO - Sending to Gemini for parsing
+2025-07-14 22:58:03,806 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-14 22:58:04,643 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-14 22:58:05,242 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-14 22:58:05,837 - main - INFO - Updating skills in HubSpot
+2025-07-14 22:58:07,107 - main - INFO - Creating new contact: ckessler@email.com
+2025-07-14 22:58:07,655 - main - INFO - Successfully processed resume for ckessler@email.com
+2025-07-14 22:58:07,669 - main - INFO - Successfully added resume data for ckessler@email.com in database.
+2025-07-14 23:04:39,291 - main - INFO - Starting resume processing for file: software-developer-resume-example.pdf
+2025-07-14 23:04:39,292 - main - INFO - Extracting text from file
+2025-07-14 23:04:39,466 - main - INFO - Uploading file to HubSpot
+2025-07-14 23:04:40,152 - main - INFO - Sending to Gemini for parsing
+2025-07-14 23:04:53,552 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-14 23:04:54,801 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-14 23:04:55,421 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-14 23:04:56,043 - main - INFO - Updating skills in HubSpot
+2025-07-14 23:04:56,973 - main - INFO - Creating new contact: cynthia@beamjobs.com
+2025-07-14 23:04:57,467 - main - INFO - Successfully processed resume for cynthia@beamjobs.com
+2025-07-14 23:04:57,487 - main - INFO - Successfully added resume data for cynthia@beamjobs.com in database.
+2025-07-15 00:54:12,106 - main - INFO - Starting resume processing for file: software-engineering-manager-resume-example (1).pdf
+2025-07-15 00:54:12,107 - main - INFO - Extracting text from file
+2025-07-15 00:54:12,224 - main - INFO - Uploading file to HubSpot
+2025-07-15 00:54:12,990 - main - INFO - Sending to Gemini for parsing
+2025-07-15 00:54:26,698 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-15 00:54:27,713 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-15 00:54:28,378 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-15 00:54:29,383 - main - INFO - Updating skills in HubSpot
+2025-07-15 00:54:30,748 - main - INFO - Updating existing contact: zaragreen@email.com
+2025-07-15 00:54:31,134 - main - INFO - Successfully processed resume for zaragreen@email.com
+2025-07-15 00:54:31,161 - main - INFO - Successfully added resume data for zaragreen@email.com in database.

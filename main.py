@@ -268,8 +268,19 @@ async def on_start():
     connect_db()
     db = get_db()
     await db["resumes"].create_index(
-        [("extracted_text", "text")],
-        name="resumes_text_idx"
+        [
+            ("extracted_text", "text"),
+            ("name", "text"),
+            ("job_title", "text"),
+            ("skills", "text"),
+        ],
+        name="resumes_text_idx",
+        weights={
+            "extracted_text": 10, 
+            "name": 8,
+            "job_title": 5,
+            "skills": 3,
+        },
     )
 
 @app.on_event("shutdown")
@@ -461,6 +472,8 @@ async def parse_resume(file: UploadFile = File(...), db: AsyncIOMotorDatabase = 
                     upsert=True
                 )
 
+                logger.info(f"Successfully added resume data for {email} in database.")
+
                 return JSONResponse(content=parsed)
 
             except Exception as e:
@@ -477,15 +490,6 @@ async def parse_resume(file: UploadFile = File(...), db: AsyncIOMotorDatabase = 
         logger.error(f"Unexpected error in parse_resume: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail="Internal server error")
     
-
-
-@app.get("/resumes/{contact_id}")
-async def get_resume(contact_id: str, db=Depends(get_db)):
-    doc = await db["resumes"].find_one({"contact_id": contact_id}, {"_id": 0})
-    if not doc:
-        raise HTTPException(404, "Not found")
-    return doc
-
 
 @app.get("/search/")
 async def search_resumes(
