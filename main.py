@@ -1,7 +1,7 @@
-from fastapi import FastAPI, UploadFile, Depends, File, HTTPException
+from fastapi import FastAPI, UploadFile, Depends, File, HTTPException, Request, Header, Response, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-import pdfplumber, logging, io, os, json, re, requests, ssl, certifi
+import pdfplumber, logging, io, os, json, re, requests, ssl, certifi, hmac, hashlib, base64
 from docx import Document
 from tempfile import NamedTemporaryFile
 from dotenv import load_dotenv
@@ -14,6 +14,7 @@ from hubspot.crm.contacts import (
 )
 from motor.motor_asyncio import AsyncIOMotorDatabase
 from database import connect_db, close_db, get_db
+from pymongo import MongoClient
 
 load_dotenv()
 
@@ -28,6 +29,11 @@ hubspot_client = HubSpot(
     access_token=os.getenv("HUBSPOT_TOKEN"),
     api_client_configuration={"ssl_context": ssl_context}
 )
+
+CLIENT_SECRET = os.getenv("HUBSPOT_CLIENT_SECRET")
+
+sync_mongo = MongoClient(os.getenv("MONGODB_URL"))
+sync_db = sync_mongo["cvparser"]["resumes"]
 
 # Configure logging
 logging.basicConfig(
@@ -501,3 +507,42 @@ async def search_resumes(
         {"score": {"$meta": "textScore"}, "_id": 0}
     ).sort([("score", {"$meta": "textScore"})]).limit(10)
     return {"query": q, "results": await cursor.to_list(10)}
+
+@app.post("/webhook/hubspot", status_code=204)
+async def handle_hubspot_webhook(
+    request: Request,
+    background_tasks: BackgroundTasks,
+    x_hubspot_signature_v3: str = Header(...),
+    x_hubspot_request_timestamp: str = Header(...)
+):
+    raw_body = await request.body()
+    raw_body_str = raw_body.decode('utf-8')
+    url = str(request.url)
+    source = f"POST{url}{raw_body_str}{x_hubspot_request_timestamp}"
+
+    sig = base64.b64encode(hmac.new(
+        CLIENT_SECRET.encode('utf-8'),
+        msg=source.encode('utf-8'),
+        digestmod=hashlib.sha256
+    ).digest()).decode()
+
+    if not hmac.compare_digest(sig, x_hubspot_signature_v3):
+        logger.warning("Invalid HubSpot webhook signature")
+        raise HTTPException(status_code=403, detail="Invalid signature")
+
+    events = await request.json()
+    deleted_ids = [
+        ev["objectId"]
+        for ev in events
+        if ev.get("subscriptionType") == "contact.privacyDeletion"
+    ]
+    logger(deleted_ids)
+    if deleted_ids:
+        background_tasks.add_task(remove_contacts, deleted_ids)
+
+    return Response(status_code=204)
+
+
+def remove_contacts(contact_ids: list[str]):
+    result = sync_db.delete_many({"contact_id": {"$in": contact_ids}})
+    logger.info(f"Removed {result.deleted_count} deleted HubSpot contact(s) from MongoDB")

@@ -2128,3 +2128,49 @@ fastapi.exceptions.HTTPException: 500: HubSpot operation failed: 'Depends' objec
 2025-07-15 00:54:30,748 - main - INFO - Updating existing contact: zaragreen@email.com
 2025-07-15 00:54:31,134 - main - INFO - Successfully processed resume for zaragreen@email.com
 2025-07-15 00:54:31,161 - main - INFO - Successfully added resume data for zaragreen@email.com in database.
+2025-07-15 19:03:35,828 - main - INFO - Removed 0 deleted HubSpot contact(s) from MongoDB
+2025-07-15 19:08:18,600 - main - INFO - Removed 0 deleted HubSpot contact(s) from MongoDB
+2025-07-15 19:59:20,503 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example.pdf
+2025-07-15 19:59:20,503 - main - INFO - Extracting text from file
+2025-07-15 19:59:20,607 - main - INFO - Uploading file to HubSpot
+2025-07-15 19:59:21,360 - main - INFO - Sending to Gemini for parsing
+2025-07-15 19:59:33,459 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-15 19:59:34,470 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-15 19:59:35,198 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-15 19:59:35,915 - main - INFO - Updating skills in HubSpot
+2025-07-15 19:59:36,963 - main - INFO - Updating existing contact: salvador.sanz@email.com
+2025-07-15 19:59:37,366 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-15 19:59:37,385 - main - INFO - Successfully added resume data for salvador.sanz@email.com in database.
+2025-07-15 19:59:56,760 - main - INFO - Starting resume processing for file: software-developer-resume-example.pdf
+2025-07-15 19:59:56,766 - main - INFO - Extracting text from file
+2025-07-15 19:59:56,883 - main - INFO - Uploading file to HubSpot
+2025-07-15 19:59:57,595 - main - INFO - Sending to Gemini for parsing
+2025-07-15 20:00:07,474 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-15 20:00:08,460 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-15 20:00:09,461 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-15 20:00:10,109 - main - INFO - Updating skills in HubSpot
+2025-07-15 20:00:11,426 - main - INFO - Creating new contact: cynthia@beamjobs.com
+2025-07-15 20:00:12,072 - main - INFO - Successfully processed resume for cynthia@beamjobs.com
+2025-07-15 20:00:12,091 - main - INFO - Successfully added resume data for cynthia@beamjobs.com in database.
+2025-07-15 20:01:09,361 - main - INFO - Starting resume processing for file: python-developer-resume-example.pdf
+2025-07-15 20:01:09,362 - main - INFO - Extracting text from file
+2025-07-15 20:01:09,542 - main - INFO - Uploading file to HubSpot
+2025-07-15 20:01:10,395 - main - INFO - Sending to Gemini for parsing
+2025-07-15 20:01:15,991 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-15 20:01:16,822 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-15 20:01:17,687 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-15 20:01:18,302 - main - INFO - Updating skills in HubSpot
+2025-07-15 20:01:20,186 - main - INFO - Updating existing contact: ggonzalez@email.com
+2025-07-15 20:01:20,835 - main - INFO - Successfully processed resume for ggonzalez@email.com
+2025-07-15 20:01:20,847 - main - INFO - Successfully added resume data for ggonzalez@email.com in database.
+2025-07-15 20:04:09,069 - main - INFO - Starting resume processing for file: functionalsample.pdf
+2025-07-15 20:04:09,071 - main - INFO - Extracting text from file
+2025-07-15 20:04:09,118 - main - INFO - Uploading file to HubSpot
+2025-07-15 20:04:09,942 - main - INFO - Sending to Gemini for parsing
+2025-07-15 20:04:16,474 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-15 20:04:17,247 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-15 20:04:17,963 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-15 20:04:18,727 - main - INFO - Updating skills in HubSpot
+2025-07-15 20:04:20,731 - main - INFO - Creating new contact: jwsmith@colostate.edu
+2025-07-15 20:04:21,329 - main - INFO - Successfully processed resume for jwsmith@colostate.edu
+2025-07-15 20:04:21,353 - main - INFO - Successfully added resume data for jwsmith@colostate.edu in database.
