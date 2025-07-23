@@ -1,4 +1,4 @@
-from fastapi import FastAPI, UploadFile, Depends, File, HTTPException, Request, Header, Response, BackgroundTasks
+from fastapi import FastAPI, Query, UploadFile, Depends, File, HTTPException, Request, Header, Response, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 import pdfplumber, logging, io, os, json, re, requests, ssl, certifi, hmac, hashlib, base64
@@ -12,6 +12,7 @@ from hubspot.crm.contacts import (
     PublicObjectSearchRequest, Filter, FilterGroup,
     SimplePublicObjectInputForCreate, SimplePublicObjectInput
 )
+from typing import List
 from motor.motor_asyncio import AsyncIOMotorDatabase
 from database import connect_db, close_db, get_db
 from pymongo import MongoClient
@@ -272,22 +273,7 @@ def update_dropdown_property(property_name: str, label: str, value: str) -> str:
 @app.on_event("startup")
 async def on_start():
     connect_db()
-    db = get_db()
-    await db["resumes"].create_index(
-        [
-            ("extracted_text", "text"),
-            ("name", "text"),
-            ("job_title", "text"),
-            ("skills", "text"),
-        ],
-        name="resumes_text_idx",
-        weights={
-            "extracted_text": 10, 
-            "name": 8,
-            "job_title": 5,
-            "skills": 3,
-        },
-    )
+
 
 @app.on_event("shutdown")
 def on_stop():
@@ -466,6 +452,8 @@ async def parse_resume(file: UploadFile = File(...), db: AsyncIOMotorDatabase = 
 
                 logger.info(f"Successfully processed resume for {email}")
 
+                full_text = f"{parsed['name']} {parsed['email']} {parsed['job_title']} {parsed['skills']} {text}"
+
                 await db["resumes"].update_one(
                     {"contact_id": contact_id},
                     {"$set": {
@@ -473,7 +461,9 @@ async def parse_resume(file: UploadFile = File(...), db: AsyncIOMotorDatabase = 
                         "name": parsed["name"],
                         "email": parsed["email"],
                         "job_title": parsed["job_title"],
+                        "skills": parsed["skills"],
                         "extracted_text": text,
+                        "full_text": full_text,
                     }},
                     upsert=True
                 )
@@ -499,14 +489,55 @@ async def parse_resume(file: UploadFile = File(...), db: AsyncIOMotorDatabase = 
 
 @app.get("/search/")
 async def search_resumes(
-    q: str,
+    keywords: List[str] = Query(...),
+    mode: str = Query("or", regex="^(and|or)$"),
     db: AsyncIOMotorDatabase = Depends(get_db)
 ):
-    cursor = db["resumes"].find(
-        {"$text": {"$search": q}},
-        {"score": {"$meta": "textScore"}, "_id": 0}
-    ).sort([("score", {"$meta": "textScore"})]).limit(10)
-    return {"query": q, "results": await cursor.to_list(10)}
+    # Build regex clauses
+    clauses = []
+    regexes = []  # Store compiled regex for reuse
+    for kw in keywords:
+        if re.fullmatch(r"[\w\s]+", kw):  # Safe for word boundaries
+            pattern = rf"\b{re.escape(kw)}\b"
+        else:  # For special chars like +, /, etc.
+            pattern = re.escape(kw)
+        regex = re.compile(pattern, re.IGNORECASE)
+        regexes.append((kw, regex))
+        clauses.append({"full_text": {"$regex": regex}})
+    
+    query = {"$or": clauses} if mode == "or" else {"$and": clauses}
+
+    # Query and exclude _id
+    projection = {
+        "_id": 0,
+        "full_text": 1,
+        "name": 1,
+        "job_title": 1,
+        "skills": 1,
+        "email": 1,
+        "contact_id": 1
+    }
+
+    cursor = db["resumes"].find(query, projection)
+    raw_results = await cursor.to_list(length=100)
+
+    results = []
+
+    for doc in raw_results:
+        matched = []
+        full_text = doc.get("full_text", "")
+        for kw, rx in regexes:
+            if rx.search(full_text):
+                matched.append(kw)
+        doc["matched_keywords"] = matched
+        results.append(doc)
+
+    return {
+        "keywords": keywords,
+        "mode": mode,
+        "results": results
+    }
+
 
 @app.post("/webhook/hubspot", status_code=204)
 async def handle_hubspot_webhook(
