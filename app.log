@@ -2306,3 +2306,14 @@ fastapi.exceptions.HTTPException: 500: HubSpot operation failed: 'Depends' objec
 2025-07-23 00:02:03,210 - main - INFO - Creating new contact: cmcturland@email.com
 2025-07-23 00:02:03,811 - main - INFO - Successfully processed resume for cmcturland@email.com
 2025-07-23 00:02:03,829 - main - INFO - Successfully added resume data for cmcturland@email.com in database.
+2025-07-29 01:10:33,820 - main - INFO - Starting resume processing for file: functionalsample (1).pdf
+2025-07-29 01:10:33,820 - main - INFO - Extracting text from file
+2025-07-29 01:10:33,862 - main - INFO - Uploading file to HubSpot
+2025-07-29 01:10:35,063 - main - INFO - Sending to Gemini for parsing
+2025-07-29 01:10:45,381 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-29 01:10:46,226 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-29 01:10:46,815 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-29 01:10:47,436 - main - INFO - Updating skills in HubSpot
+2025-07-29 01:10:48,798 - main - INFO - Creating new contact: jwsmith@colostate.edu
+2025-07-29 01:10:49,333 - main - INFO - Successfully processed resume for jwsmith@colostate.edu
+2025-07-29 01:10:49,357 - main - INFO - Successfully added resume data for jwsmith@colostate.edu in database.
