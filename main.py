@@ -1,6 +1,7 @@
-from fastapi import FastAPI, Query, UploadFile, Depends, File, HTTPException, Request, Header, Response, BackgroundTasks
+from fastapi import FastAPI, Query, UploadFile, Depends, File, HTTPException, Path, Request, Header, Response, BackgroundTasks
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from pydantic import BaseModel
 import pdfplumber, logging, io, os, json, re, requests, ssl, certifi, hmac, hashlib, base64
 from docx import Document
 from tempfile import NamedTemporaryFile
@@ -8,6 +9,7 @@ from dotenv import load_dotenv
 import google.generativeai as genai
 from hubspot import HubSpot
 from hubspot.crm.properties import PropertyCreate
+from hubspot.crm.lists.exceptions import ApiException
 from hubspot.crm.contacts import (
     PublicObjectSearchRequest, Filter, FilterGroup,
     SimplePublicObjectInputForCreate, SimplePublicObjectInput
@@ -213,62 +215,6 @@ def update_dropdown_property(property_name: str, label: str, value: str) -> str:
         return ""
 
 
-
-
-# def update_keywords_property(keywords_list):
-#     """Create or update the keywords property in HubSpot"""
-#     if not keywords_list:
-#         return []
-
-#     try:
-#         existing_options = set()
-#         new_keywords = {k.strip() for k in keywords_list if k.strip()}
-        
-#         # First try to get existing property
-#         try:
-#             prop = hubspot_client.crm.properties.core_api.get_by_name(
-#                 object_type="contacts",
-#                 property_name="keywords_domains"
-#             )
-#             existing_options = {opt.value for opt in prop.options}
-#         except Exception as e:
-#             logger.info("Creating new 'keywords_domains' property in HubSpot")
-#             # Property doesn't exist, create it with initial keywords
-#             create_prop = {
-#                 "name": "keywords_domains",
-#                 "label": "keywords_domains",
-#                 "groupName": "contactinformation",
-#                 "type": "enumeration",
-#                 "fieldType": "checkbox",
-#                 "options": [{"label": k, "value": k} for k in sorted(new_keywords)]
-#             }
-#             hubspot_client.crm.properties.core_api.create(
-#                 object_type="contacts",
-#                 property_create=create_prop
-#             )
-#             return list(new_keywords)
-
-#         # If we get here, property exists - update with any new keywords
-#         all_keywords = existing_options.union(new_keywords)
-        
-#         # Only update if there are new keywords to add
-#         if new_keywords - existing_options:
-#             update_prop = {
-#                 "options": [{"label": k, "value": k} for k in sorted(all_keywords)]
-#             }
-#             hubspot_client.crm.properties.core_api.update(
-#                 object_type="contacts",
-#                 property_name="keywords_domains",
-#                 property_update=update_prop
-#             )
-
-#         return list(new_keywords - existing_options)
-
-#     except Exception as e:
-#         logger.error(f"Failed to update keywords property: {str(e)}")
-#         return []
-
-
 # Startup and shutdown events
 @app.on_event("startup")
 async def on_start():
@@ -416,7 +362,6 @@ async def parse_resume(file: UploadFile = File(...), db: AsyncIOMotorDatabase = 
                                 "jobtitle": parsed["job_title"],
                                 "company": parsed["company"],
                                 "skills": skills_str,
-                                # "keywords_domains" : keywords_str,
                                 "cv_url_link": file_url,
                                 "total_experience" : total_experience,
                                 "year_of_experience" : year_of_experience,
@@ -443,7 +388,6 @@ async def parse_resume(file: UploadFile = File(...), db: AsyncIOMotorDatabase = 
                         "city_dropdown": selected_city,
                         "state_dropdown": selected_state,
                         "country_dropdown": selected_country,
-                        # "keywords_domains" : keywords_str,
                     }
                     hs_obj = hubspot_client.crm.contacts.basic_api.create(
                         simple_public_object_input_for_create=SimplePublicObjectInputForCreate(properties=in_props)
@@ -464,6 +408,7 @@ async def parse_resume(file: UploadFile = File(...), db: AsyncIOMotorDatabase = 
                         "skills": parsed["skills"],
                         "extracted_text": text,
                         "full_text": full_text,
+                        "cv_url_link": file_url,
                     }},
                     upsert=True
                 )
@@ -515,7 +460,8 @@ async def search_resumes(
         "job_title": 1,
         "skills": 1,
         "email": 1,
-        "contact_id": 1
+        "contact_id": 1,
+        "cv_url_link": 1,
     }
 
     cursor = db["resumes"].find(query, projection)
@@ -577,3 +523,102 @@ async def handle_hubspot_webhook(
 def remove_contacts(contact_ids: list[str]):
     result = sync_db.delete_many({"contact_id": {"$in": contact_ids}})
     logger.info(f"Removed {result.deleted_count} deleted HubSpot contact(s) from MongoDB")
+
+class ListSearchPayload(BaseModel):
+    processingTypes: list[str] = ["MANUAL", "DYNAMIC"]
+    limit: int = 100
+    after: str | None = None
+
+@app.post("/hubspot/lists/search", status_code=200)
+async def search_hubspot_lists(payload: ListSearchPayload):
+    try:
+        logger.info("Calling HubSpot v3 lists/search via api_request")
+        body = {"processingTypes": payload.processingTypes, "limit": payload.limit}
+        if payload.after:
+            body["after"] = payload.after
+
+        # Direct call
+        response = hubspot_client.api_request({
+            "method": "POST",
+            "path": "/crm/v3/lists/search",
+            "body": body
+        })
+        # Convert to dict
+        result = response.json() if hasattr(response, "json") else dict(response)
+        return result
+    except Exception as e:
+        logger.error(f"Error in lists/search: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))
+    
+    
+class ListCreatePayload(BaseModel):
+    name: str
+    objectTypeId: str = "0-1"
+    processingType: str = "MANUAL"
+
+@app.post("/hubspot/lists/create", status_code=201)
+async def create_hubspot_list(payload: ListCreatePayload):
+    try:
+        logger.info(f"Creating new HubSpot list: {payload.name}")
+
+        body = {
+            "name": payload.name,
+            "objectTypeId": payload.objectTypeId,
+            "processingType": payload.processingType
+        }
+        response = hubspot_client.api_request({
+            "method": "POST",
+            "path": "/crm/v3/lists",
+            "body": body
+        })
+        result = response.json() if hasattr(response, "json") else dict(response)
+        print(result)
+
+        return {
+            "listId": result.get("list", {}).get("listId"),
+            "name": result.get("list", {}).get("name"),
+        }
+
+    except Exception as e:
+        logger.error("Error creating list", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))  
+
+class AddContactsPayload(BaseModel):
+    contact_ids: list[str]
+
+@app.post("/hubspot/lists/{list_id}/add_contacts", status_code=200)
+async def add_contacts_to_list(
+    payload: AddContactsPayload,
+    list_id: str = Path(..., description="HubSpot static list ID")
+):
+    try:
+        logger.info(f"Adding contacts {payload.contact_ids} to list {list_id}")
+
+        api_response = hubspot_client.crm.lists.memberships_api.add(
+            list_id=list_id,
+            request_body=payload.contact_ids
+        )
+
+        resp = api_response.to_dict()
+        print(resp)
+
+        added = resp.get("record_ids_added") or []
+        missing = resp.get("record_ids_missing") or []
+
+        return {
+            "status": "success",
+            "num_added": len(added),
+            "num_missing": len(missing),
+            "added_ids": added,
+            "missing_ids": missing
+        }
+
+    except ApiException as e:
+        logger.error(f"HubSpot API error: {e}")
+        raise HTTPException(
+            status_code=e.status if hasattr(e, "status") else 500,
+            detail=e.body or str(e)
+        )
+    except Exception as e:
+        logger.error(f"Unexpected error: {e}", exc_info=True)
+        raise HTTPException(status_code=500, detail=str(e))

@@ -2317,3 +2317,622 @@ fastapi.exceptions.HTTPException: 500: HubSpot operation failed: 'Depends' objec
 2025-07-29 01:10:48,798 - main - INFO - Creating new contact: jwsmith@colostate.edu
 2025-07-29 01:10:49,333 - main - INFO - Successfully processed resume for jwsmith@colostate.edu
 2025-07-29 01:10:49,357 - main - INFO - Successfully added resume data for jwsmith@colostate.edu in database.
+2025-07-29 19:09:20,851 - main - INFO - Fetching HubSpot lists
+2025-07-29 19:09:21,337 - main - ERROR - Exception when calling lists_api->get_all: (403)
+Reason: Forbidden
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 29 Jul 2025 13:39:21 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '440', 'Connection': 'keep-alive', 'CF-Ray': '966d05993d741eed-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-authz-failure': '403 Forbidden', 'x-hubspot-correlation-id': 'e9c04aec-af28-4a46-941f-d3a22060358a', 'Set-Cookie': '__cf_bm=Z01v9L8A15By_s_yfNnGcPQaOj.8w6w5pkpHt0EJmf8-1753796361-1.0.1.1-SI9_.Cg4fRcgYzDQ6dyWf19fsdUrHVTGOvm_sq1q9GeL9FTw1wGdD7cmMXJsPvwHg60bWMcLSOLAL9KAjSfACrjzLk_Qf5Ft.ACoB8Zq6io; path=/; expires=Tue, 29-Jul-25 14:09:21 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=BpZXdxTk2QhG1Trp098cLTFqzgrm6h1NRu1jv2GmOa2X8MR5ea0oOZW5LzhqRtvQy%2BHNi0KB5Oy6ytjpoShh9Bu0BKSCCTB8s2z2pv0JmpPsUvhphMyuR40AF0%2BJ5ten"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"This app hasn't been granted all required scopes to make this call. Read more about required scopes here: https://developers.hubspot.com/scopes.","correlationId":"e9c04aec-af28-4a46-941f-d3a22060358a","errors":[{"message":"All of the following scopes are required.","context":{"requiredGranularScopes":["crm.lists.read"]}}],"links":{"scopes":"https://developers.hubspot.com/scopes"},"category":"MISSING_SCOPES"}
+
+
+2025-07-29 19:17:22,704 - main - INFO - Fetching HubSpot lists
+2025-07-29 19:17:23,553 - main - ERROR - Exception when calling lists_api->get_all: 'ListsByIdResponse' object has no attribute 'results'
+
+2025-07-29 19:17:43,468 - main - INFO - Fetching HubSpot lists
+2025-07-29 19:18:45,990 - main - INFO - Fetching HubSpot lists
+2025-07-29 19:20:30,219 - main - INFO - Fetching HubSpot lists
+2025-07-29 19:29:02,150 - main - INFO - Fetching HubSpot lists
+2025-07-29 19:29:21,086 - main - INFO - Fetching HubSpot lists
+2025-07-29 19:30:23,556 - main - INFO - Fetching HubSpot lists
+2025-07-29 19:30:24,063 - main - ERROR - Exception when calling lists_api->get_all: 'ListsByIdResponse' object has no attribute 'results'
+
+2025-07-29 19:31:15,853 - main - INFO - Fetching HubSpot lists
+2025-07-29 19:36:59,760 - main - INFO - Fetching HubSpot lists
+2025-07-29 19:37:06,233 - main - INFO - Fetching HubSpot lists
+2025-07-29 19:40:18,398 - main - INFO - Fetching HubSpot lists
+2025-07-29 19:58:38,912 - main - INFO - Fetching HubSpot lists
+2025-07-29 20:00:06,558 - main - INFO - Fetching HubSpot lists
+2025-07-29 20:37:31,854 - main - INFO - Creating HubSpot list with name: test 1
+2025-07-29 20:37:32,379 - main - ERROR - Failed to create HubSpot list: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 29 Jul 2025 15:07:32 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '222', 'Connection': 'keep-alive', 'CF-Ray': '966d86c49dfd0b2c-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'e74d17cc-f0db-4e68-a21f-d2795f77c990', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624972', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '189', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=ULnG22iB5j3z7igXIMOqSIsLuw5B3zCcJkmoWWy9j24-1753801652-1.0.1.1-XA3D7DYL5WSH.9MlRea5POBWDcurohfmkWLL1nMhFwqHD2DLFjyAzUxs0Yx56lcEXKMzsLrDAAKwjjSW0mKkJEB0BX_c0_BDoRl1A7rmCBs; path=/; expires=Tue, 29-Jul-25 15:37:32 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=C1%2FY8Ho0XLGfi0%2BXiosU7JVU4vpd9lVC%2FnAt93cJJVDR%2F6FQYtLfR2wDHIuGLYuDOGOEqJGGODPNIo0lcYjaHW90gIFFnsvp1%2FVaMwgI2PYoHcYP3H63hG8gH9FW0rcU"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Invalid input JSON on line 1, column 36. Some required fields were not set: [objectTypeId, processingType]","correlationId":"e74d17cc-f0db-4e68-a21f-d2795f77c990","category":"VALIDATION_ERROR"}
+
+2025-07-29 20:51:06,295 - main - INFO - Creating new static list in HubSpot: test 1
+2025-07-29 20:51:06,296 - main - ERROR - Unexpected error: ListCreateRequest.__init__() got an unexpected keyword argument 'dynamic'
+2025-07-29 20:53:52,487 - main - INFO - Creating new static list in HubSpot: string
+2025-07-29 20:53:53,365 - main - ERROR - HubSpot API error: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 29 Jul 2025 15:23:53 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '385', 'Connection': 'keep-alive', 'CF-Ray': '966d9eb55c1c3a39-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'd8e2908e-de4e-4b24-b300-4c7f7e9455b2', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624971', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '189', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=36_kpxQRYNY2WtR7pFsxf7QJb2QmNAalNbPPK362pG8-1753802633-1.0.1.1-5TtcFpRDYz3GaSHMjGCzjFQHCfvx6h_IhjaGa.MbOYb9piU.7IOwI96rz0WzLGGJZpu4lw1339jJ9x_CyICdWYbdH51OOCqDQ8UeCxUruus; path=/; expires=Tue, 29-Jul-25 15:53:53 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=trt3vM6o%2Bag0jLBK01g5Zq1PKoneZDLr6e1KXPlBXkvRAwxmFNYiULuWt7Uvz5I1B%2BEnrii%2FgHalyhuPQOpkLK%2B%2BYtZAhXjDIAub9R98f9ZPaNizYm72TNf4Y29x%2Bw2P"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"The list processing type LIST is not valid for this action. The valid processing types are [DYNAMIC, SNAPSHOT, MANUAL].","correlationId":"d8e2908e-de4e-4b24-b300-4c7f7e9455b2","context":{"invalidProcessingType":["LIST"],"validProcessingTypes":["DYNAMIC","SNAPSHOT","MANUAL"]},"category":"VALIDATION_ERROR","subCategory":"ListError.INVALID_PROCESSING_TYPE"}
+
+2025-07-29 20:55:06,408 - main - INFO - Creating new static list in HubSpot: string
+2025-07-29 20:56:11,423 - main - INFO - Creating new static list in HubSpot: test 1
+2025-07-29 23:06:42,288 - main - INFO - Creating new static list in HubSpot: test 1
+2025-07-29 23:06:42,915 - main - ERROR - HubSpot API error: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 29 Jul 2025 17:36:42 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '238', 'Connection': 'keep-alive', 'CF-Ray': '966e61490fc53bf8-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': '91fdb60e-ab47-4979-95e7-38739354e639', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624968', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '189', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=n5jkmSnwwr5bkxsb113romEcLKQwZR2j.XggxO5ivkA-1753810602-1.0.1.1-mfbouKJRhsESBnSyNkvBUzzdptFp9_5NlTKbqR3QPyZp8r7rK6QN2BdYEXQZveWTgrI1zGLk.aBBMnYhqg6JGG5pMigSPQ26obimD4DG.7w; path=/; expires=Tue, 29-Jul-25 18:06:42 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=S4PhF4LLfkekPP3rfaeqWTpi7wmGQvLvgaE26TAReHnQ6zqxXHLnViGUP%2BM7oY5hYBOaNV927OYG%2FyW5WnaQwvCqJwgYk01fq8GC0PLDBljPAGuWn2V4YLqZU3ACBA1z"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"The following list names already exist: test 1","correlationId":"91fdb60e-ab47-4979-95e7-38739354e639","context":{"listNames":["test 1"]},"category":"VALIDATION_ERROR","subCategory":"ILS.DUPLICATE_LIST_NAMES"}
+
+2025-07-29 23:06:54,922 - main - INFO - Creating new static list in HubSpot: test 2
+2025-07-29 23:08:03,661 - main - INFO - Creating new static list in HubSpot: test 3
+2025-07-29 23:14:41,846 - main - INFO - Creating new static list in HubSpot: test 4
+2025-07-29 23:37:13,077 - main - INFO - Adding contacts ['382747781343'] to list 69
+2025-07-29 23:37:13,663 - main - ERROR - Unexpected error: 'NoneType' object has no attribute '__len__'
+2025-07-29 23:38:28,747 - main - INFO - Adding contacts ['382747781343'] to list 69
+2025-07-29 23:38:29,228 - main - ERROR - Unexpected error: 'NoneType' object has no attribute '__len__'
+2025-07-30 00:00:27,382 - main - INFO - Adding contacts ['382747781343'] to list 69
+2025-07-30 00:00:27,390 - main - ERROR - Unexpected error: MembershipsApi.add() missing 1 required positional argument: 'request_body'
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 646, in add_contacts_to_list
+    api_response = hubspot_client.crm.lists.memberships_api.add(
+        list_id=list_id,
+        membership_change_request=change_req
+    )
+TypeError: MembershipsApi.add() missing 1 required positional argument: 'request_body'
+2025-07-30 00:23:51,798 - main - INFO - Adding contacts ['382747781343'] to list 69
+2025-07-30 00:23:52,267 - main - ERROR - HubSpot API error: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 29 Jul 2025 18:53:52 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '249', 'Connection': 'keep-alive', 'CF-Ray': '966ed24f6a1effab-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': '625de262-0aea-41dc-a054-2f922a262b21', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624962', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '189', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=OasAMsPe0zB.fqBmNSj0ofQD_s9QSM_0ECNRsGhIWsg-1753815232-1.0.1.1-P_dj8qghLcp7xVt68qwkhUJx8NQfOUI9chEohKKtxODfRFjrBGNjcguV4U6rUiy.VbaqU9fjHLSMY9y4EPHaFbNBxNSnrTA2KtH4_naIuds; path=/; expires=Tue, 29-Jul-25 19:23:52 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=Qf4GWf7y6BjFllACxo2TUhJN5GYEjTbPQjAdIu1DmsPFHAyLf1Jk8g5AtIt%2Fffa40hK9FpQyb9YOPXQuXKEWN0sqqK3ei%2FZuaqaJ%2F2fUsgu0P%2FSXaK3qzGL%2FQyOPippn"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Invalid input JSON on line 1, column 1: Cannot deserialize value of type `java.util.ArrayList<java.lang.String>` from Object value (token `JsonToken.START_OBJECT`)","correlationId":"625de262-0aea-41dc-a054-2f922a262b21"}
+
+2025-07-30 00:30:00,649 - main - INFO - Adding contacts ['382747781343'] to list 69
+2025-07-30 00:30:01,117 - main - ERROR - HubSpot API error: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 29 Jul 2025 19:00:01 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '249', 'Connection': 'keep-alive', 'CF-Ray': '966edb5098ebafb0-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': '97b97f59-858c-422f-9fc8-52680c8d4b4b', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624961', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '189', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=5XzdUqeLmu3geYeioepCaKpXrsPvypD_UvIT_eqN1xA-1753815601-1.0.1.1-2HajZ01NP2aJhxRQhtjfsmnn.3OBl5k1R8lb_3B23FH_SzRIpiBfOwrrPeJxIS0QtlMkBcP1j0.b6QP8bGx_zY2M8B0Vmc9AFYk3tIEetlM; path=/; expires=Tue, 29-Jul-25 19:30:01 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=d2jM6%2FXMMjIs4pfyTGEoX8pN8gf6GPmtW0kf%2BRQjoGiBNYJ9jUTlvfUGfk57YmNa0nTZK0JF1LwJyzbuZDLIg5JwghX0nrcCaOP2JXBBNHwlcOTbfaUQdtfwexxWJLzy"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Invalid input JSON on line 1, column 1: Cannot deserialize value of type `java.util.ArrayList<java.lang.String>` from Object value (token `JsonToken.START_OBJECT`)","correlationId":"97b97f59-858c-422f-9fc8-52680c8d4b4b"}
+
+2025-07-30 00:32:13,561 - main - INFO - Adding contacts ['382747781343'] to list 69
+2025-07-30 00:32:14,019 - main - ERROR - HubSpot API error: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Tue, 29 Jul 2025 19:02:14 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '249', 'Connection': 'keep-alive', 'CF-Ray': '966ede8f3a333de0-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': '5db2162c-05fa-4fe3-89c9-8bd9f29af144', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624960', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '189', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=78M0fOh2rmKDLUGHtwbr95hqeWdcvZRxG8ol0PKCxn4-1753815734-1.0.1.1-1j6TcYlIGbTj1k4SsO9VNOhbKIIQbjX6ouXX5v.Ye9.H5JwkgkPq74eeda1MQjJGf9F1WF9YgqIBexEZ38M1TP6HUzglIjh6_kJVeA0hMhM; path=/; expires=Tue, 29-Jul-25 19:32:14 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=ud00RsT3fTD%2FzrFgyCRtD6JgGZqQr%2B%2F8uN1gcRjgICDHFsH6hI9Aaf4KCUIiSqBSgBrGIigD6BeeyfqrLXvySh4PQR7U20R2fW1L0VhYcxSqkpyi%2BIcu%2Fzr%2BT8DNLRgq"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Invalid input JSON on line 1, column 1: Cannot deserialize value of type `java.util.ArrayList<java.lang.String>` from Object value (token `JsonToken.START_OBJECT`)","correlationId":"5db2162c-05fa-4fe3-89c9-8bd9f29af144"}
+
+2025-07-30 00:34:17,105 - main - INFO - Adding contacts ['382747781343'] to list 69
+2025-07-30 01:59:26,956 - main - INFO - Fetching HubSpot lists
+2025-07-30 01:59:27,474 - main - INFO - Fetching HubSpot lists
+2025-07-30 02:02:32,729 - main - INFO - Fetching HubSpot lists
+2025-07-30 02:02:33,161 - main - INFO - Fetching HubSpot lists
+2025-07-30 02:28:47,613 - main - INFO - Fetching HubSpot lists
+2025-07-30 02:28:48,163 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:22:41,464 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:22:42,368 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:22:45,299 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:22:45,573 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:22:47,698 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:22:47,941 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:22:49,352 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:22:49,591 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:22:51,135 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:22:51,648 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:22:52,767 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:22:53,375 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:22:54,951 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:22:55,208 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:22:56,684 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:22:56,921 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:22:58,348 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:22:58,630 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:23:00,384 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:23:00,629 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:23:02,101 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:23:02,579 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:23:19,120 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:23:19,630 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:24:03,951 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:24:04,765 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:44:19,727 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:44:20,258 - main - INFO - Fetching HubSpot lists
+2025-07-30 18:48:20,985 - main - INFO - Adding contacts ['382865598655'] to list 71
+2025-07-30 18:51:09,052 - main - INFO - Creating new static list in HubSpot: test 5
+2025-07-30 18:52:06,131 - main - INFO - Fetching HubSpot lists
+2025-07-30 20:14:39,611 - main - INFO - Fetching HubSpot lists
+2025-07-30 20:14:39,621 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a086490>: Failed to resolve 'api.hubapi.com' ([Errno 8] nodename nor servname provided, or not known)")': /crm/v3/lists/
+2025-07-30 20:14:39,621 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a084cd0>: Failed to resolve 'api.hubapi.com' ([Errno 8] nodename nor servname provided, or not known)")': /crm/v3/lists/
+2025-07-30 20:14:39,622 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a0c3110>: Failed to resolve 'api.hubapi.com' ([Errno 8] nodename nor servname provided, or not known)")': /crm/v3/lists/
+2025-07-30 20:14:39,623 - main - ERROR - Exception when calling lists_api->get_all: HTTPSConnectionPool(host='api.hubapi.com', port=443): Max retries exceeded with url: /crm/v3/lists/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a0c1810>: Failed to resolve 'api.hubapi.com' ([Errno 8] nodename nor servname provided, or not known)"))
+
+2025-07-30 20:14:39,626 - main - INFO - Fetching HubSpot lists
+2025-07-30 20:14:39,628 - urllib3.connectionpool - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a0c1950>: Failed to resolve 'api.hubapi.com' ([Errno 8] nodename nor servname provided, or not known)")': /crm/v3/lists/
+2025-07-30 20:14:39,629 - urllib3.connectionpool - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a0c0e10>: Failed to resolve 'api.hubapi.com' ([Errno 8] nodename nor servname provided, or not known)")': /crm/v3/lists/
+2025-07-30 20:14:39,629 - urllib3.connectionpool - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a0c1450>: Failed to resolve 'api.hubapi.com' ([Errno 8] nodename nor servname provided, or not known)")': /crm/v3/lists/
+2025-07-30 20:14:39,629 - main - ERROR - Exception when calling lists_api->get_all: HTTPSConnectionPool(host='api.hubapi.com', port=443): Max retries exceeded with url: /crm/v3/lists/ (Caused by NameResolutionError("<urllib3.connection.HTTPSConnection object at 0x10a0c1310>: Failed to resolve 'api.hubapi.com' ([Errno 8] nodename nor servname provided, or not known)"))
+
+2025-07-30 20:24:42,452 - main - INFO - Searching HubSpot lists with types: ['MANUAL']
+2025-07-30 20:24:42,453 - main - ERROR - Error calling lists_api.search: ListSearchRequest.__init__() got an unexpected keyword argument 'after'
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 594, in search_hubspot_lists
+    search_req = ListSearchRequest(
+        processing_types=payload.processing_types,
+        count=payload.count,
+        after=payload.after
+    )
+TypeError: ListSearchRequest.__init__() got an unexpected keyword argument 'after'
+2025-07-30 20:26:01,789 - main - INFO - Searching HubSpot lists with types: ['MANUAL', 'DYNAMIC']
+2025-07-30 20:26:01,799 - main - ERROR - Error calling lists_api.search: 'ListsApi' object has no attribute 'search'
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 598, in search_hubspot_lists
+    api_response = hubspot_client.crm.lists.lists_api.search(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ListsApi' object has no attribute 'search'. Did you mean: 'do_search'?
+2025-07-30 20:27:14,477 - main - INFO - Searching HubSpot lists with types: ['MANUAL', 'DYNAMIC']
+2025-07-30 20:27:14,487 - main - ERROR - Error calling lists_api.search: 'ListsApi' object has no attribute 'search'
+Traceback (most recent call last):
+  File "/Users/consultadd/cv-parser-backend/main.py", line 598, in search_hubspot_lists
+    api_response = hubspot_client.crm.lists.lists_api.search(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ListsApi' object has no attribute 'search'. Did you mean: 'do_search'?
+2025-07-30 20:30:21,462 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 20:34:05,559 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 20:35:26,373 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 20:36:09,951 - main - INFO - Creating new static list in HubSpot: test 43
+2025-07-30 20:37:52,361 - main - INFO - Adding contacts ['382674213110'] to list 74
+2025-07-30 21:08:54,326 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 21:08:54,923 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 21:09:19,316 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 21:09:31,474 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 21:09:32,030 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 21:09:34,496 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 21:09:34,793 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 21:10:59,431 - main - INFO - Creating new static list in HubSpot: 72
+2025-07-30 21:11:00,517 - main - INFO - Adding contacts ['382747781343'] to list 75
+2025-07-30 21:11:01,249 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 21:13:06,725 - main - INFO - Creating new static list in HubSpot: test-123
+2025-07-30 21:13:07,349 - main - INFO - Adding contacts ['382674213110'] to list 76
+2025-07-30 21:13:07,671 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 21:18:34,529 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 21:18:35,159 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 21:18:37,760 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 21:18:38,400 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 21:18:50,710 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 21:18:51,256 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 21:18:57,846 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 21:18:58,167 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 21:19:08,511 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 21:19:09,089 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 21:26:20,087 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 21:26:20,679 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 22:46:43,529 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 22:46:44,445 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 22:47:41,608 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 22:47:42,144 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 23:06:07,892 - main - INFO - Creating new static list in HubSpot: Civil Engineer Test
+2025-07-30 23:06:08,374 - main - ERROR - HubSpot API error: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Wed, 30 Jul 2025 17:36:08 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '289', 'Connection': 'keep-alive', 'CF-Ray': '96769dd20c9c74eb-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': '0f9e1d66-1fd1-4d91-80e7-6e537c98673b', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624916', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '189', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=9.qN12sdhYHyMZBe3rO1qhQE7LH4aMq6h2Wp_b6RqhI-1753896968-1.0.1.1-lSfsnpnYFUml9ZotuGf4K8ekfmHybpl99VSL97x3kVF3FrLFiS0YydBQECmmR2_ffBcVWv.S7u3DFealVTpqvC.NiOHED6mOMMVL_Ezk0yc; path=/; expires=Wed, 30-Jul-25 18:06:08 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=M3TutXq4su%2Bpc6Bc2Bu%2FqZuj8OLH3uL1y7C5Pct4D%2BXvh5zpC0IDzdw5hNTCdmwqIec2eDzO3538fRmKm%2BGQ4Y%2FTGeArVPdPPCPN%2BSHeL99FcRZqg1nQg6hmdNGUZ%2BI7"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"A list with DYNAMIC processingType must be created with a valid filter branch.","correlationId":"0f9e1d66-1fd1-4d91-80e7-6e537c98673b","context":{"processingType":["DYNAMIC"]},"category":"VALIDATION_ERROR","subCategory":"ListError.LIST_REQUIRES_FILTER_BRANCH"}
+
+2025-07-30 23:44:56,064 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 23:44:56,617 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 23:50:19,107 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 23:50:19,652 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 23:50:25,355 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 23:50:26,023 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 23:50:27,495 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 23:50:27,792 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 23:51:47,329 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 23:51:47,864 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 23:53:01,116 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 23:53:07,105 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 23:54:07,116 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 23:54:07,620 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 23:57:45,123 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 23:58:24,106 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 23:58:39,378 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-30 23:58:39,863 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:00:12,096 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:00:21,105 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:00:32,716 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:00:33,576 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:00:53,104 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:00:57,171 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:00:57,435 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:02:15,593 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:02:16,120 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:04:27,107 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:09:35,085 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:09:43,085 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:12:17,184 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:12:17,771 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:23:44,080 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:23:50,369 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:23:50,646 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:25:05,049 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:27:08,049 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:28:53,043 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:29:05,925 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:29:06,461 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:31:30,236 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:31:31,117 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:31:35,772 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:31:36,088 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:32:34,101 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:32:44,115 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:32:44,634 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:33:29,097 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:33:39,186 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:33:39,698 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:35:59,101 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:36:04,493 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:36:04,886 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:36:37,435 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:36:37,970 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:37:47,096 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:40:07,957 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:40:10,180 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:40:10,479 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:40:32,090 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:40:43,085 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:41:06,084 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:43:23,095 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:49:05,100 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:49:26,094 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 00:52:33,021 - main - INFO - Creating new static list in HubSpot: test1
+2025-07-31 00:52:33,520 - main - ERROR - HubSpot API error: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Wed, 30 Jul 2025 19:22:33 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '289', 'Connection': 'keep-alive', 'CF-Ray': '967739b4ea552247-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'e8f3880c-8bec-4ab1-b1f0-7ab44d3bc6a9', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624848', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '189', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=F5BMX_ouUUtgc5GmqqQgSythFt6toQYdXLbN5Gah6VA-1753903353-1.0.1.1-LTe.luAPwSCr35gYkFRQeY8YX3ttmREluqIxHMuA8yi3GgyLGbUql2l5rZcyyIsIeT70Lyi01lFzaAuL3i5CeZN_VGnfW_CMrDn.oS9k1vs; path=/; expires=Wed, 30-Jul-25 19:52:33 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=vOMuHQQDTOae8HQpRcve2nyqpIoOQNpTFKcJWQPaXEssujeBjixLa2TsmqcGvXxnytbeItKG4wDjTTw3Cd3ALC2%2BwtrmW9tUTziFll2FpWSPH0idaA%2BDrdj%2B2a%2FKAVC7"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"A list with DYNAMIC processingType must be created with a valid filter branch.","correlationId":"e8f3880c-8bec-4ab1-b1f0-7ab44d3bc6a9","context":{"processingType":["DYNAMIC"]},"category":"VALIDATION_ERROR","subCategory":"ListError.LIST_REQUIRES_FILTER_BRANCH"}
+
+2025-07-31 01:07:21,301 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 01:07:22,297 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 01:07:47,899 - main - INFO - Creating new dynamic list in HubSpot: test 1
+2025-07-31 01:07:48,385 - main - ERROR - HubSpot API error: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Wed, 30 Jul 2025 19:37:48 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '301', 'Connection': 'keep-alive', 'CF-Ray': '9677500ae8593fc7-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'e6aa0ad4-e8f5-4394-9626-5c3f70b86d4a', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624845', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '189', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=FaierraZfyY_2UywyfRT8lEZ0mqkFNRYv4XCUNRAFl8-1753904268-1.0.1.1-9foQgUZiO29jFc.LUccWn0g1KoKBYAbDsRAVDKAtdX1LbHe1aEqN3Ovw0UrhDUKZa2ABe6gdXjxtbRibw1crqQg_Zwp6KQmtyxl2j4NDXUQ; path=/; expires=Wed, 30-Jul-25 20:07:48 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=%2FtJa6D%2FAqoVe558%2F4T4vTfX9jMeHTK2qztWgSqoBLGbC6HpkWFxmzwyanuoLMx1socolCv55KL4e%2Bfl0DntWZMRgNf0e7pZJ3nHrm3pLEc%2B0iVPj6N8iyP5LzpIXKJPf"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Invalid input JSON on line 1, column 180: Could not resolve subtype of [simple type, class com.hubspot.list.app.core.model.filters.PublicFilterIF]: missing type id property 'filterType' (for POJO property 'filters')","correlationId":"e6aa0ad4-e8f5-4394-9626-5c3f70b86d4a"}
+
+2025-07-31 01:08:59,417 - main - INFO - Creating new dynamic list in HubSpot: test 1
+2025-07-31 01:08:59,900 - main - ERROR - HubSpot API error: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Wed, 30 Jul 2025 19:38:59 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '632', 'Connection': 'keep-alive', 'CF-Ray': '967751c9cb6e7aa2-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'cda754b2-4e16-496f-91f9-03fee168b36c', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624844', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '189', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=8TChS9c1y9yN3sU8QGfyTpLhcupAJ5hwm1.1x1T9Un8-1753904339-1.0.1.1-ISKSO2Ftkl3ne7swNrtx3J9hVLQVlDYuVVK4Gq_7zv2mKQOo1FhqeNlyhpzEpp0skOwoVMXD7PpWsDU.Y2bPUc4leR92iG93b0rxiHXcisY; path=/; expires=Wed, 30-Jul-25 20:08:59 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=%2FdnQJHcSolQMelhkDGCVKdA7E%2FGZSmWZYtZUVfR%2BYSJVkKr9iFJkkZmRKskFkelgpdhbH1LhG8pmX%2FQyzsJkPr%2Fd1aWB2JAwhAxUHFpRZn9oGuOPd0TNd%2FfpS%2Fp9%2BQ9Y"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Invalid input JSON on line 1, column 143: Could not resolve type id 'PROPERTY_VALUE' as a subtype of `com.hubspot.list.app.core.model.filters.PublicFilterIF`: known type ids = [ADS_SEARCH, ADS_TIME, ASSOCIATION, CAMPAIGN_INFLUENCED, COMMUNICATION_SUBSCRIPTION, CONSTANT, CTA, EMAIL_EVENT, EMAIL_SUBSCRIPTION, EVENT, FORM_SUBMISSION, FORM_SUBMISSION_ON_PAGE, INTEGRATION_EVENT, IN_LIST, NUM_ASSOCIATIONS, PAGE_VIEW, PRIVACY, PROPERTY, PROPERTY_ASSOCIATION, SURVEY_MONKEY, SURVEY_MONKEY_VALUE, UNIFIED_EVENTS, WEBINAR] (for POJO property 'filters')","correlationId":"cda754b2-4e16-496f-91f9-03fee168b36c"}
+
+2025-07-31 01:17:49,520 - main - INFO - Creating new dynamic list in HubSpot: test1
+2025-07-31 01:17:49,997 - main - ERROR - HubSpot API error: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Wed, 30 Jul 2025 19:47:50 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '632', 'Connection': 'keep-alive', 'CF-Ray': '96775ebaffa74907-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': '39110de4-5800-437b-8da9-7a01aa51c061', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624843', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '189', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=nl02sz6cirjnljbMIhEipJXw81HBFvG1aSkqKguDVlo-1753904870-1.0.1.1-5D5_v28BASMZ8OcD.dH0frqPdBhPfc2oQKJhZ2QselW3TYsFbWkVJWwS0mNs3ZqGQ10qwTgctc7MHrdeJ.LbqzBOZzBmOgEI85wCH4ehm4k; path=/; expires=Wed, 30-Jul-25 20:17:50 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=zmc3I4ji21TjL8m5wJI8T%2FxoHVKZflX0nwPqF19hcomkSE10QuROMaSWbMf%2BCF7sxDaZIBC4OExdSPXRmlvlJcuHDFBXhf2SDt2gHk9aAa%2BVQUpc%2FdhWRiQQaTx2hAX%2F"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Invalid input JSON on line 1, column 142: Could not resolve type id 'PROPERTY_VALUE' as a subtype of `com.hubspot.list.app.core.model.filters.PublicFilterIF`: known type ids = [ADS_SEARCH, ADS_TIME, ASSOCIATION, CAMPAIGN_INFLUENCED, COMMUNICATION_SUBSCRIPTION, CONSTANT, CTA, EMAIL_EVENT, EMAIL_SUBSCRIPTION, EVENT, FORM_SUBMISSION, FORM_SUBMISSION_ON_PAGE, INTEGRATION_EVENT, IN_LIST, NUM_ASSOCIATIONS, PAGE_VIEW, PRIVACY, PROPERTY, PROPERTY_ASSOCIATION, SURVEY_MONKEY, SURVEY_MONKEY_VALUE, UNIFIED_EVENTS, WEBINAR] (for POJO property 'filters')","correlationId":"39110de4-5800-437b-8da9-7a01aa51c061"}
+
+2025-07-31 01:18:48,271 - main - INFO - Creating new dynamic list in HubSpot: test1
+2025-07-31 01:18:48,772 - main - ERROR - HubSpot API error: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Wed, 30 Jul 2025 19:48:48 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '214', 'Connection': 'keep-alive', 'CF-Ray': '9677602a29ea3ba3-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'c2c10cb5-6894-4a22-baf5-62db1300f7cb', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624842', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '189', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=SjYhOziVOPQEBke0tadXBgobObXXHIaLyBM1.tmOvgU-1753904928-1.0.1.1-glI2fSdrSG8KTD9MVHri_vneITB.5sDLuy8RU2HMzydgzxTDURWLm23qMdKKm2hObKO9WpzGNlxrpYSjYoR_9tjcDV1o5fVhQdTSLLjwgB4; path=/; expires=Wed, 30-Jul-25 20:18:48 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=eCXjj3yo44elaTYiXyQ8%2FXKNtcA8E5SOdkYC8L8oheQx2sEoB95VdJmbTT3SGQ6ca%2F4s3vN4HyFNXD6ScvVssd%2F5tETGMGpYQuAMSqqYYOg3ZzlWZtYZHHUSLX%2FTKb1I"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Invalid input JSON on line 1, column 205. Some required fields were not set: [property, operation]","correlationId":"c2c10cb5-6894-4a22-baf5-62db1300f7cb","category":"VALIDATION_ERROR"}
+
+2025-07-31 01:20:15,164 - main - INFO - Creating new dynamic list in HubSpot: test 1
+2025-07-31 01:20:15,631 - main - ERROR - HubSpot API error: (400)
+Reason: Bad Request
+HTTP response headers: HTTPHeaderDict({'Date': 'Wed, 30 Jul 2025 19:50:15 GMT', 'Content-Type': 'application/json;charset=utf-8', 'Content-Length': '342', 'Connection': 'keep-alive', 'CF-Ray': '967762492ee73ba3-BOM', 'CF-Cache-Status': 'DYNAMIC', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains; preload', 'Vary': 'origin, Accept-Encoding', 'access-control-allow-credentials': 'false', 'x-content-type-options': 'nosniff', 'x-hubspot-correlation-id': 'a93ba619-f614-412a-9cc6-0297ccede46a', 'x-hubspot-ratelimit-daily': '625000', 'x-hubspot-ratelimit-daily-remaining': '624841', 'x-hubspot-ratelimit-interval-milliseconds': '10000', 'x-hubspot-ratelimit-max': '190', 'x-hubspot-ratelimit-remaining': '189', 'x-hubspot-ratelimit-secondly': '19', 'x-hubspot-ratelimit-secondly-remaining': '18', 'Set-Cookie': '__cf_bm=tVmCHL8l8J1RMReKyZYGDuPXKCatePUeqWNHOF_5EsM-1753905015-1.0.1.1-EwSmCE606zAH_YKSAuVmm1GHQizEEYKhpmd1fpQP6JGFa_Jl6_WB2ltvPwbaXUK4okbXiHFnJGPmzLo1QRqwCxai7rRPGqvqrAVW6eSJiCA; path=/; expires=Wed, 30-Jul-25 20:20:15 GMT; domain=.hubapi.com; HttpOnly; Secure; SameSite=None', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v4?s=4Ca3Fjr2aqZXqMWrI6vGtQ%2BZ41p7KLgsqVXPgc%2F8P2g8S4nPTHBNPvld5f2qZsAnHiJE173NOCxwHSwPKZi8%2BzTqhph2ewDrRCjM101RE6nNn7pgXvFuFCMg7hHM4JI7"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0.01,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare'})
+HTTP response body: {"status":"error","message":"Invalid input JSON on line 1, column 216: Could not resolve subtype of [simple type, class com.hubspot.list.app.core.model.filters.propertyoperations.PublicPropertyFilterOperationIF]: missing type id property 'operationType' (for POJO property 'operation')","correlationId":"a93ba619-f614-412a-9cc6-0297ccede46a"}
+
+2025-07-31 01:25:51,377 - main - INFO - Creating new HubSpot list: test 1
+2025-07-31 01:26:49,024 - main - INFO - Creating new HubSpot list: test 2
+2025-07-31 01:46:54,106 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 01:46:54,651 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 01:47:18,506 - main - INFO - Creating new HubSpot list: test 1
+2025-07-31 01:48:08,808 - main - INFO - Creating new HubSpot list: test 2
+2025-07-31 01:50:53,059 - main - INFO - Creating new HubSpot list: test 1
+2025-07-31 01:54:37,976 - main - INFO - Creating new HubSpot list: test 1
+2025-07-31 01:56:01,590 - main - INFO - Creating new HubSpot list: test 1
+2025-07-31 01:59:18,973 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 01:59:19,496 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:33:10,783 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:33:11,407 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:34:01,754 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:34:02,402 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:34:32,255 - main - INFO - Creating new HubSpot list: test 1
+2025-07-31 17:36:29,474 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:36:30,900 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:36:31,284 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:36:31,647 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:41:37,395 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:41:38,032 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:41:39,706 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:41:40,349 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:47:26,474 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:47:27,445 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:47:27,839 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:47:28,300 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:49:29,304 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:49:30,069 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:50:26,080 - main - INFO - Creating new HubSpot list: test 1
+2025-07-31 17:51:41,624 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:51:42,305 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:51:56,527 - main - INFO - Adding contacts ['382747781343', '382674213110'] to list 77
+2025-07-31 17:53:11,557 - main - INFO - Adding contacts ['378321707228'] to list 77
+2025-07-31 17:54:43,559 - main - INFO - Creating new HubSpot list: Civil Engineer Test
+2025-07-31 17:57:40,670 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:58:18,045 - main - INFO - Creating new HubSpot list: test 2
+2025-07-31 17:59:39,666 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 17:59:55,435 - main - INFO - Creating new HubSpot list: test 3
+2025-07-31 18:04:15,072 - main - INFO - Creating new HubSpot list: test 3
+2025-07-31 18:04:54,151 - main - INFO - Creating new HubSpot list: test 4
+2025-07-31 18:05:13,417 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:05:14,054 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:06:00,958 - main - INFO - Creating new HubSpot list: ReactJs Test
+2025-07-31 18:06:35,695 - main - INFO - Adding contacts ['382674213110'] to list 82
+2025-07-31 18:06:37,836 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:07:33,887 - main - INFO - Adding contacts ['382674213110'] to list 82
+2025-07-31 18:11:33,413 - main - INFO - Creating new HubSpot list: test 6
+2025-07-31 18:11:34,218 - main - INFO - Adding contacts ['382674213110'] to list 83
+2025-07-31 18:11:34,716 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:12:58,958 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:12:59,530 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:13:22,122 - main - INFO - Creating new HubSpot list: Test 1
+2025-07-31 18:13:22,840 - main - INFO - Adding contacts ['382674213110'] to list 84
+2025-07-31 18:13:23,318 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:13:54,949 - main - INFO - Creating new HubSpot list: Test 2
+2025-07-31 18:13:55,637 - main - INFO - Adding contacts ['382747781343'] to list 85
+2025-07-31 18:13:56,132 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:15:18,310 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:15:18,861 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:19:41,572 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:19:42,605 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:20:03,101 - main - INFO - Starting resume processing for file: python-developer-resume-example.pdf
+2025-07-31 18:20:03,102 - main - INFO - Extracting text from file
+2025-07-31 18:20:03,215 - main - INFO - Uploading file to HubSpot
+2025-07-31 18:20:04,621 - main - INFO - Sending to Gemini for parsing
+2025-07-31 18:20:11,974 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-31 18:20:12,811 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-31 18:20:13,768 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-31 18:20:14,651 - main - INFO - Updating skills in HubSpot
+2025-07-31 18:20:16,572 - main - INFO - Updating existing contact: ggonzalez@email.com
+2025-07-31 18:20:17,013 - main - INFO - Successfully processed resume for ggonzalez@email.com
+2025-07-31 18:20:17,065 - main - INFO - Successfully added resume data for ggonzalez@email.com in database.
+2025-07-31 18:20:25,622 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:20:26,683 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:20:58,152 - main - INFO - Creating new HubSpot list: test
+2025-07-31 18:20:59,552 - main - INFO - Adding contacts ['349146961124'] to list 86
+2025-07-31 18:20:59,908 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:39:55,677 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:40:34,036 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:40:34,720 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:40:39,119 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:40:40,001 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:40:42,800 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:40:43,221 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:41:11,618 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:41:13,176 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:41:59,721 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:42:00,796 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:42:21,493 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:42:22,296 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:42:50,745 - main - INFO - Creating new HubSpot list: test 3
+2025-07-31 18:42:52,534 - main - INFO - Adding contacts ['382747781343', '382674213110'] to list 87
+2025-07-31 18:42:53,464 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:43:50,717 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:43:51,627 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:44:15,639 - main - INFO - Creating new HubSpot list: test
+2025-07-31 18:44:17,000 - main - INFO - Adding contacts ['349146961124'] to list 88
+2025-07-31 18:44:17,627 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:44:30,950 - main - INFO - Adding contacts ['378321707228'] to list 88
+2025-07-31 18:46:41,654 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:46:46,648 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:47:16,221 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:47:17,013 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:47:43,647 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:52:03,093 - main - INFO - Starting resume processing for file: embedded-software-engineer-resume-example.pdf
+2025-07-31 18:52:03,093 - main - INFO - Extracting text from file
+2025-07-31 18:52:03,210 - main - INFO - Uploading file to HubSpot
+2025-07-31 18:52:04,962 - main - INFO - Sending to Gemini for parsing
+2025-07-31 18:52:12,378 - main - INFO - Updating 'city_dropdown' in HubSpot
+2025-07-31 18:52:13,267 - main - INFO - Updating 'state_dropdown' in HubSpot
+2025-07-31 18:52:14,425 - main - INFO - Updating 'country_dropdown' in HubSpot
+2025-07-31 18:52:15,786 - main - INFO - Updating skills in HubSpot
+2025-07-31 18:52:17,665 - main - INFO - Creating new contact: salvador.sanz@email.com
+2025-07-31 18:52:18,495 - main - INFO - Successfully processed resume for salvador.sanz@email.com
+2025-07-31 18:52:18,531 - main - INFO - Successfully added resume data for salvador.sanz@email.com in database.
+2025-07-31 18:52:31,081 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:52:31,941 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:54:25,612 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:57:38,653 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:57:39,539 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:57:42,539 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:57:43,102 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 18:59:16,606 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:02:14,965 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:02:15,587 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:03:56,465 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:03:57,038 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:04:24,482 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:04:25,017 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:04:29,205 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:04:29,544 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:05:11,030 - main - INFO - Creating new HubSpot list: embed test List
+2025-07-31 19:05:11,815 - main - INFO - Adding contacts ['386884973755'] to list 89
+2025-07-31 19:05:12,578 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:06:50,609 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:06:55,601 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:07:30,600 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:09:29,719 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:09:30,313 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:09:46,805 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:09:47,427 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:11:02,551 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:11:03,164 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:36:42,215 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:36:42,942 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:37:19,590 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:37:26,661 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:37:27,124 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:38:05,538 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:38:06,369 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:38:07,477 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:38:07,839 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:38:12,265 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:38:12,773 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:39:27,121 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:39:27,737 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:39:41,668 - main - INFO - Creating new HubSpot list: test
+2025-07-31 19:39:42,472 - main - INFO - Adding contacts ['349146961124'] to list 90
+2025-07-31 19:39:42,910 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:40:18,007 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:40:18,587 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:40:35,553 - main - INFO - Adding contacts ['382674213110', '386884973755'] to list 90
+2025-07-31 19:40:53,698 - main - INFO - Creating new HubSpot list: test 2
+2025-07-31 19:40:54,456 - main - INFO - Adding contacts ['382747781343'] to list 91
+2025-07-31 19:40:54,827 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:42:09,605 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:42:24,592 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:42:28,587 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:42:45,664 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:42:46,207 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:42:47,025 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:42:47,409 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:43:42,810 - main - INFO - Creating new HubSpot list: test 1
+2025-07-31 19:43:54,555 - main - INFO - Adding contacts ['382674213110', '349146961124', '386884973755'] to list 92
+2025-07-31 19:44:10,919 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:45:40,984 - main - INFO - Creating new HubSpot list: test 4
+2025-07-31 19:45:41,669 - main - INFO - Adding contacts ['382674213110', '349146961124'] to list 93
+2025-07-31 19:45:42,167 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:46:32,667 - main - INFO - Creating new HubSpot list: test 5
+2025-07-31 19:46:33,355 - main - INFO - Adding contacts ['382747781343'] to list 94
+2025-07-31 19:46:33,806 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:47:44,079 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:47:44,742 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:47:45,540 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:47:45,844 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:54:06,851 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:54:07,508 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:54:26,134 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:54:26,679 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:54:29,842 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:54:30,354 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:54:49,033 - main - INFO - Creating new HubSpot list: test
+2025-07-31 19:54:49,770 - main - INFO - Adding contacts ['382747781343'] to list 95
+2025-07-31 19:54:50,118 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:56:35,584 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:56:46,577 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:56:51,574 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:57:00,359 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:57:01,475 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:57:17,582 - main - INFO - Creating new HubSpot list: test 1
+2025-07-31 19:57:18,276 - main - INFO - Adding contacts ['382747781343'] to list 96
+2025-07-31 19:57:26,884 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 19:58:09,803 - main - INFO - Adding contacts ['382674213110'] to list 96
+2025-07-31 20:00:16,260 - main - INFO - Creating new HubSpot list: test 2
+2025-07-31 20:00:17,065 - main - INFO - Adding contacts ['349146961124'] to list 97
+2025-07-31 20:00:18,722 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:02:26,654 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:02:27,552 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:02:28,713 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:02:29,107 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:02:29,731 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:02:30,067 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:02:33,280 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:02:33,653 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:02:46,269 - main - INFO - Creating new HubSpot list: test
+2025-07-31 20:02:46,964 - main - INFO - Adding contacts ['382747781343', '382674213110'] to list 98
+2025-07-31 20:02:47,360 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:03:09,520 - main - INFO - Adding contacts ['349146961124', '386884973755'] to list 98
+2025-07-31 20:03:23,658 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:03:24,392 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:03:33,484 - main - INFO - Creating new HubSpot list: test 1
+2025-07-31 20:03:34,027 - main - INFO - Adding contacts ['382747781343'] to list 99
+2025-07-31 20:03:34,482 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:05:40,461 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:05:41,004 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:06:50,668 - main - INFO - Creating new HubSpot list: test list
+2025-07-31 20:06:52,604 - main - INFO - Adding contacts ['382747781343', '382674213110'] to list 100
+2025-07-31 20:06:53,133 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:07:13,157 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:07:14,275 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:07:27,620 - main - INFO - Adding contacts ['386884973755'] to list 100
+2025-07-31 20:07:32,756 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:07:33,192 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:07:34,571 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:07:34,938 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:07:47,531 - main - INFO - Creating new HubSpot list: test 1
+2025-07-31 20:07:48,460 - main - INFO - Adding contacts ['382747781343', '382674213110'] to list 101
+2025-07-31 20:07:48,918 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:08:04,215 - main - INFO - Creating new HubSpot list: test
+2025-07-31 20:08:05,008 - main - INFO - Adding contacts ['382747781343', '382674213110', '349146961124', '386884973755'] to list 102
+2025-07-31 20:08:05,419 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:08:23,681 - main - INFO - Creating new HubSpot list: test
+2025-07-31 20:09:23,527 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:09:27,961 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:09:28,325 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:09:38,882 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:09:39,819 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:10:39,300 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:10:39,845 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:10:57,236 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:10:57,847 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:10:58,956 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:10:59,322 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:11:07,512 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:11:37,516 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:11:43,509 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:13:38,510 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:13:43,021 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:13:43,489 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:13:45,154 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:13:45,926 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:13:59,164 - main - INFO - Creating new HubSpot list: test 5
+2025-07-31 20:13:59,894 - main - INFO - Adding contacts ['386884973755'] to list 103
+2025-07-31 20:14:00,810 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:14:10,311 - main - INFO - Creating new HubSpot list: Test 5
+2025-07-31 20:14:11,458 - main - INFO - Adding contacts ['349146961124'] to list 104
+2025-07-31 20:14:11,980 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:14:37,692 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:14:38,437 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:15:41,959 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:15:42,931 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:16:37,891 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:16:38,696 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:16:39,256 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:16:39,697 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:16:48,640 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:16:49,462 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:17:20,920 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:17:21,569 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:18:46,812 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:18:47,397 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:41:09,802 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:41:10,819 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:41:11,958 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:41:12,294 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:41:25,193 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:41:25,710 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:41:43,335 - main - INFO - Creating new HubSpot list: test 7
+2025-07-31 20:41:44,354 - main - INFO - Adding contacts ['382674213110', '349146961124'] to list 105
+2025-07-31 20:41:44,686 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:41:51,084 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:41:51,750 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:42:06,898 - main - INFO - Adding contacts ['382747781343'] to list 105
+2025-07-31 20:44:05,795 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:44:06,331 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:44:35,230 - main - INFO - Creating new HubSpot list: test
+2025-07-31 20:44:35,870 - main - INFO - Adding contacts ['382747781343', '382674213110'] to list 106
+2025-07-31 20:44:36,250 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:44:57,296 - main - INFO - Adding contacts ['386884973755', '349146961124'] to list 106
+2025-07-31 20:47:52,490 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:47:53,437 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:47:53,737 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:47:54,031 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:48:06,452 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:48:51,453 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:48:52,045 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:49:11,444 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:49:33,085 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:49:33,698 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:49:36,723 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:49:37,032 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:49:38,582 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:49:38,893 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:50:12,978 - main - INFO - Creating new HubSpot list: test 4
+2025-07-31 20:50:13,987 - main - INFO - Adding contacts ['349146961124', '382674213110'] to list 107
+2025-07-31 20:50:14,317 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:53:16,340 - main - INFO - Adding contacts ['382674213110', '349146961124'] to list 106
+2025-07-31 20:53:38,700 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:53:39,229 - main - INFO - Calling HubSpot v3 lists/search via api_request
+2025-07-31 20:53:51,107 - main - INFO - Adding contacts ['386884973755'] to list 107
